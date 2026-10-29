@@ -1,0 +1,43 @@
+MIT License
+
+Copyright (c) 2026 AI Whisperers and contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+## Notes on the LICENSE choice for the WiseQ engagement
+
+This is an MIT license — permissive, family-friendly, no copyleft.
+The operator (AI Whisperers) retains authorship of the code in this repo.
+
+- WiseQ can run, copy, modify and redistribute the code without
+  restriction, including running the replica internally.
+- WiseQ can hire another developer to maintain or extend it without owing
+  us anything.
+- We don't promise it works for any particular purpose. This is an
+  operations replica and a proof of concept, not a production system.
+- We (AI Whisperers) are not liable for any data loss, calculation errors,
+  or business decisions made based on this software. Standard MIT language.
+
+This LICENSE file lives at the repository root. The `src/wiseq/` source
+tree inherits it by reference.
+
+Signed: AI Whisperers (Ivan van der Pol)
+Engagement: WiseQ agentic operations replica

@@ -1,0 +1,89 @@
+# CI for wiseq-hermes.
+#
+# Pattern basis: the sibling repo Ai-Whisperers/wiseq-ai-onboarding and
+# saskia-app (2026-10):
+#   - pinned action SHAs (no floating tags)
+#   - concurrency auto-cancel (superseded runs don't burn minutes)
+#   - minimum token permissions
+#   - timeout-minutes on every job
+#
+# The client master data is NOT in this repo -- it is mounted from the
+# Ai-Whisperers/wiseq-ai-onboarding repository at test time.  The tests
+# that need it skip cleanly when it is absent, and the PostgreSQL suite
+# is run against a service container so the backend is genuinely
+# exercised rather than skipped.
+
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: wiseq
+          POSTGRES_PASSWORD: wiseq
+          POSTGRES_DB: wiseq_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      WISEQ_TEST_PG_URL: postgresql://wiseq:wiseq@localhost:5432/wiseq_test
+      # github.workspace is the runner-controlled checkout path, not an
+      # attacker-supplied value, so interpolating it here is safe.
+      WISEQ_REPO_DIR: ${{ github.workspace }}/data/wiseq-repo
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065  # v5
+        with:
+          python-version: '3.11'
+
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+
+      # The client master data.  Absent -> the tests that need it skip,
+      # which is honest.  The PostgreSQL suite runs either way.
+      - name: Fetch the client master data
+        continue-on-error: true
+        run: |
+          git clone --depth 1 https://github.com/Ai-Whisperers/wiseq-ai-onboarding.git \
+            data/wiseq-repo
+
+      - name: Unit tests (SQLite)
+        run: pytest -q
+
+      # A skipped PostgreSQL suite must NOT be allowed to pass as success.
+      - name: Unit tests (PostgreSQL backend)
+        run: |
+          set -o pipefail
+          OUT=$(pytest tests/test_postgres.py -q -rs)
+          echo "$OUT"
+          if echo "$OUT" | grep -qE '[0-9]+ skipped'; then
+            echo "::error::PostgreSQL suite skipped -- it did not exercise PostgreSQL"
+            exit 1
+          fi

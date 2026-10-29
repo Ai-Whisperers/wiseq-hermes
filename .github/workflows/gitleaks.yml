@@ -1,0 +1,46 @@
+# Server-side secret scan -- the second layer.
+#
+# The local pre-commit hook (installed globally at
+# /opt/data/.git-hooks/pre-commit) scans STAGED files only.  This
+# workflow scans the FULL HISTORY, which catches:
+#   - anything committed with --no-verify
+#   - secrets that landed before the hook was installed
+#   - fork pull requests, which run their own hooks we do not control
+#
+# The gitleaks CLI is used directly because the v3 GitHub ACTION requires
+# a licence key for org repositories.
+
+name: gitleaks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: gitleaks-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  gitleaks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Install gitleaks CLI
+        run: |
+          set -euo pipefail
+          VER="v8.24.3"
+          curl -sSL "https://github.com/gitleaks/gitleaks/releases/download/${VER}/gitleaks_${VER#v}_linux_x64.tar.gz" -o /tmp/gl.tgz
+          tar -xzf /tmp/gl.tgz -C /usr/local/bin gitleaks
+          gitleaks version
+      - name: Scan full history
+        run: gitleaks git --redact --verbose --exit-code 1 .

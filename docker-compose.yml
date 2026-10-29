@@ -1,0 +1,103 @@
+# WiseQ Hermes -- portable stack.
+#
+#   docker compose up -d
+#
+# Services:
+#   wiseq      the Hermes agent API (this repo)
+#   scheduler  the recurring jobs (catalogue sync, strike check, stock guard)
+#   mailhog    local SMTP sink + web UI, so no real email is ever sent
+#   postgres   optional local PostgreSQL (use this instead of Supabase)
+#
+# For the Supabase path, comment out `postgres` and set
+# WISEQ_DATABASE_URL in .env to the Supabase DSN.
+
+services:
+  wiseq:
+    build: .
+    image: wiseq/hermes:latest
+    container_name: wiseq-hermes
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      WISEQ_DATABASE_URL: ${WISEQ_DATABASE_URL:-sqlite:////data/wiseq.db}
+      WISEQ_REPO_DIR: /data/wiseq-repo
+      WISEQ_TEST_RECIPIENT: ${WISEQ_TEST_RECIPIENT:-weissvanderpol@gmail.com}
+      WISEQ_TEST_SENDER: ${WISEQ_TEST_SENDER:-wiseq-agent@example.invalid}
+      SMTP_HOST: mailhog
+      SMTP_PORT: "1025"
+      # Unverified placeholder -- must stay 0 until Rob exports the real
+      # staffel ladder from his own Shopify app.  Do NOT raise this default:
+      # a non-zero value here also clears the "still a placeholder" flag
+      # inside the app, which would silently present an invented discount
+      # as a confirmed WiseQ rule.
+      WISEQ_SCHOOL_DISCOUNT_PCT: ${WISEQ_SCHOOL_DISCOUNT_PCT:-0}
+      # API token.  The container binds 0.0.0.0:8000, so without a token
+      # every remote call is REFUSED (the app fails closed).  Set
+      # WISEQ_API_TOKEN in .env before exposing the port to anything but
+      # localhost.
+      WISEQ_API_TOKEN: ${WISEQ_API_TOKEN:-}
+    volumes:
+      - ./data/wiseq-repo:/data/wiseq-repo:ro
+      - wiseq-data:/data
+      - ./.env:/app/.env:ro
+    depends_on:
+      - mailhog
+
+  mailhog:
+    image: mailhog/mailhog:latest
+    container_name: wiseq-mailhog
+    restart: unless-stopped
+    ports:
+      - "8025:8025"   # web UI: http://localhost:8025
+    volumes:
+      - mailhog-data:/mailhog
+
+  scheduler:
+    build: .
+    image: wiseq/hermes:latest
+    container_name: wiseq-scheduler
+    restart: unless-stopped
+    # The recurring jobs.  Every one of them only detects and recommends --
+    # nothing here sends an email, changes a live price or contacts
+    # bol.com.  Use `docker compose run --rm scheduler once` to trigger a
+    # single cycle from cron instead.
+    command: ["python", "scripts/run_scheduler.py", "serve"]
+    environment:
+      WISEQ_DATABASE_URL: ${WISEQ_DATABASE_URL:-sqlite:////data/wiseq.db}
+      WISEQ_REPO_DIR: /data/wiseq-repo
+      WISEQ_TEST_RECIPIENT: ${WISEQ_TEST_RECIPIENT:-weissvanderpol@gmail.com}
+      WISEQ_TEST_SENDER: ${WISEQ_TEST_SENDER:-wiseq-agent@example.invalid}
+      SMTP_HOST: mailhog
+      SMTP_PORT: "1025"
+      WISEQ_SCHOOL_DISCOUNT_PCT: ${WISEQ_SCHOOL_DISCOUNT_PCT:-0}
+    volumes:
+      - ./data/wiseq-repo:/data/wiseq-repo:ro
+      - wiseq-data:/data
+      - ./.env:/app/.env:ro
+    depends_on:
+      - mailhog
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: wiseq-postgres
+    restart: unless-stopped
+    profiles: ["localdb"]
+    environment:
+      POSTGRES_DB: wiseq
+      POSTGRES_USER: wiseq
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-wiseq_local_dev_only}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U wiseq -d wiseq"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  wiseq-data:
+  mailhog-data:
+  pgdata:
