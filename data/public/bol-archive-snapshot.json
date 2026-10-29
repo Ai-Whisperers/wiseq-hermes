@@ -1,0 +1,86 @@
+{
+ "_note": "Archived bol.com seller pages (Wayback). Historical figures, not current. Kept so the public-site audit can reproduce the bol.com section when web.archive.org rate-limits.",
+ "_correction_2026_10_29": "An earlier revision of this file treated the two captures as one account over time (a 176->203 listing growth story). That was wrong. Each capture is a DIFFERENT bol.com seller account. The 2021 capture is seller 1428598 (KVK 71702830); the 2022 capture is seller 1357877 (KVK 84801964 = Wiseq B.V., the live wiseq.nl entity). The two accounts share the trade name 'WISEQ NL' and the same correspondence address but carry different KvK numbers, different VAT numbers, different start dates and different review histories. CDX shows exactly ONE capture each, so no time series exists for either account. bkoppeling.nl (retrieved 2026-10-29) confirms both seller IDs map to KVK 84801964 / Grootebroek, but reports a different metric (9,2/10 from 42 reviews, 312 articles, updated 2025-06-02) than the bol.com page's own counters, which count PRODUCT reviews, not the seller score.",
+ "_metric_note": "The review counts below are bol.com PRODUCT reviews shown on the seller page ('Alle beoordelingen'). The seller SCORE (8,5 / 8,6 out of 10) is a separate rolling 3-month average and is NOT the same metric. The repo's bkoppeling figure (9,2 from 42 reviews) is yet another metric again. Do not compare these three as if they were one series.",
+ "captures": {
+  "2021-11-20": {
+   "seller_id": "1428598",
+   "seller_name": "WISEQ NL",
+   "kvk": "71702830",
+   "btw": "NL002254113B24",
+   "correspondence_address": "Proostwetering 41, 3543AC UTRECHT",
+   "active_since": "13 februari 2019",
+   "capture_timestamp": "20211120172551",
+   "source": "http://web.archive.org/web/20211120172551/https://www.bol.com/nl/nl/v/wiseq-nl/1428598/",
+   "listings": 176,
+   "total_reviews": 1084,
+   "positive_reviews": 955,
+   "negative_reviews": 58,
+   "neutral_reviews": 71,
+   "positivity_pct": "90,7",
+   "seller_score": "8,6",
+   "reviews_last_3_months": 157,
+   "sub_scores": {
+    "overall": "8,6",
+    "general": "8,6",
+    "product_info": "8,3",
+    "delivery_time": "9,0",
+    "shipping": "8,2"
+   },
+   "thuiswinkel_waarborg": true
+  },
+  "2022-05-27": {
+   "seller_id": "1357877",
+   "seller_name": "WISEQ NL",
+   "kvk": "84801964",
+   "btw": "NL863378201B01",
+   "correspondence_address": "Proostwetering 41, 3543AC UTRECHT",
+   "active_since": "5 juni 2018",
+   "capture_timestamp": "20220527032151",
+   "source": "http://web.archive.org/web/20220527032151/https://www.bol.com/nl/nl/v/wiseq-nl/1357877/",
+   "listings": 203,
+   "total_reviews": 864,
+   "positive_reviews": 776,
+   "negative_reviews": 37,
+   "neutral_reviews": 51,
+   "positivity_pct": "93,8",
+   "seller_score": "8,5",
+   "reviews_last_3_months": 122,
+   "sub_scores": {
+    "overall": "8,5",
+    "general": "8,6",
+    "product_info": "8,7",
+    "delivery_time": "8,9",
+    "shipping": "8,5"
+   },
+   "thuiswinkel_waarborg": true
+  }
+ },
+ "bkoppeling": {
+  "_note": "Third-party aggregator, retrieved 2026-10-29. Different metric from the bol.com counters above.",
+  "WISEQ NL": {
+   "seller_id": "1357877",
+   "kvk": "84801964",
+   "btw": "NL863378201B01",
+   "place": "Grootebroek",
+   "rating": "9,2",
+   "reviews": 42,
+   "articles": 312,
+   "active_since": "juni 2018",
+   "data_updated": "2 juni 2025",
+   "source": "https://www.bkoppeling.nl/verkoper/wiseq-nl"
+  },
+  "WISEQ Electronics": {
+   "seller_id": "1428598",
+   "kvk": "84801964",
+   "btw": "NL863378201B01",
+   "place": "Grootebroek",
+   "rating": "8,2",
+   "reviews": 6,
+   "articles": null,
+   "active_since": "februari 2019",
+   "data_updated": "23 juli 2025",
+   "source": "https://www.bkoppeling.nl/verkoper/wiseq-electronics"
+  }
+ }
+}

@@ -18,8 +18,17 @@ htmlcov/
 .env.*
 !.env.example
 
-# client data is mounted, not committed
-data/
+# The client's own master data is mounted, not committed.
+# Clone it into place:
+#   git clone --depth 1 https://github.com/Ai-Whisperers/wiseq-ai-onboarding.git data/wiseq-repo
+data/wiseq-repo/
+
+# Generated audit output (regenerate with scripts/audit_public_site.py).
+# These are derived from the PUBLIC website, so they are safe to commit,
+# and the bol.com snapshot is the offline fallback the audit needs.
+data/public/public-site-audit-*.json
+data/public/public-site-audit-*.md
+data/*.csv
 
 # Fleet orchestrator artifacts (per-ticket, regenerated each dispatch).
 # These appear in EVERY worktree the fleet creates and pollute PR diffs.
