@@ -139,6 +139,8 @@ class OfferIn(BaseModel):
 
 class ApprovalIn(BaseModel):
     decision: str = Field(..., pattern="^(approved|rejected)$")
+    decided_by: str = Field(default="human", min_length=1, max_length=120)
+    note: str = Field(default="", max_length=500)
 
 
 class TokenIssueIn(BaseModel):
@@ -154,7 +156,6 @@ class TokenRotateIn(BaseModel):
     """Rotate an existing token."""
 
     overlap_minutes: int = Field(default=30, ge=0, le=1440)
-    decided_by: str = "human"
 
 
 class PriceImportIn(BaseModel):
@@ -568,11 +569,29 @@ def decide(approval_id: str, payload: ApprovalIn):
                             (approval_id,))
     if not row:
         raise HTTPException(status_code=404, detail="approval not found")
+    if row.get("status") != "pending":
+        # A decision that was already taken must not be silently overwritten:
+        # the first decision is the one that counts, and a second POST
+        # answering 200 would hide a second, conflicting decision.
+        raise HTTPException(
+            status_code=409,
+            detail=f"approval already {row.get('status')}")
     orch.db.execute(
         "UPDATE approvals SET status=?, decided_by=?, decided_at=CURRENT_TIMESTAMP "
         "WHERE approval_id=?",
         (payload.decision, payload.decided_by, approval_id))
-    return {"approval_id": approval_id, "status": payload.decision}
+    # The reason a human gave belongs in the audit trail.  Losing it means
+    # the decision cannot be explained later.
+    if payload.note:
+        import uuid
+        orch.db.execute(
+            "INSERT INTO audit_log (audit_id, actor, action, entity_type, "
+            "entity_id, detail, requires_human) VALUES (?,?,?,?,?,?,?)",
+            (str(uuid.uuid4()), payload.decided_by,
+             f"approval_{payload.decision}", "approval", approval_id,
+             payload.note, 0))
+    return {"approval_id": approval_id, "status": payload.decision,
+            "decided_by": payload.decided_by}
 
 
 @app.get("/decisions-owed")
