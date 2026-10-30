@@ -23,6 +23,7 @@ Two things must hold:
 from __future__ import annotations
 
 import re
+import sys
 from pathlib import Path
 
 import pytest
@@ -86,6 +87,10 @@ def test_the_dockerfile_is_not_the_source_either():
             f"Dockerfile:{i}"
 
 
+@pytest.mark.skipif(
+    sys.platform == "win32",
+    reason="the documented mechanism is a POSIX shell probe; Windows has no bash",
+)
 def test_the_verified_mechanism_reproduces_the_exact_two_messages():
     """Pin the proven cause so the documentation cannot drift.
 
