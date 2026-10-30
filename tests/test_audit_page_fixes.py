@@ -13,6 +13,8 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
+import pytest
+
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
@@ -101,3 +103,54 @@ class TestIssueFixGuidance:
         report = audit_pages.render_report(result)
         assert "No technical issue was found" in report
         assert "What to do" not in report
+
+
+class TestHandoverFiguresMatchTheAudit:
+    """The handover quotes audit numbers; they must be the real ones.
+
+    The handover is what Rob reads. A wrong count in it is worse than no
+    count, so the figures are checked against the committed audit output
+    rather than trusted.
+    """
+
+    def _handover_text(self):
+        return (ROOT / "docs" / "HANDOVER.md").read_text(encoding="utf-8")
+
+    def _audit_pages(self):
+        import json
+
+        path = ROOT / "data" / "public" / "public-page-audit-latest.json"
+        if not path.exists():
+            pytest.skip("no page audit output present")
+        return json.loads(path.read_text(encoding="utf-8"))["pages"]
+
+    def test_the_quoted_page_count_matches_the_audit(self):
+        pages = self._audit_pages()
+        assert len(pages) == 95
+
+    def test_the_quoted_finding_counts_match_the_audit(self):
+        pages = self._audit_pages()
+        counts = {
+            "missing_meta_description": sum(
+                1 for p in pages if not p.get("has_description")),
+            "multiple_h1": sum(
+                1 for p in pages if (p.get("h1_count") or 0) > 1),
+            "missing_h1": sum(
+                1 for p in pages if not p.get("has_h1")),
+            "missing_canonical": sum(
+                1 for p in pages if not p.get("canonical")),
+        }
+        handover = self._handover_text()
+        for label, key in (
+            ("Missing meta description", "missing_meta_description"),
+            ("Multiple `h1`", "multiple_h1"),
+            ("Missing `h1`", "missing_h1"),
+            ("Missing canonical URL", "missing_canonical"),
+        ):
+            row = [ln for ln in handover.splitlines()
+                   if ln.startswith(f"| {label} |")]
+            assert row, f"handover is missing the '{label}' row"
+            quoted = int(row[0].split("|")[2].strip())
+            assert quoted == counts[key], (
+                f"handover says {quoted} for {label}, audit says {counts[key]}"
+            )

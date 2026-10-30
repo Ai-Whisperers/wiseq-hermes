@@ -660,3 +660,37 @@ out:
 The system blocks rather than guesses. It will not sell a product
 because it has a price, and it will not quote a warranty period taken
 from one page while another page disagrees.
+
+---
+
+## Live storefront technical findings (not blocking, but worth a look)
+
+`scripts/audit_pages.py` fetched and read **95 live pages** on 2026-10-30.
+Eleven pages carry a small technical defect, and none of them break the
+system. They are listed here because they are cheap to fix and each one
+is a small loss of traffic or of machine-readable information.
+
+| Finding | Pages | What it costs |
+|---|---|---|
+| Missing meta description | 4 | The search snippet is assembled from whatever text happens to be nearby |
+| Multiple `h1` | 4 | The page has no single stated subject for screen readers or crawlers |
+| Missing `h1` | 2 | Same, in reverse -- the page never says what it is about |
+| Missing canonical URL | 1 | `agents.md` can be ranked at more than one address |
+
+The affected pages are `/collections/sample`, `/pages/algemene-voorwaarden`,
+`/pages/e-book`, `/pages/later-betalen-bevestigd`,
+`/pages/recommended-products`, `/pages/welk-snoer-oplaadkabels-quiz`,
+four `/blogs/nieuws/...` articles, and `/agents.md`.
+
+The full report, with the fix spelled out for each finding, is written by
+
+```bash
+.venv/bin/python scripts/audit_pages.py --out data/public
+```
+
+which produces `data/public/public-page-audit-latest.md`. The audit runs
+as step 8b of `scripts/verify_all.sh`, so a regression here fails the
+build rather than passing quietly.
+
+Nothing here is a decision only you can make -- they are edits to your
+theme and templates. The system does not need them fixed to run.
