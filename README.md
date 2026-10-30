@@ -419,6 +419,28 @@ never complete a payment unattended. Prices are cross-checked against the
 public Shopify catalogue; the two independent sources agreed on every SKU
 sampled. See `docs/PUBLIC-DATA-FINDINGS.md`.
 
+That cross-check is now a permanent, automated gate rather than a
+one-off observation. `scripts/check_ucp_parity.py` resolves every
+catalogue SKU through the live UCP endpoint, imports the prices from the
+live Shopify storefront, and fails if the two disagree by even a cent --
+because a disagreement means an offer quotes the wrong number. It runs as
+step 10 of `scripts/verify_all.sh`.
+
+```
+catalogue SKUs priced : 139
+UCP resolved           : 139
+MATCH                  : 139
+MISMATCH               : 0
+UNUSABLE               : 0
+```
+
+Both sides are committed as snapshots (`data/public/ucp-price-snapshot.json`
+and `data/public/catalogue-price-snapshot.json`), so the check is
+reproducible offline and runs in CI. The live discovery document is
+checked the same way by `scripts/discover_ucp.py`, which reports
+`ALIGNED` while the published tool list matches what the connector
+allows.
+
 ---
 
 ## Where WiseQ actually sits
