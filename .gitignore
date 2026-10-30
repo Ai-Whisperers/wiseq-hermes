@@ -30,6 +30,8 @@ data/public/public-site-audit-*.json
 data/public/public-site-audit-*.md
 data/public/public-page-audit-*.json
 data/public/public-page-audit-*.md
+data/public/mcp-review-*.json
+data/public/mcp-review-*.md
 data/*.csv
 
 # Fleet orchestrator artifacts (per-ticket, regenerated each dispatch).
