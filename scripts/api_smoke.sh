@@ -201,7 +201,7 @@ JSON
 )
 hit POST "/school-orders"          200 "$EMAIL_BODY"
 
-ORDER_NO=$(/opt/data/profiles/ivan/cache/scratch/wiseq-hermes/.venv/bin/python - <<'PY'
+ORDER_NO=$("$PYBIN" - <<'PY'
 import json, glob, os
 best = ""
 for f in glob.glob("/tmp/wq_resp_*.json"):
@@ -220,7 +220,7 @@ echo "  ..order number: ${ORDER_NO:-<none>}"
 # means the email parser or the catalogue matcher regressed, and a school
 # order that quotes EUR 0 for goods must never be treated as a pass.
 echo "-- order lines resolved --"
-/opt/data/profiles/ivan/cache/scratch/wiseq-hermes/.venv/bin/python - <<'PY'
+"$PYBIN" - <<'PY'
 import json, glob, sys
 best = {}
 for f in glob.glob("/tmp/wq_resp_*.json"):
@@ -254,7 +254,7 @@ echo "-- offer carries real goods value (not a shipping-only quote) --"
 # A quote of EUR 0 for the goods is a business error: the catalogue ships
 # without sell prices, so a missing price must surface as a block rather
 # than silently produce a EUR 0 offer.
-OFFER=$(/opt/data/profiles/ivan/cache/scratch/wiseq-hermes/.venv/bin/python - <<'PY'
+OFFER=$("$PYBIN" - <<'PY'
 import json, glob
 best = {}
 for f in glob.glob("/tmp/wq_resp_*.json"):
@@ -267,7 +267,7 @@ for f in glob.glob("/tmp/wq_resp_*.json"):
 print(json.dumps(best))
 PY
 )
-/opt/data/profiles/ivan/cache/scratch/wiseq-hermes/.venv/bin/python - <<'PY'
+"$PYBIN" - <<'PY'
 import json, glob, sys
 best = {}
 for f in glob.glob("/tmp/wq_resp_*.json"):
@@ -352,7 +352,7 @@ hit POST "/reviews/draft"          200 "{\"order_number\":\"${ORDER_NO}\"}"
 
 echo "-- approval gate (human decision) --"
 # Re-read the queue live: the offer draft above is what queued a new one.
-APPROVAL_ID=$(curl -s -m 15 "$BASE/approvals" "${AUTH_HDR[@]}" | /opt/data/profiles/ivan/cache/scratch/wiseq-hermes/.venv/bin/python -c '
+APPROVAL_ID=$(curl -s -m 15 "$BASE/approvals" "${AUTH_HDR[@]}" | "$PYBIN" -c '
 import json,sys
 for row in json.load(sys.stdin):
     if row.get("status") == "pending":

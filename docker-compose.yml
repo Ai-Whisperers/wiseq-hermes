@@ -60,8 +60,13 @@ services:
     restart: unless-stopped
     # The recurring jobs.  Every one of them only detects and recommends --
     # nothing here sends an email, changes a live price or contacts
-    # bol.com.  Use `docker compose run --rm scheduler once` to trigger a
-    # single cycle from cron instead.
+    # bol.com.  To trigger a single cycle from cron instead, use:
+    #
+    #   docker compose run --rm scheduler python scripts/run_scheduler.py once
+    #
+    # NOTE: the entrypoint is a shell form, so `run --rm scheduler once`
+    # would REPLACE the whole command with the bare word "once" and fail
+    # with "executable file not found".  The full command must be given.
     command: ["python", "scripts/run_scheduler.py", "serve"]
     environment:
       WISEQ_DATABASE_URL: ${WISEQ_DATABASE_URL:-sqlite:////data/wiseq.db}
