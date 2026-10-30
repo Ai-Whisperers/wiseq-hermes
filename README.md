@@ -88,6 +88,13 @@ Compose starts three services:
 | `mailhog` | local SMTP sink — **no real email is ever sent** (web UI on 8025) | 8025 |
 | `postgres` | optional local PostgreSQL (`--profile localdb`) | 5432 |
 
+**This path has been run for real** on Docker 29.9.2 / Compose v5.6.1: the image
+builds, all three services come up healthy, the Rob demo runs inside the
+container, every scheduler job returns `ok`, and the API acceptance suite
+scores `37 passed / 0 failed`. The full evidence log, including the
+`api_smoke.sh` portability bug the Docker run uncovered, is in
+[`docs/DOCKER-VERIFICATION.md`](docs/DOCKER-VERIFICATION.md).
+
 To delete everything: `docker compose down -v`. That removes the image's
 volumes too. Nothing is left behind.
 
@@ -348,8 +355,8 @@ so it is always auditable.
 Everything in the table under "What it does today" was **executed** in this
 environment and produced the stated result. Specifically:
 
-- `567 passed, 4 skipped` — unit test suite on SQLite (`pytest -q`); the 4 skips are the PostgreSQL-only tests
-- `571 passed, 0 skipped` — same suite plus the PostgreSQL backend tests
+- `593 passed, 4 skipped` — unit test suite on SQLite (`pytest -q`); the 4 skips are the PostgreSQL-only tests
+- `597 passed, 0 skipped` — same suite plus the PostgreSQL backend tests
   (`WISEQ_TEST_PG_URL=... pytest -q`)
 - `passed: 37  failed: 0` — API acceptance script against a live server
 - End-to-end demo: 11 steps, real client data, 100% order-line framing rate,
@@ -366,7 +373,7 @@ environment and produced the stated result. Specifically:
 
 | Item | Status | Reason |
 |---|---|---|
-| `docker build` / `docker compose up` | **not run** | this container has the Docker CLI but no daemon, no compose plugin and no `podman`. The image was validated by reproducing its install step in a clean venv and running the full acceptance suite against that clean install with the exact environment compose sets. Rob must run `docker compose up -d` once on a host with Docker. |
+| `docker build` / `docker compose up` | **run and green** | executed on a real Docker 29.9.2 / Compose v5.6.1 host on 2026-10-30: image built, all three services healthy, Rob demo exited 0 (509 lines), all six scheduler jobs `ok`, API acceptance suite `37 passed / 0 failed`, and SMTP proven to deliver only to `weissvanderpol@gmail.com`. Full log: `docs/DOCKER-VERIFICATION.md`. |
 | Hosted Supabase | **not run** | Supabase is managed PostgreSQL. The full PostgreSQL pipeline (schema creation, boolean handling, placeholders, row types, the real order flow) was verified against a real PostgreSQL 18.6 server here, so the engine is proven — but Rob's actual Supabase project, its connection string and its network access still need one live run. |
 | Production MCP connectors (bol.com, PostNL, Klaviyo, Exact Online) | **not run** | these need Rob's real accounts and API keys. See `docs/MCP-CONNECTORS.md`. |
 | Real customer data | **not loaded** | the client data repository contains master data, not a customer/order export. The synthetic seed stands in until Rob provides his export — the loaders already upsert, so his data replaces the seed in place. |

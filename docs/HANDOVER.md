@@ -19,11 +19,12 @@ docker compose up -d
 curl http://localhost:8000/health     # -> {"status":"ok","service":"wiseq-hermes"}
 ```
 
-> We could not execute this ourselves: our build container has the Docker
-> client but no Docker daemon. Everything else about the image was validated
-> (clean-environment install reproduced, full acceptance suite re-run against
-> that install), but the `docker build` and `docker compose up` themselves
-> are unrun.
+> **This has now been run for real** (2026-10-30) on a Docker 29.9.2 /
+> Compose v5.6.1 host: the image built, all three services came up healthy,
+> the Rob demo ran inside the container (exit 0, 509 lines), every scheduler
+> job returned `ok`, the API acceptance suite scored `37 passed / 0 failed`,
+> and test mail was confirmed to land **only** in `weissvanderpol@gmail.com`.
+> Full evidence: `docs/DOCKER-VERIFICATION.md`.
 
 **1.2 [W] Check the MailHog UI**
 

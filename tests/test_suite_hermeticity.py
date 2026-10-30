@@ -35,6 +35,11 @@ def _run_a_write_test(env_token: str | None) -> tuple[int, str]:
 
     env = dict(os.environ)
     env.pop("WISEQ_API_TOKEN", None)
+    # The subprocess must resolve its dependencies from the venv that runs
+    # it, not from an ambient PYTHONPATH that may point at a different
+    # interpreter's site-packages. A shadowed package fails at import and
+    # looks like a token failure, which is what this test is not about.
+    env.pop("PYTHONPATH", None)
     if env_token is not None:
         env["WISEQ_API_TOKEN"] = env_token
     env["WISEQ_REPO_DIR"] = env.get(

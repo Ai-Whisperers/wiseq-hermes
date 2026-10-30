@@ -271,10 +271,13 @@ and never picks a side silently. **Rob must decide.**
 `docker-compose.yml` runs the API, the scheduler, MailHog and an optional
 PostgreSQL. `Dockerfile` installs non-editable on purpose.
 
-> **Honest limitation:** the Docker path is **YAML-validated and CI-simulated
-> only**. This environment has the Docker CLI but **no daemon or socket**, no
-> Compose plugin and no Podman. It has never been executed. The local Python
-> path is what was actually exercised, on both Linux and Windows.
+> **Verified on a real daemon (2026-10-30).** The Docker path is no longer a
+> YAML-only claim: the image was built and the stack started on a host with
+> Docker 29.9.2 / Compose v5.6.1. All three services came up healthy, the Rob
+> demo ran inside the container (exit 0, 509 lines), all six scheduler jobs
+> returned `ok`, the API acceptance suite scored `37 passed / 0 failed`, and
+> SMTP was proven to deliver **only** to `weissvanderpol@gmail.com`. The
+> full evidence log is in `docs/DOCKER-VERIFICATION.md`.
 
 ### Database
 One dialect-aware data layer (`src/wiseq/db/`) — SQLite for tests and local
@@ -292,8 +295,8 @@ healthy stale status. 23 dedicated tests.
 
 | Environment | Result |
 | :--- | :--- |
-| Linux + PostgreSQL 18.6 | **586 passed, 0 skipped** |
-| Linux + SQLite only | 582 passed, 4 skipped (PostgreSQL-only tests) |
+| Linux + PostgreSQL 18.6 | **597 passed, 0 skipped** |
+| Linux + SQLite only | 593 passed, 4 skipped (PostgreSQL-only tests) |
 | **Windows 11 (ivan-desktop)** | **581 passed, 5 skipped, 0 failed** |
 | `scripts/verify_all.sh` | **all 14 steps green** |
 | Clean-room install from the archive | **586 passed, 0 skipped** |
@@ -418,7 +421,7 @@ src/wiseq/
   scheduler.py     durable jobs, heartbeats, stale detection
   orchestrator.py  wiring + recurring jobs
 scripts/           setup, verification (14 steps), Rob demo, audits, parity
-tests/             586 tests
+tests/             597 tests
 docs/              HANDOVER, DATABASE, MCP-CONNECTORS, PUBLIC-DATA-FINDINGS,
                    MARKET-AND-PROCUREMENT-FINDINGS, SHOW-ROB, STATUS, WINDOWS-RUN
 data/wiseq-repo/   MOUNTED, NEVER COMMITTED — WiseQ's own master data

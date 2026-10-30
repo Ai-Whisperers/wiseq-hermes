@@ -28,7 +28,7 @@ from Rob's exports.
 | `src/wiseq/api.py` | FastAPI surface. |
 | `src/wiseq/scheduler.py` | Durable recurring jobs. |
 | `scripts/` | Setup, verification, the Rob-facing demo, the public audit. |
-| `tests/` | 586 tests (582 on SQLite, +4 PostgreSQL-only). |
+| `tests/` | 597 tests (593 on SQLite, +4 PostgreSQL-only). |
 | `docs/` | Handover, database model, MCP guide, public-data findings, status. |
 | `data/wiseq-repo/` | **Mounted, never committed.** The client's own master data. |
 
