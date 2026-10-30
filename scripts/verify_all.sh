@@ -284,6 +284,20 @@ else
   bad "live storefront sync: $(printf '%s' "$OUT" | tail -3)"
 fi
 
+step "10. UCP prices agree with the Shopify catalogue"
+# The storefront publishes its catalogue through two independent live
+# surfaces: the Shopify storefront (what the price importer reads) and its
+# own UCP/MCP commerce endpoint.  If they disagree on a price, an offer
+# quotes the wrong number.  The check reads the live scan when it is
+# present and the committed snapshot otherwise, so it also runs offline.
+if OUT=$(WISEQ_REPO_DIR="$REPO" "$PY" scripts/check_ucp_parity.py \
+    --progress "$ROOT/data/wiseq.ucp_scan.json" \
+    --repo "$REPO" 2>&1); then
+  ok "$(printf '%s' "$OUT" | grep -E 'MATCH|PARITY' | tr '\n' ' ')"
+else
+  bad "UCP/Shopify price parity: $(printf '%s' "$OUT" | tail -4 | tr '\n' ' ')"
+fi
+
 printf '\n======================================================\n'
 if [ "$FAIL" -eq 0 ]; then
   printf 'ALL VERIFICATION STEPS PASSED\n'
