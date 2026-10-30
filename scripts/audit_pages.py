@@ -433,6 +433,60 @@ def audit_all(max_pages: int = 0) -> dict:
     }
 
 
+#: What each technical finding means and how to fix it.  A finding a
+#: reader cannot act on is a finding they will skip, so every issue
+#: carries the concrete next step rather than only its name.
+ISSUE_FIXES: dict[str, str] = {
+    "unreachable": (
+        "The URL did not return a readable page. If it is linked from "
+        "anywhere on the site it will lose a crawl and any link equity it "
+        "carries. Fix the link or remove it."
+    ),
+    "noindex": (
+        "The page asks search engines not to index it. Correct for "
+        "checkout and account pages, wrong for anything meant to be "
+        "found. Check it is deliberate."
+    ),
+    "missing_meta_description": (
+        "No meta description, so the search snippet is assembled from "
+        "whatever text happens to be nearby. Write a one-line summary "
+        "that names the product and the audience."
+    ),
+    "missing_canonical": (
+        "No canonical URL. If the same content is reachable at two "
+        "addresses, search engines may split the ranking between them. "
+        "Point the canonical at the address you want ranked."
+    ),
+    "missing_structured_data": (
+        "No JSON-LD. This is how an agent, a price comparison site and "
+        "a search engine learn the product, price and availability. Add "
+        "Product, Offer and Organization schema."
+    ),
+    "malformed_structured_data": (
+        "The JSON-LD does not parse, so it is being ignored entirely. A "
+        "single trailing comma discards the whole block."
+    ),
+    "missing_h1": (
+        "No h1, so the page has no stated subject. Screen readers and "
+        "search engines both use it to announce what the page is about."
+    ),
+    "multiple_h1": (
+        "More than one h1. The extra ones are usually headings styled "
+        "to look like a title; demote them to h2 so there is one "
+        "stated subject per page."
+    ),
+    "missing_viewport": (
+        "No viewport meta tag, so the page renders at desktop width on a "
+        "phone. One tag fixes it."
+    ),
+    "missing_open_graph": (
+        "No Open Graph tags, so a shared link renders with no title, no "
+        "description and no image -- which is how most of the traffic "
+        "arrives."
+    ),
+}
+
+
 def render_report(result: dict) -> str:
     """A Markdown report a human can read and check."""
     lines: list[str] = []
@@ -475,16 +529,21 @@ def render_report(result: dict) -> str:
     lines.append("")
     issues = result["issues"]
     if any(issues.values()):
-        lines.append("| Check | Pages affected |")
-        lines.append("| --- | --- |")
+        lines.append("| Check | Pages affected | What to do |")
+        lines.append("| --- | --- | --- |")
         for name, urls in issues.items():
             if urls:
-                lines.append(f"| {name.replace('_', ' ')} | {len(urls)} |")
+                fix = ISSUE_FIXES.get(name, "")
+                lines.append(f"| {name.replace('_', ' ')} | {len(urls)} | {fix} |")
         lines.append("")
         for name, urls in issues.items():
             if urls:
                 lines.append(f"**{name.replace('_', ' ')}**")
                 lines.append("")
+                fix = ISSUE_FIXES.get(name)
+                if fix:
+                    lines.append(f"Fix: {fix}")
+                    lines.append("")
                 for url in urls[:20]:
                     lines.append(f"- `{url}`")
                 if len(urls) > 20:
