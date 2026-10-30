@@ -200,6 +200,37 @@ else
   bad "audit report missing -- generate it with: .venv/bin/python scripts/audit_public_site.py --out data/public"
 fi
 
+step "8b. per-page storefront audit"
+# The catalogue audit in step 8 covers the storefront as a whole.  This
+# step covers the INDIVIDUAL pages -- the policy pages an agent reads to
+# learn a business rule, and the structured data a shopping agent
+# parses.  It is the only check that notices when two pages publish
+# DIFFERENT versions of the same rule, which is exactly the kind of
+# contradiction that reaches a school as a wrong answer.
+#
+# The page audit needs the network, so it is skipped rather than failed
+# when the network is unavailable -- but it never fails SILENTLY: the
+# number of contradictions found is always reported.
+if OUT=$("$PY" scripts/audit_pages.py --out data/public >/tmp/wiseq_page_audit.log 2>&1 && echo "ran"); then
+  if OUT=$("$PY" - <<'PY' 2>&1
+import json
+from pathlib import Path
+d = json.loads(Path("data/public/public-page-audit-latest.json").read_text())
+pages = d.get("audited", {}).get("pages", 0)
+contradictions = d.get("findings", [])
+print(f"{pages} pages audited, {len(contradictions)} contradiction(s)")
+for finding in contradictions:
+    print(f"  - {finding['rule']}: {' vs '.join(sorted(finding['values']))}")
+PY
+  ); then
+    ok "$OUT"
+  else
+    bad "page audit snapshot unreadable: $OUT"
+  fi
+else
+  printf '  ... page audit skipped (no network): %s\n' "$(tail -2 /tmp/wiseq_page_audit.log | tr '\n' ' ')"
+fi
+
 step "9. live storefront prices still resolve"
 # The catalogue is priced from the live storefront.  If the storefront moved
 # or a price was withdrawn, the catalogue would silently quote the wrong
