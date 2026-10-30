@@ -44,3 +44,5 @@ data/*.csv
 # Resumable UCP scan progress is a local runtime artefact, not source.
 data/wiseq.ucp_scan.json
 data/ucp_scan_loop.log
+data/public/ucp-discovery-*.json
+data/public/ucp-discovery-*.md

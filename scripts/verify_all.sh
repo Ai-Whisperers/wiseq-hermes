@@ -231,6 +231,34 @@ else
   printf '  ... page audit skipped (no network): %s\n' "$(tail -2 /tmp/wiseq_page_audit.log | tr '\n' ' ')"
 fi
 
+step "8b. UCP connector still matches the live endpoint"
+# The connector's read-only allow list and the storefront's advertised
+# protocol version are both assumptions that go stale silently.  This
+# step asks the server what it publishes NOW and compares.  A drift
+# here means the connector would refuse a safe call, or believe it can
+# call a tool that is gone.
+if OUT=$("$PY" scripts/discover_ucp.py --out data/public >/tmp/wiseq_ucp_discovery.log 2>&1 && echo "ran"); then
+  if OUT=$("$PY" - <<'PY' 2>&1
+import json
+from pathlib import Path
+d = json.loads(Path("data/public/ucp-discovery-latest.json").read_text())
+discovery = d.get("discovery") or {}
+comparison = d.get("comparison") or {}
+print(f"UCP {discovery.get('version')}, "
+      f"{comparison.get('published_count', 0)} tool(s) published, "
+      f"{len(comparison.get('covered') or [])} covered, "
+      f"{len(comparison.get('published_but_blocked_on_purpose') or [])} write tool(s) blocked")
+print(f"verdict={d.get('verdict')}")
+PY
+  ); then
+    ok "$OUT"
+  else
+    bad "UCP discovery snapshot unreadable: $OUT"
+  fi
+else
+  printf '  ... UCP discovery skipped (no network): %s\n' "$(tail -2 /tmp/wiseq_ucp_discovery.log | tr '\n' ' ')"
+fi
+
 step "9. live storefront prices still resolve"
 # The catalogue is priced from the live storefront.  If the storefront moved
 # or a price was withdrawn, the catalogue would silently quote the wrong
