@@ -296,7 +296,8 @@ healthy stale status. 23 dedicated tests.
 | Linux + SQLite only | 582 passed, 4 skipped (PostgreSQL-only tests) |
 | **Windows 11 (ivan-desktop)** | **581 passed, 5 skipped, 0 failed** |
 | `scripts/verify_all.sh` | **all 14 steps green** |
-| Clean-room install from the archive | 586 passed, 0 skipped |
+| Clean-room install from the archive | **586 passed, 0 skipped** |
+| Clean-room `verify_all.sh` on the archive | **all 14 steps PASSED** (exit 0) |
 | CI (pinned SHAs) | green on `7eeae4e` |
 | Gitleaks (full history) | green on `7eeae4e` |
 
@@ -314,6 +315,24 @@ by inspection:
 A third defect was found by the fresh-clone rehearsal itself: the test suite
 was **not hermetic** — an inherited `WISEQ_API_TOKEN` made 11 write tests
 fail with 401. Fixed, and pinned by `tests/test_suite_hermeticity.py`.
+
+### Environment note: the scratch PostgreSQL is reaped externally
+
+On this server the scratch PostgreSQL receives an external *smart shutdown
+request* roughly a minute after it starts, so it disappears mid-verification
+and step 5b fails with "connection refused". That is the Hermes death
+supervisor reaping the process group, not a fault in the code under test —
+CI runs the PostgreSQL suite in a real service and is green.
+
+**Workaround:** start PostgreSQL and run the verifier in the *same* command,
+so the server's lifetime is bound to the run:
+
+```bash
+pg_ctl -D <datadir> -o "-p 5432 -k /tmp" start && bash scripts/verify_all.sh
+```
+
+That is how the clean-room result above was produced: **all 14 steps
+PASSED, exit 0.**
 
 ---
 
