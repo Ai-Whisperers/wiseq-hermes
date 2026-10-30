@@ -15,8 +15,8 @@ setlocal
 
 set ROOT=C:\hermes\work\wiseq-hermes
 set PY=%ROOT%\.venv\Scripts\python.exe
-set TS_IP=100.105.54.119
-set PORT=8000
+if "%TS_IP%"=="" set TS_IP=100.105.54.119
+if "%PORT%"=="" set PORT=8010
 
 REM Keep PATH clean: an untrusted mount point on PATH breaks pip.
 set PATH=C:\Windows\System32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0
