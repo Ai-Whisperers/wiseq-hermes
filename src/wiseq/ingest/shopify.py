@@ -338,6 +338,10 @@ def sync_shopify(
     if db is not None and load_into_db and rules:
         rules_saved = _save_rules(db, rules)
 
+    catalogue_saved = None
+    if db is not None and load_into_db:
+        catalogue_saved = _save_storefront_catalogue(db, variants, unknown, samples)
+
     return {
         "store": store.rstrip("/"),
         "products_fetched": len(raw),
@@ -352,10 +356,58 @@ def sync_shopify(
         + sum(1 for r in rules if r.get("is_non_sellable")),
         "order_rules": rules,
         "rules_saved": rules_saved,
+        "storefront_catalogue_saved": catalogue_saved,
         "csv_written": written,
         "loaded": loaded,
         "observed": time.strftime("%Y-%m-%d"),
     }
+
+
+def _save_storefront_catalogue(db, variants, unknown, samples) -> int:
+    """Persist what the storefront sells, and which of it is not in the master.
+
+    The master catalogue describes 139 products.  The storefront sells
+    more.  Which of the extras WiseQ intends to sell is a business
+    decision, so it has to be stored rather than printed once and
+    forgotten.
+    """
+    sample_variants = {v.sku for v in samples}
+    unknown_skus = {row.get("sku_text") for row in unknown}
+
+    rows = []
+    for variant in variants:
+        business_sku = variant.business_sku
+        if not business_sku:
+            continue
+        rows.append((
+            variant.sku,
+            business_sku,
+            variant.title,
+            float(variant.price or 0.0),
+            variant.product_type,
+            1 if variant.sku in sample_variants else 0,
+            0 if business_sku in unknown_skus else 1,
+            ",".join(variant.tags),
+        ))
+
+    if rows:
+        db.executemany(
+            """INSERT INTO storefront_catalogue
+                   (variant_sku, sku_text, title, price_eur, product_type,
+                    is_sample, in_catalogue, tags, observed_at)
+               VALUES (?,?,?,?,?,?,?,?, ${NOW})
+               ON CONFLICT(variant_sku) DO UPDATE SET
+                 sku_text=excluded.sku_text,
+                 title=excluded.title,
+                 price_eur=excluded.price_eur,
+                 product_type=excluded.product_type,
+                 is_sample=excluded.is_sample,
+                 in_catalogue=excluded.in_catalogue,
+                 tags=excluded.tags,
+                 observed_at=excluded.observed_at""".replace("${NOW}", "CURRENT_TIMESTAMP"),
+            rows,
+        )
+    return len(rows)
 
 
 def _save_rules(db, rules: list[dict]) -> list[dict]:

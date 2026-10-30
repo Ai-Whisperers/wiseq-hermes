@@ -519,3 +519,26 @@ issuance, and never again.
 
 `GET /policy/warranty` reports the live warranty contradiction page by
 page -- see the handover.
+
+### What is still open
+
+`GET /decisions-owed` returns every decision that only a human can
+make, blocking ones first. Each entry says what the question is, what
+it blocks, and who owns it.
+
+| Kind | What it means |
+|---|---|
+| `shipping_rule` | a shipping category is not validated, so orders needing it are blocked |
+| `catalogue` | a storefront product line is not in the master catalogue, or is a sample |
+| `policy` | two public pages disagree about the same rule |
+| `price` | a catalogue product has no sell price, so no offer can be made |
+| `master_sheet` | a sheet of the master workbook was never exported |
+
+The 88 storefront variants that are not in the master catalogue are
+reported as ~25 product *lines* rather than 88 rows -- "do we sell the
+Premium USB-C cable line?" is answerable, eighty-eight separate
+products are not.
+
+A blocking decision also raises an approval (once, not once per run),
+so the gap shows up in the approval queue and not only in a report
+somebody has to remember to open.

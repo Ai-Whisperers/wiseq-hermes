@@ -615,3 +615,34 @@ customer is expected to check it and route to a human.
 pages, the channel listings and the quote templates to say the same
 thing. Until then, the system keeps saying so out loud rather than
 quietly picking one.
+
+## Everything that is still your decision
+
+`GET /decisions-owed` (or `wiseq.agents.decisions_owed.DecisionsAgent`)
+is the single list. As of 2026-10-30, against the live storefront:
+
+| Kind | Count | What it blocks |
+|---|---|---|
+| shipping rules | 5 | framing any order in that category |
+| catalogue lines | ~25 lines / 88 variants | an offer including that line |
+| policy contradictions | 1 | any customer-facing warranty statement |
+| master sheets not exported | 16 | capabilities that depend on them |
+
+The five shipping categories are `2x Adapter ?`, `Koptelefooncase`,
+`USB HUBS`, `Smartwatch` and `Tag`.
+
+Two of the catalogue decisions are different in kind and worth calling
+out:
+
+* **Samples.** Five storefront variants (EUR 10.00 to 20.00) are tagged
+  `sample`. A non-zero price does not make a sample sellable -- that is
+  a question of intent, not of price.
+* **Newer lines.** The `Premium USB-C Kabel` line (6 variants, EUR
+  11.95 to 13.95), the `USB Hub` line (6 variants) and the `WiseTab`
+  line (4 variants) sell on the storefront but post-date the master
+  catalogue. Whether they are in the master, or are a deliberate
+  addition, is a business call.
+
+The system blocks rather than guesses. It will not sell a product
+because it has a price, and it will not quote a warranty period taken
+from one page while another page disagrees.

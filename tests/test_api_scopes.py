@@ -231,3 +231,22 @@ def test_the_warranty_contradiction_is_served_over_http(client):
     assert body["internal_manual_years"] == 2
     assert body["blocks_automated_customer_answer"] is True
     assert body["resolution_owner"] == "Rob (WiseQ)"
+
+
+def test_the_decisions_owed_report_is_served_over_http(client):
+    """One URL that says what is still open.
+
+    An operator checking the system should not have to know which agent
+    owns which gap.
+    """
+    response = client.get("/decisions-owed")
+    assert response.status_code == 200
+
+    body = response.json()
+    assert "total" in body
+    assert "blocking" in body
+    assert "by_kind" in body
+    assert body["total"] >= body["blocking"]
+    for decision in body["decisions"]:
+        assert decision["owner"]
+        assert decision["question"]

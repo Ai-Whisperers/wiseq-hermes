@@ -14,6 +14,7 @@ from pathlib import Path
 from .agents.assortment import AssortmentAgent
 from .agents.bundles import BundleAgent
 from .agents.integration_catalogue import IntegrationCatalogueAgent
+from .agents.decisions_owed import DecisionsAgent
 from .agents.purchase_intel import PurchaseIntelligenceAgent
 from .agents.reviews import ReviewAgent
 from .agents.school_orders import SchoolOrderAgent
@@ -187,6 +188,9 @@ class WiseQOrchestrator:
     def integration_agent(self) -> IntegrationCatalogueAgent:
         return IntegrationCatalogueAgent(self.db, repo=self.repo)
 
+    def decisions_agent(self) -> DecisionsAgent:
+        return DecisionsAgent(self.db, repo=self.repo)
+
     def mailer(self) -> MailDispatcher:
         return MailDispatcher(self.db)
 
@@ -238,6 +242,15 @@ class WiseQOrchestrator:
                 "OR price_eur <= 0")
             return {"unpriced_skus": len(gaps)}
 
+        def _decisions_owed():
+            # Raises an approval when a blocking decision is still open,
+            # so the gap shows up in the approval queue and not only in a
+            # report somebody has to remember to open.
+            raised = self.decisions_agent().raise_blocking_approval()
+            report = self.decisions_agent().collect()
+            return {"total": report["total"], "blocking": report["blocking"],
+                    "raised": bool(raised)}
+
         sched.every("sync_shopify", 3600, _sync_shopify,
                     description="Mirror the live storefront catalogue and prices.")
         sched.every("strike_check", 3600, _strike_check,
@@ -248,6 +261,8 @@ class WiseQOrchestrator:
                     description="Draft review invitations that are due.")
         sched.every("price_gaps", 21600, _price_gaps,
                     description="Catalogue items still without a sell price.")
+        sched.every("decisions_owed", 21600, _decisions_owed,
+                    description="Human decisions still open; raises an approval.")
         return sched
 
     # -- full run ------------------------------------------------------

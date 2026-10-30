@@ -473,6 +473,47 @@ def show_strike_and_stock_guard(orch) -> None:
     print("  within 3 days as urgent.")
 
 
+def show_decisions_owed(orch) -> None:
+    """Everything Rob still has to decide, in one list."""
+    head("WHAT IS STILL YOUR DECISION")
+    print("  The system does not guess. Where a decision is missing, it")
+    print("  blocks the action and reports it here. Right now that is:")
+    print()
+
+    report = orch.decisions_agent().collect()
+    by_kind = report["by_kind"]
+    print(f"  {report['total']} open item(s), {report['blocking']} of which block")
+    print("  a customer-facing action.")
+    print()
+
+    labels = {
+        "shipping_rule": "shipping rules that cannot be applied yet",
+        "catalogue": "storefront lines not in the master catalogue",
+        "policy": "public pages that contradict each other",
+        "price": "catalogue items without a sell price",
+        "master_sheet": "master sheets never exported",
+    }
+    for kind, count in sorted(by_kind.items(), key=lambda kv: -kv[1]):
+        print(f"    {count:>4}  {labels.get(kind, kind)}")
+    print()
+
+    for decision in report["decisions"]:
+        if decision["kind"] != "catalogue":
+            continue
+        marker = "BLOCKS" if decision["blocking"] else "note"
+        print(f"  [{marker}] {decision['subject']}")
+        print(f"      {decision['question']}")
+        if decision.get("evidence"):
+            print(f"      {decision['evidence']}")
+    print()
+    print("  Every one of these is a decision, not a bug. The system")
+    print("  refuses to act on them until you answer -- it will not sell a")
+    print("  product just because it has a price, and it will not quote a")
+    print("  warranty period it found on one page while another page")
+    print("  says something else.")
+    print()
+
+
 def show_what_is_missing(orch, settings) -> None:
     """Say plainly what WiseQ must still decide, and why we did not guess.
 
@@ -654,6 +695,7 @@ def main() -> int:
     show_scheduler(orch)
     show_integration_backlog(orch)
     show_strike_and_stock_guard(orch)
+    show_decisions_owed(orch)
     show_what_is_missing(orch, settings)
 
     print()

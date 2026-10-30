@@ -241,6 +241,32 @@ CREATE TABLE IF NOT EXISTS assortment (
     updated_at      ${TS} NOT NULL DEFAULT ${NOW}
 );
 
+-- What the live storefront sells that the master catalogue does not
+-- describe, and which storefront variants are samples.
+--
+-- The Shopify sync already discovers both.  Without a table they were
+-- transient -- they existed only in the response of one run, and the
+-- decision "do we sell this?" had nowhere to live.  Persisting them
+-- turns a discovery into a trackable decision.
+CREATE TABLE IF NOT EXISTS storefront_catalogue (
+    -- The storefront variant SKU is the identity: it is unique per
+    -- variant, whereas the business SKU collapses several variants
+    -- (all five samples share business SKU 'Sample').  Keying on the
+    -- business SKU would silently merge five sample products into two
+    -- rows and understate the decision.
+    variant_sku   TEXT PRIMARY KEY,
+    sku_text      TEXT,
+    title         TEXT,
+    price_eur     NUMERIC(10,2),
+    product_type  TEXT,
+    is_sample     BOOLEAN NOT NULL DEFAULT 0,
+    in_catalogue  BOOLEAN NOT NULL DEFAULT 0,
+    tags          TEXT,
+    observed_at   ${TS} NOT NULL DEFAULT ${NOW}
+);
+CREATE INDEX IF NOT EXISTS idx_storefront_catalogue_flag
+    ON storefront_catalogue(in_catalogue, is_sample);
+
 CREATE TABLE IF NOT EXISTS outbox (
     outbox_id      TEXT PRIMARY KEY,
     sent_to        TEXT NOT NULL,

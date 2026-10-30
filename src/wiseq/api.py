@@ -575,6 +575,18 @@ def decide(approval_id: str, payload: ApprovalIn):
     return {"approval_id": approval_id, "status": payload.decision}
 
 
+@app.get("/decisions-owed")
+def decisions_owed():
+    """Everything Rob still has to decide, blocking items first.
+
+    Each entry says what the question is, what it blocks, and who owns
+    it.  The point is that a gap cannot hide: an unresolved blocking
+    decision also sits in the approval queue.
+    """
+    orch = get_orchestrator()
+    return orch.decisions_agent().collect()
+
+
 @app.get("/policy/warranty")
 def warranty_policy_status():
     """What the public pages say about the warranty, and where they disagree.
