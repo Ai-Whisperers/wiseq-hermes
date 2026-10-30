@@ -28,7 +28,7 @@ from Rob's exports.
 | `src/wiseq/api.py` | FastAPI surface. |
 | `src/wiseq/scheduler.py` | Durable recurring jobs. |
 | `scripts/` | Setup, verification, the Rob-facing demo, the public audit. |
-| `tests/` | 344 tests. |
+| `tests/` | 571 tests (567 on SQLite, +4 PostgreSQL-only). |
 | `docs/` | Handover, database model, MCP guide, public-data findings, status. |
 | `data/wiseq-repo/` | **Mounted, never committed.** The client's own master data. |
 
@@ -73,7 +73,7 @@ answer, and the test suite is written to catch it.
 # setup
 bash scripts/run_local.sh
 
-# the whole verification (11 steps)
+# the whole verification (14 steps)
 WISEQ_REPO_DIR=./data/wiseq-repo ./scripts/verify_all.sh
 
 # the demo you show Rob

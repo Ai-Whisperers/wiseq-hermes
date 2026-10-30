@@ -336,12 +336,14 @@ so it is always auditable.
 Everything in the table under "What it does today" was **executed** in this
 environment and produced the stated result. Specifically:
 
-- `340 passed, 4 skipped` — unit test suite on SQLite (`pytest -q`); the 4 skips are the PostgreSQL-only tests
-- `344 passed, 0 skipped` — same suite plus the PostgreSQL backend tests
+- `567 passed, 4 skipped` — unit test suite on SQLite (`pytest -q`); the 4 skips are the PostgreSQL-only tests
+- `571 passed, 0 skipped` — same suite plus the PostgreSQL backend tests
   (`WISEQ_TEST_PG_URL=... pytest -q`)
 - `passed: 37  failed: 0` — API acceptance script against a live server
 - End-to-end demo: 11 steps, real client data, 100% order-line framing rate,
   identical metrics on SQLite and on PostgreSQL 18.6
+- `scripts/verify_all.sh`: 14 steps, all green — including the live UCP
+  price-parity check (139 of 139 catalogue prices match to the cent)
 - PostgreSQL: a real server (18.6) was started here, the schema was created,
   the full ingestion and order flow ran, and the results were read back out
   of the database to confirm they persisted

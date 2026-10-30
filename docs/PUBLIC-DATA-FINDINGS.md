@@ -656,7 +656,7 @@ a school board's checklist.
 | Dated audit snapshot | `data/public/` | step 8 |
 | Rate-limit handling that never fakes an empty catalogue | `src/wiseq/connectors/ucp.py` | 4 tests |
 
-**Total: 268 tests, 37 API checks, 11 verification steps, all green.**
+**Total: 571 tests, 37 API checks, 14 verification steps, all green.**
 
 ---
 
