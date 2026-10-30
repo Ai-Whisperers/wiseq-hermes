@@ -286,13 +286,40 @@ def show_class_set_sizing() -> None:
 
 def show_warranty_policy() -> None:
     """The repair-and-discount schedule from Rob's own operating manual."""
-    from wiseq.agents.warranty_policy import DamageType, decide_warranty
+    from wiseq.agents.warranty_policy import (
+        DamageType,
+        decide_warranty,
+        public_warranty_contradiction,
+    )
 
     head("WARRANTY / REPAIR -- from your own operating manual")
-    print("  WiseQ's public pages currently say 1 year (legal pages),")
-    print("  2 years (Amazon, your manual) and 2 years including physical")
-    print("  damage (the school page). Your manual has the actual repair")
-    print("  price list, so that is what the system applies:")
+
+    # Show the contradiction as the live audit found it, page by page,
+    # rather than as a sentence in a document nobody re-reads.
+    contradiction = public_warranty_contradiction()
+    print("  We checked all 95 pages of your live site on 2026-10-30.")
+    print("  They do not agree with each other about the warranty:")
+    print()
+    for years, pages in contradiction["pages_by_years"].items():
+        print(f"    {years} year(s) -- {len(pages)} pages")
+        for page in pages[:4]:
+            print(f"        {page}")
+        if len(pages) > 4:
+            print(f"        ... and {len(pages) - 4} more")
+    print()
+    print(f"  Your operating manual says "
+          f"{contradiction['internal_manual_years']} years, and that is what")
+    print("  the system applies. The pages that disagree with your manual:")
+    for page in contradiction["pages_conflicting_with_manual"]:
+        print(f"    {page}")
+    print()
+    print("  This one is a live contradiction on wiseq.nl, not a gap in the")
+    print("  system -- only you can align the pages, the terms and the")
+    print("  quotes. Until then, the system will not assemble a customer")
+    print("  answer out of whichever page it happened to read.")
+    print()
+    print("  Your manual has the actual repair price list, so that is what")
+    print("  the system applies:")
     print()
 
     cases = [

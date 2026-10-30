@@ -575,6 +575,24 @@ def decide(approval_id: str, payload: ApprovalIn):
     return {"approval_id": approval_id, "status": payload.decision}
 
 
+@app.get("/policy/warranty")
+def warranty_policy_status():
+    """What the public pages say about the warranty, and where they disagree.
+
+    The storefront publishes one year on the general terms and two years
+    on the school-facing pages.  That contradiction is on WiseQ's live
+    site and only Rob can resolve it -- but it must not be invisible,
+    because an agent that reads one page and answers a customer will
+    state a different rule than an agent that reads another.
+
+    The internal manual says two years, and the warranty agent applies
+    the manual.
+    """
+    from .agents.warranty_policy import public_warranty_contradiction
+
+    return public_warranty_contradiction()
+
+
 @app.get("/audit")
 def audit():
     orch = get_orchestrator()

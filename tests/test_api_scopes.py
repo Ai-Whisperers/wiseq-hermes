@@ -213,3 +213,21 @@ def test_health_reports_the_auth_posture(client):
     body = client.get("/health").json()
     assert body["auth"]["writes_require_token"] is True
     assert "roles" in body["auth"]
+
+
+def test_the_warranty_contradiction_is_served_over_http(client):
+    """The contradiction must be reachable, not only importable.
+
+    An operator checking the system needs one URL that says "your public
+    pages disagree".  If this route disappears, the contradiction goes
+    back to being invisible.
+    """
+    response = client.get("/policy/warranty")
+    assert response.status_code == 200
+
+    body = response.json()
+    assert body["contradicted"] is True
+    assert body["years_found"] == [1, 2]
+    assert body["internal_manual_years"] == 2
+    assert body["blocks_automated_customer_answer"] is True
+    assert body["resolution_owner"] == "Rob (WiseQ)"

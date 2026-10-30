@@ -585,3 +585,33 @@ new path.
 - If a rule is wrong, it is almost always one of two things: the CSV in the
   client repo changed, or the rule is hardcoded where it should be in
   `config.py`. Both are a five-minute fix.
+
+## The warranty: what the system applies, and what is still broken
+
+The live storefront does not agree with itself about the warranty.
+Checked across all 95 pages on 2026-10-30:
+
+| Where | Years |
+|---|---|
+| `/agents.md`, `/pages/algemene-voorwaarden`, `/pages/veelgestelde-vragen` | 1 |
+| 9 school-facing and collection pages | 2 |
+| Your operating manual | 2 |
+| Amazon / internal material | 2 |
+
+**The system applies two years**, because that is what your operating
+manual says. It does not read the warranty period off the storefront,
+and it will not assemble a customer answer from whichever page a
+retrieval happened to reach.
+
+This is now data, not prose:
+`wiseq.agents.warranty_policy.public_warranty_contradiction()` returns
+the full breakdown, and `GET /policy/warranty` serves it over HTTP.
+
+`warranty_answer_requires_confirmation()` returns `True` while the
+pages disagree. Any agent that would state a warranty period to a
+customer is expected to check it and route to a human.
+
+**Only you can fix this.** It needs the general terms, the school
+pages, the channel listings and the quote templates to say the same
+thing. Until then, the system keeps saying so out loud rather than
+quietly picking one.

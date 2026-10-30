@@ -285,3 +285,87 @@ def decide_warranty(model: str, months_used: int, damage_type: DamageType,
     return WarrantyDecision(covered=covered, months_used=months_used,
                             discount_pct=discount, replace=covered,
                             reason=reason)
+
+
+# --------------------------------------------------------------------------
+# the public contradiction, as data
+# --------------------------------------------------------------------------
+#: What the LIVE storefront says about the warranty, per page.
+#:
+#: Observed by scripts/audit_pages.py against https://www.wiseq.nl on
+#: 2026-10-30.  The pages genuinely disagree: the general terms say one
+#: year, the school-facing and collection pages say two.
+#:
+#: This is recorded as DATA, not as prose in a docstring, so that an
+#: agent can be told which public page it is about to quote -- and so a
+#: change on the storefront is detectable rather than invisible.
+#:
+#: The warranty period the BUSINESS applies is the one in the internal
+#: manual (two years), not the one a randomly chosen page states.  A
+#: customer-facing answer must not be assembled by reading whichever
+#: page the retrieval happened to land on.
+PUBLIC_WARRANTY_YEARS_BY_PAGE: dict[str, int] = {
+    "/agents.md": 1,
+    "/pages/algemene-voorwaarden": 1,
+    "/pages/veelgestelde-vragen": 1,
+    "/blogs/nieuws/koptelefoon-onderwijs-kopen-advies-voor-scholen-wiseq": 2,
+    "/collections/gehoorbescherming": 2,
+    "/collections/kinderkoptelefoons": 2,
+    "/collections/kindertablets": 2,
+    "/collections/laptopkarren": 2,
+    "/collections/smartwatch-voor-kinderen": 2,
+    "/pages/catalogus": 2,
+    "/pages/ict-voor-onderwijs-kinderkoptelefoons-tablets-laptopkarren-wiseq": 2,
+    "/pages/sample-aanvragen": 2,
+}
+
+#: The warranty period the internal manual applies.
+INTERNAL_WARRANTY_YEARS = 2
+
+
+def public_warranty_contradiction() -> dict:
+    """Report the disagreement between the public pages.
+
+    The contradiction is not a bug in this repository and it cannot be
+    fixed from here -- it is on WiseQ's live storefront and only Rob can
+    align the pages, the terms, the channels and the quotes.  What this
+    repository can do is make the contradiction IMPOSSIBLE TO MISS and
+    refuse to paper over it.
+    """
+    values = sorted(set(PUBLIC_WARRANTY_YEARS_BY_PAGE.values()))
+    by_value: dict[int, list[str]] = {}
+    for page, years in PUBLIC_WARRANTY_YEARS_BY_PAGE.items():
+        by_value.setdefault(years, []).append(page)
+
+    return {
+        "contradicted": len(values) > 1,
+        "years_found": values,
+        "pages_by_years": {str(k): sorted(v) for k, v in sorted(by_value.items())},
+        "internal_manual_years": INTERNAL_WARRANTY_YEARS,
+        "internal_agrees_with": [
+            str(y) for y in values if y == INTERNAL_WARRANTY_YEARS
+        ],
+        "pages_conflicting_with_manual": sorted(
+            page for page, years in PUBLIC_WARRANTY_YEARS_BY_PAGE.items()
+            if years != INTERNAL_WARRANTY_YEARS
+        ),
+        "blocks_automated_customer_answer": True,
+        "resolution_owner": "Rob (WiseQ)",
+        "note": (
+            "The general terms state one year; the school-facing and "
+            "collection pages state two.  The internal manual says two, "
+            "and this agent applies the manual.  A customer-facing "
+            "answer must not be assembled from whichever public page "
+            "the retrieval happened to reach."),
+    }
+
+
+def warranty_answer_requires_confirmation() -> bool:
+    """True while the public pages disagree with each other.
+
+    Any agent that would state a warranty period to a customer should
+    check this first.  While it is True, the answer needs a human --
+    not because the manual is unclear, but because the storefront
+    contradicts itself and a customer can check it.
+    """
+    return public_warranty_contradiction()["contradicted"]

@@ -477,3 +477,45 @@ See `docs/HANDOVER.md` for the full checklist. In short:
 ## Licence
 
 MIT. All components are open source.
+
+### Scheduler supervision
+
+A scheduler that is up but whose jobs have silently stopped is worse
+than one that is visibly down, because nothing tells you to look.
+
+The worker now writes a heartbeat every loop iteration and keeps its
+per-job counters in the database, so "three consecutive failures" means
+the same thing before and after a restart. `GET /scheduler` reports
+three liveness states, not two:
+
+| State | Meaning |
+|---|---|
+| `alive` | heartbeat within the staleness threshold |
+| `stale` | it started and then stopped -- look at the process |
+| `never_started` | it never ran -- look at the deployment |
+
+A job that fails the same way five times in a row stops the worker and
+exits non-zero, so a container runtime restarts it while a human looks
+at the real cause.
+
+`scripts/run_scheduler.py status` prints the same picture and `serve`
+exits 2 on give-up.
+
+### API tokens: roles, scopes, rotation
+
+The API fails closed remotely without a token. On top of that there are
+now per-token roles and scopes, so a monitoring token cannot change
+prices and a pricing token cannot read customer data.
+
+Tokens are stored hashed. The plaintext is returned exactly once, at
+issuance, and never again.
+
+| Route | Purpose |
+|---|---|
+| `POST /auth/tokens` | issue a token for a role and expiry |
+| `POST /auth/tokens/{id}/rotate` | issue a replacement, revoke the old one |
+| `DELETE /auth/tokens/{id}` | revoke |
+| `GET /auth/tokens` | list metadata (never the secrets) |
+
+`GET /policy/warranty` reports the live warranty contradiction page by
+page -- see the handover.
