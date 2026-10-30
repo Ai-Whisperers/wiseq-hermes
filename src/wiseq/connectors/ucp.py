@@ -486,6 +486,8 @@ def sync_ucp_catalog(
     client: UCPClient | None = None,
     skus: list[str] | None = None,
     load_into_db: bool = True,
+    resume: bool = False,
+    progress_path: str | Path | None = None,
 ) -> dict:
     """Pull prices for known SKUs from the live UCP catalogue.
 
@@ -510,13 +512,40 @@ def sync_ucp_catalog(
         ]
     skus = skus or []
 
+    # A full 139-SKU scan trips the storefront's rate limit partway
+    # through, and its back-off window is measured in tens of minutes.
+    # With resume=True the scan remembers what it already resolved, so a
+    # later run asks only for the SKUs it never got -- the storefront sees
+    # FEWER calls on each attempt, not more.
+    store = None
+    progress = None
+    if resume or progress_path is not None:
+        from .ucp_scan import ScanProgress, ScanStore, default_store_path
+
+        store = ScanStore(progress_path or default_store_path(db))
+        progress = store.load()
+        progress.runs += 1
+
     resolved: list[dict] = []
     mismatches: list[dict] = []
     not_found: list[str] = []
     rate_limited = False
     retry_after = 0
 
-    for sku in skus:
+    if progress is not None:
+        # Replay what earlier runs already resolved.
+        for sku, price in progress.resolved.items():
+            resolved.append({
+                "sku": sku,
+                "price": price,
+                "title": progress.titles.get(sku, ""),
+                "source": "ucp:mcp",
+            })
+        not_found.extend(progress.not_found)
+
+    todo = progress.pending(skus) if progress is not None else list(skus)
+
+    for sku in todo:
         try:
             product = client.get_product(sku)
         except UCPRateLimited as exc:
@@ -530,12 +559,18 @@ def sync_ucp_catalog(
             break
         except UCPError:
             not_found.append(sku)
+            if progress is not None:
+                progress.failed.append(sku)
             continue
         if product is None:
             not_found.append(sku)
+            if progress is not None:
+                progress.not_found.append(sku)
             continue
         if product.price_min is None:
             not_found.append(sku)
+            if progress is not None:
+                progress.not_found.append(sku)
             continue
         resolved.append({
             "sku": sku,
@@ -543,22 +578,50 @@ def sync_ucp_catalog(
             "title": product.title,
             "source": "ucp:mcp",
         })
+        if progress is not None:
+            progress.resolved[sku] = product.price_min
+            progress.titles[sku] = product.title
+            # Save after EVERY resolved SKU, so a crash or a rate limit
+            # loses at most one lookup.
+            store.save(progress)
         if db is not None:
             existing = db.query(
-                "SELECT price_eur FROM products WHERE sku_text = ?", (sku,)
+                "SELECT price_eur, synthetic_price FROM products WHERE sku_text = ?",
+                (sku,),
             )
             if existing and existing[0]["price_eur"] not in (None, 0):
-                if abs(float(existing[0]["price_eur"]) - product.price_min) > 0.005:
+                # A SYNTHETIC price is a placeholder seeded for local
+                # development, not a price WiseQ published.  Comparing it
+                # against the live catalogue would report every single
+                # product as a mismatch, which buries the real signal.
+                # A placeholder is only a mismatch if it is ZERO -- that
+                # is a missing price, and a missing price must block an
+                # offer rather than be silently replaced.
+                is_synthetic = bool(existing[0].get("synthetic_price"))
+                if is_synthetic and float(existing[0]["price_eur"]) > 0:
+                    pass
+                elif abs(float(existing[0]["price_eur"]) - product.price_min) > 0.005:
                     mismatches.append({
                         "sku_text": sku,
                         "catalogue_price": float(existing[0]["price_eur"]),
                         "ucp_price": product.price_min,
                         "title": product.title,
+                        "synthetic_catalogue_price": is_synthetic,
                     })
+
+    if progress is not None:
+        progress.not_found = sorted(set(progress.not_found))
+        progress.failed = sorted(set(progress.failed))
+        store.save(progress)
 
     loaded = None
     if db is not None and load_into_db and resolved:
-        from .prices import load_prices
+        # NOTE: this was `from .prices import load_prices`, which resolves
+        # to wiseq.connectors.prices -- a module that does not exist.
+        # load_prices lives in wiseq.ingest.prices.  The bug was invisible
+        # until a scan actually RESOLVED prices AND was asked to load them,
+        # because the import sits inside the `if` branch.
+        from ..ingest.prices import load_prices
 
         result = load_prices(db, resolved, source_name="ucp:mcp")
         loaded = result.as_dict()
@@ -566,6 +629,7 @@ def sync_ucp_catalog(
     return {
         "endpoint": client.endpoint,
         "requested": len(skus),
+        "requested_this_run": len(todo),
         "resolved": len(resolved),
         "not_found": not_found,
         "price_mismatches": mismatches,
@@ -574,4 +638,8 @@ def sync_ucp_catalog(
         "complete": not rate_limited and len(not_found) == 0,
         "loaded": loaded,
         "observed": time.strftime("%Y-%m-%d"),
+        "resumable": resume,
+        "runs": progress.runs if progress is not None else 1,
+        "remaining": (len(progress.pending(skus)) if progress is not None
+                      else 0),
     }

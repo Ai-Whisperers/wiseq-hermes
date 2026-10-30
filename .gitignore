@@ -36,3 +36,7 @@ data/*.csv
 .dispatch-result.json
 .dispatch-findings.yaml
 .pr-body.md
+
+# Resumable UCP scan progress is a local runtime artefact, not source.
+data/wiseq.ucp_scan.json
+data/ucp_scan_loop.log
