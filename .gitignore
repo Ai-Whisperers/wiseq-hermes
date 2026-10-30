@@ -28,6 +28,8 @@ data/wiseq-repo/
 # and the bol.com snapshot is the offline fallback the audit needs.
 data/public/public-site-audit-*.json
 data/public/public-site-audit-*.md
+data/public/public-page-audit-*.json
+data/public/public-page-audit-*.md
 data/*.csv
 
 # Fleet orchestrator artifacts (per-ticket, regenerated each dispatch).
