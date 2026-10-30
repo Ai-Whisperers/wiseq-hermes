@@ -26,6 +26,13 @@ assortment      bol.com listing content-quality scores
 audit_log       append-only audit trail for every agent action
 agent_runs      per-run execution record
 approvals       human approval gate for high-impact actions
+
+Supervision (added with the worker supervision work):
+scheduler_heartbeats  one row per scheduler loop iteration -- the liveness proof
+scheduler_job_state   per-job counters that survive a restart of the scheduler
+
+Access control (added with the RBAC work):
+api_tokens            rotating API tokens, stored as a hash -- never as the token
 """
 from __future__ import annotations
 
@@ -280,6 +287,78 @@ CREATE TABLE IF NOT EXISTS approvals (
     decided_at      ${TS},
     decided_by      TEXT
 );
+
+-- Liveness proof for the scheduler process.
+--
+-- One row per loop iteration.  The newest row's age is what decides
+-- "alive" vs "stale"; without it a crashed scheduler is indistinguishable
+-- from a healthy one with a long job interval.
+--
+-- `jobs` holds the registered job names as a JSON array so a reader can
+-- tell "the scheduler is alive but running a different set of jobs" (a
+-- misconfigured deployment) from "the scheduler is alive".
+--
+-- The heartbeat is a WRITE on every iteration.  That is deliberate: it is
+-- the only evidence that the process is doing anything at all, and a
+-- cheap write on a short interval is cheaper than a silent outage.
+CREATE TABLE IF NOT EXISTS scheduler_heartbeats (
+    heartbeat_id  ${UUID} PRIMARY KEY,
+    pid           INTEGER NOT NULL,
+    jobs          TEXT NOT NULL,          -- JSON array of registered job names
+    job_count     INTEGER NOT NULL DEFAULT 0,
+    iteration     INTEGER NOT NULL DEFAULT 0,
+    -- 'running' while the loop is up.  A 'stopped' row is written on a
+    -- clean shutdown so a reader can tell a clean stop from a crash.
+    status        TEXT NOT NULL DEFAULT 'running',
+    created_at    ${TS} NOT NULL DEFAULT ${NOW}
+);
+CREATE INDEX IF NOT EXISTS idx_heartbeats_created ON scheduler_heartbeats(created_at);
+
+-- Per-job supervision counters.
+--
+-- These live in the database rather than in the Scheduler object because a
+-- restarted scheduler has no memory of the previous process: the counters
+-- have to survive the restart for "too many CONSECUTIVE failures" to mean
+-- anything across a crash-and-restart cycle.
+CREATE TABLE IF NOT EXISTS scheduler_job_state (
+    job_name              TEXT PRIMARY KEY,
+    last_run_at           ${TS},
+    last_success_at       ${TS},
+    last_failure_at       ${TS},
+    last_error            TEXT,
+    last_status           TEXT,            -- ok|failed|timed_out|timeout
+    run_count             INTEGER NOT NULL DEFAULT 0,
+    failure_count         INTEGER NOT NULL DEFAULT 0,
+    timeout_count         INTEGER NOT NULL DEFAULT 0,
+    -- Consecutive failures WITHOUT an intervening success.  Reset to zero
+    -- by any successful run.  This is the counter the exit decision uses.
+    consecutive_failures  INTEGER NOT NULL DEFAULT 0,
+    updated_at            ${TS} NOT NULL DEFAULT ${NOW}
+);
+
+-- Rotating API tokens.
+--
+-- Only the SHA-256 hash of each token is stored.  A database dump, a
+-- backup, or a colleague with read access to the database must not be
+-- able to reconstruct a live credential: the hash cannot be reversed.
+--
+-- `rotated_from` records which token this one replaced, so a rotation
+-- can be traced.  `expires_at` is what makes a rotation safe: the old
+-- token keeps a short overlap window and then stops working on its own,
+-- with no cleanup job required.
+CREATE TABLE IF NOT EXISTS api_tokens (
+    token_id      TEXT PRIMARY KEY,
+    name          TEXT NOT NULL,
+    role          TEXT NOT NULL,
+    scopes        TEXT NOT NULL,          -- JSON array of scope names
+    token_hash    TEXT NOT NULL UNIQUE,   -- SHA-256 of the token, never the token
+    issued_at     ${TS} NOT NULL DEFAULT ${NOW},
+    expires_at    ${TS},
+    revoked_at    ${TS},
+    rotated_from  TEXT,
+    last_used_at  ${TS}
+);
+CREATE INDEX IF NOT EXISTS idx_api_tokens_hash ON api_tokens(token_hash);
 """
 
 DIALECTS = {

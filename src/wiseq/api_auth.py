@@ -22,20 +22,21 @@ up yet" and defaulting to open would be the dangerous choice.
 """
 from __future__ import annotations
 
-import hmac
-import os
-from typing import Iterable
-
 from fastapi import HTTPException, Request
 
-#: Requests that are safe to serve without a token, because they expose
-#: no business data and are needed for liveness probes.
-OPEN_PATHS = frozenset({"/health", "/metrics"})
-
-#: Methods that change state and therefore always require a token, even
-#: from loopback.  A local process should not be able to silently raise
-#: a price approval just because it shares the host.
-WRITE_METHODS = frozenset({"POST", "PUT", "PATCH", "DELETE"})
+from .api_rbac import (
+    OPEN_PATHS,
+    WRITE_METHODS,
+    Principal,
+    TokenRegistry,
+    authenticate,
+    auth_status as _auth_status,
+    check_api_access as _check_api_access,
+    configured_token as _configured_token,
+    is_loopback,
+    presented_token as _presented_token,
+    require_scope,
+)
 
 
 def _client_host(request: Request) -> str:
@@ -43,76 +44,21 @@ def _client_host(request: Request) -> str:
     return client.host if client and client.host else ""
 
 
-def is_loopback(host: str) -> bool:
-    return host in ("127.0.0.1", "::1", "localhost", "testclient")
-
-
-def _presented_token(request: Request) -> str:
-    header = request.headers.get("x-wiseq-token")
-    if header:
-        return header.strip()
-    auth = request.headers.get("authorization") or ""
-    if auth.lower().startswith("bearer "):
-        return auth[7:].strip()
-    return ""
-
-
-def _configured_token() -> str:
-    for name in ("WISEQ_API_TOKEN", "WISEQ_ADMIN_TOKEN"):
-        value = os.getenv(name, "").strip()
-        if value:
-            return value
-    return ""
-
-
-def check_api_access(request: Request) -> None:
-    """Raise HTTP 401 when the caller is not allowed in.
+def check_api_access(request: Request, registry: TokenRegistry | None = None,
+                      required_scope: str | None = None) -> Principal | None:
+    """Raise HTTP 401/403 when the caller is not allowed in.
 
     Call this as a FastAPI dependency on every route.  Reads from
     loopback are allowed; writes always need a token; reads from
-    anywhere else need a token.
+    anywhere else need a token.  When a scope is named, the token must
+    carry it.
+
+    The rules themselves live in :mod:`wiseq.api_rbac` so that the same
+    policy applies to a script, the API and a test.
     """
-    path = request.url.path
-    method = request.method.upper()
-
-    if path in OPEN_PATHS:
-        return
-
-    token = _configured_token()
-    presented = _presented_token(request)
-
-    if token and presented and hmac.compare_digest(token, presented):
-        return
-
-    if method in WRITE_METHODS:
-        raise HTTPException(
-            status_code=401,
-            detail=("This action requires an API token. Set WISEQ_API_TOKEN "
-                    "and send it as X-WiseQ-Token or Authorization: Bearer "
-                    "<token>."))
-
-    if is_loopback(_client_host(request)):
-        # A local read is fine.  Local WRITES were already refused above.
-        return
-
-    if not token:
-        raise HTTPException(
-            status_code=401,
-            detail=("No API token is configured, so remote access is "
-                    "refused. Set WISEQ_API_TOKEN to enable remote reads."))
-
-    raise HTTPException(
-        status_code=401,
-        detail="Invalid or missing API token.")
+    return _check_api_access(request, registry=registry, required_scope=required_scope)
 
 
-def auth_status() -> dict:
+def auth_status(registry: TokenRegistry | None = None) -> dict:
     """Describe the current auth posture for /health and the demo."""
-    token = _configured_token()
-    return {
-        "token_configured": bool(token),
-        "remote_reads_allowed": bool(token),
-        "loopback_reads_allowed": True,
-        "writes_require_token": True,
-        "open_paths": sorted(OPEN_PATHS),
-    }
+    return _auth_status(registry)

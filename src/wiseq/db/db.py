@@ -8,6 +8,7 @@ from __future__ import annotations
 import json
 import re
 import sqlite3
+import threading
 import uuid
 from contextlib import contextmanager
 from pathlib import Path
@@ -92,6 +93,9 @@ class Database:
         self.dialect = "sqlite" if url.startswith("sqlite") else "postgresql"
         self._conn = None
         self._bool_columns: dict[str, set[str]] = {}
+        # Serialises access to the connection.  SQLite tolerates one
+        # writer at a time; the lock turns "tolerates" into "guarantees".
+        self._lock = threading.RLock()
 
     # -- connection ----------------------------------------------------
     @property
@@ -101,7 +105,15 @@ class Database:
                 path = self.url.split("sqlite:///", 1)[-1] or ":memory:"
                 if path != ":memory:":
                     Path(path).parent.mkdir(parents=True, exist_ok=True)
-                self._conn = sqlite3.connect(path, detect_types=sqlite3.PARSE_DECLTYPES)
+                # check_same_thread=False because FastAPI runs the
+                # synchronous route handlers in a worker thread, and a
+                # request may land on a different thread from the one
+                # that opened the connection.  The lock below keeps the
+                # access serialised, so this is safe rather than merely
+                # tolerated.
+                self._conn = sqlite3.connect(path,
+                                             detect_types=sqlite3.PARSE_DECLTYPES,
+                                             check_same_thread=False)
                 self._conn.row_factory = sqlite3.Row
                 self._conn.execute("PRAGMA foreign_keys = ON")
             else:
@@ -132,7 +144,8 @@ class Database:
         if self.dialect == "sqlite":
             self.conn.executescript(
                 "PRAGMA foreign_keys = OFF;"
-                "DROP TABLE IF EXISTS approvals; DROP TABLE IF EXISTS agent_runs;"
+                "DROP TABLE IF EXISTS api_tokens; DROP TABLE IF EXISTS approvals;"
+                "DROP TABLE IF EXISTS agent_runs;"
                 "DROP TABLE IF EXISTS audit_log; DROP TABLE IF EXISTS assortment;"
                 "DROP TABLE IF EXISTS reviews; DROP TABLE IF EXISTS stock;"
                 "DROP TABLE IF EXISTS purchase_intel; DROP TABLE IF EXISTS order_lines;"
@@ -211,36 +224,39 @@ class Database:
 
     # -- query helpers -------------------------------------------------
     def execute(self, sql: str, params: Sequence[Any] | None = None) -> int:
-        cur = self.conn.cursor()
-        cur.execute(to_dialect(self._adapt_sql(sql), self.dialect),
-                    self._coerce(sql, params or ()))
-        self.conn.commit()
-        return cur.rowcount
+        with self._lock:
+            cur = self.conn.cursor()
+            cur.execute(to_dialect(self._adapt_sql(sql), self.dialect),
+                        self._coerce(sql, params or ()))
+            self.conn.commit()
+            return cur.rowcount
 
     def executemany(self, sql: str, rows: Iterable[Sequence[Any]]) -> int:
         rows = list(rows)
         if not rows:
             return 0
-        cur = self.conn.cursor()
-        coerced = [self._coerce(sql, row) for row in rows]
-        cur.executemany(to_dialect(self._adapt_sql(sql), self.dialect), coerced)
-        self.conn.commit()
-        return cur.rowcount
+        with self._lock:
+            cur = self.conn.cursor()
+            coerced = [self._coerce(sql, row) for row in rows]
+            cur.executemany(to_dialect(self._adapt_sql(sql), self.dialect), coerced)
+            self.conn.commit()
+            return cur.rowcount
 
     def query(self, sql: str, params: Sequence[Any] | None = None) -> list[dict]:
-        cur = self.conn.cursor()
-        if self.dialect == "sqlite":
-            cur.execute(sql, params or ())
-            rows = [dict(r) for r in cur.fetchall()]
-        else:
-            # RealDictCursor gives every row the same column-name mapping as
-            # sqlite3.Row, so callers never branch on the backend.
-            import psycopg2.extras
-            cur = self.conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
-            cur.execute(to_dialect(self._adapt_sql(sql), self.dialect),
-                        params or ())
-            rows = [dict(r) for r in cur.fetchall()]
-        return rows
+        with self._lock:
+            cur = self.conn.cursor()
+            if self.dialect == "sqlite":
+                cur.execute(sql, params or ())
+                rows = [dict(r) for r in cur.fetchall()]
+            else:
+                # RealDictCursor gives every row the same column-name mapping as
+                # sqlite3.Row, so callers never branch on the backend.
+                import psycopg2.extras
+                cur = self.conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+                cur.execute(to_dialect(self._adapt_sql(sql), self.dialect),
+                            params or ())
+                rows = [dict(r) for r in cur.fetchall()]
+            return rows
 
     def query_one(self, sql: str, params: Sequence[Any] | None = None) -> dict | None:
         rows = self.query(sql, params)
@@ -254,12 +270,13 @@ class Database:
 
     @contextmanager
     def transaction(self) -> Iterator["Database"]:
-        try:
-            yield self
-            self.conn.commit()
-        except Exception:
-            self.conn.rollback()
-            raise
+        with self._lock:
+            try:
+                yield self
+                self.conn.commit()
+            except Exception:
+                self.conn.rollback()
+                raise
 
     # -- portable JSON columns ----------------------------------------
     @staticmethod

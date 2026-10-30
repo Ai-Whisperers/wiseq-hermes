@@ -8,19 +8,18 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from fastapi import Depends, FastAPI, HTTPException
+from fastapi import Depends, FastAPI, HTTPException, Request
 from pydantic import BaseModel, Field
 
 from .api_auth import auth_status, check_api_access
+from .api_rbac import Principal, SCOPES, TokenRegistry, require_scope
 from .config import get_settings
 from .db.db import Database
 from .orchestrator import WiseQOrchestrator
 
-app = FastAPI(title="WiseQ Hermes", version="0.1.0",
-              dependencies=[Depends(check_api_access)])
-
 _db: Database | None = None
 _orch: WiseQOrchestrator | None = None
+_registry: TokenRegistry | None = None
 
 
 def get_orchestrator() -> WiseQOrchestrator:
@@ -33,6 +32,88 @@ def get_orchestrator() -> WiseQOrchestrator:
         _orch = WiseQOrchestrator(_db, repo=repo,
                                    discount_pct=settings.school_discount_pct)
     return _orch
+
+
+def get_registry() -> TokenRegistry:
+    """The token registry, created on first use.
+
+    It lives on the same database as everything else so a token issued
+    before a restart still works afterwards.
+    """
+    global _registry
+    if _registry is None:
+        _registry = TokenRegistry(get_orchestrator().db)
+        _registry.init_schema()
+    return _registry
+
+
+#: Which scope each route needs.
+#:
+#: The app-level dependency already refuses an unauthenticated request.
+#: This map adds the second question: not just *who* is calling, but
+#: *may they do this*.  A read-only integration token cannot raise an
+#: approval even if it leaks, because `approvals:write` is not in its
+#: scope set.
+ROUTE_SCOPES: dict[str, str] = {
+    "/school/class-set-sizing": "catalogue:read",
+    "/school/warranty-decision": "catalogue:read",
+    "/ingest": "catalogue:sync",
+    "/prices/import": "catalogue:sync",
+    "/prices/sync-shopify": "catalogue:sync",
+    "/prices/sync-ucp": "catalogue:sync",
+    "/school-orders": "offers:write",
+    "/school-orders/offer": "offers:write",
+    "/reviews/draft": "approvals:write",
+    "/strikes/record": "approvals:write",
+    "/integration-backlog/request-decision": "approvals:write",
+    "/scheduler/run": "admin",
+    "/approvals": "approvals:read",
+    "/audit": "reports:read",
+    "/customers": "customers:read",
+}
+
+#: Route prefixes whose scope depends on the sub-path.
+ROUTE_PREFIX_SCOPES: list[tuple[str, str]] = [
+    ("/approvals/", "approvals:write"),
+    ("/prices/sync-", "catalogue:sync"),
+    ("/auth/tokens", "admin"),
+]
+
+
+def scope_for(path: str) -> str | None:
+    """The scope a route needs, or None when it needs no specific one."""
+    if path in ROUTE_SCOPES:
+        return ROUTE_SCOPES[path]
+    for prefix, scope in ROUTE_PREFIX_SCOPES:
+        if path.startswith(prefix):
+            return scope
+    return None
+
+
+def enforce_auth(request: Request) -> Principal | None:
+    """The app-wide access gate: authentication, then authorisation.
+
+    Two questions are asked of every request.  First *who is calling* --
+    a token, or a loopback read.  Then *may they do this* -- the route's
+    scope must be in the caller's scope set.
+
+    The scope check only applies to an authenticated caller.  A loopback
+    read has no token and therefore no scope set; refusing it would break
+    local development and the verifier's own smoke test, and it would not
+    make anything safer, because a loopback read exposes no more than the
+    process already can see.
+    """
+    principal = check_api_access(request, registry=_registry)
+    if principal is None:
+        return None
+    scope = scope_for(request.url.path)
+    if scope:
+        require_scope(principal, scope)
+    return principal
+
+
+app = FastAPI(title="WiseQ Hermes", version="0.1.0",
+              dependencies=[Depends(enforce_auth)])
 
 
 class SchedulerRunIn(BaseModel):
@@ -58,6 +139,21 @@ class OfferIn(BaseModel):
 
 class ApprovalIn(BaseModel):
     decision: str = Field(..., pattern="^(approved|rejected)$")
+
+
+class TokenIssueIn(BaseModel):
+    """Ask for a new API token."""
+
+    name: str = Field(..., min_length=1, max_length=120)
+    role: str = Field(..., min_length=1)
+    scopes: list[str] = Field(default_factory=list)
+    expires_in_days: int | None = Field(default=None, ge=1, le=3650)
+
+
+class TokenRotateIn(BaseModel):
+    """Rotate an existing token."""
+
+    overlap_minutes: int = Field(default=30, ge=0, le=1440)
     decided_by: str = "human"
 
 
@@ -207,7 +303,7 @@ def health():
         "service": "wiseq-hermes",
         "school_discount_pct": settings.school_discount_pct,
         "school_discount_is_placeholder": settings.school_discount_is_placeholder,
-        "auth": auth_status(),
+        "auth": auth_status(_registry),
     }
 
 
@@ -474,3 +570,72 @@ def audit():
     return orch.db.query(
         "SELECT actor, action, entity_type, entity_id, detail, requires_human, "
         "created_at FROM audit_log ORDER BY created_at DESC LIMIT 200")
+
+
+# --------------------------------------------------------------------------
+# Token administration
+# --------------------------------------------------------------------------
+@app.get("/auth/tokens")
+def list_tokens():
+    """Every issued token, without the secret.
+
+    The secret is shown exactly once, when it is issued.  What is stored
+    is a hash, so this list cannot be turned back into a working token.
+    """
+    return {"tokens": get_registry().list_tokens()}
+
+
+@app.post("/auth/tokens")
+def issue_token(payload: TokenIssueIn):
+    """Issue a token with a role and a scope set.
+
+    The plaintext token comes back in this response and nowhere else --
+    it is not logged, not stored, and not recoverable.  If it is lost,
+    issue a new one.
+    """
+    from datetime import timedelta
+
+    registry = get_registry()
+    expires_in = (timedelta(days=payload.expires_in_days)
+                  if payload.expires_in_days else None)
+    issued = registry.issue(payload.name, payload.role, payload.scopes, expires_in)
+    unknown = [s for s in payload.scopes if s not in SCOPES]
+    return {
+        "token": issued.token,
+        **issued.as_dict(include_token=False),
+        "ignored_scopes": unknown,
+    }
+
+
+@app.post("/auth/tokens/{token_id}/rotate")
+def rotate_token(token_id: str, payload: TokenRotateIn | None = None):
+    """Replace a token.
+
+    The old token keeps working for the overlap window so a running
+    client can be updated without a gap; after that it stops working on
+    its own, with no cleanup job needed.
+    """
+    from datetime import timedelta
+
+    overlap = timedelta(minutes=(payload.overlap_minutes if payload else 30))
+    issued = get_registry().rotate(token_id, overlap=overlap)
+    if issued is None:
+        raise HTTPException(status_code=404, detail="token not found")
+    return {"token": issued.token, **issued.as_dict(include_token=False)}
+
+
+@app.post("/auth/tokens/{token_id}/revoke")
+def revoke_token(token_id: str):
+    """Revoke a token immediately."""
+    if not get_registry().revoke(token_id):
+        raise HTTPException(status_code=404, detail="token not found")
+    return {"token_id": token_id, "revoked": True}
+
+
+@app.get("/auth/roles")
+def list_roles():
+    """The roles and the scopes each one carries."""
+    from .api_rbac import ROLES
+
+    return {"roles": {role: list(scopes) for role, scopes in ROLES.items()},
+            "scopes": dict(SCOPES)}
