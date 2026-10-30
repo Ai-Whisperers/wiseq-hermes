@@ -318,6 +318,20 @@ table is the gate. If nobody reads `/approvals`, the system does nothing
 that matters — which is exactly the intended behaviour, but it is not a
 complete system on its own.
 
+**6.7 Deciding an approval.** `POST /approvals/<id>` takes
+`{"decision": "approved"|"rejected", "decided_by": "<name>",
+"note": "<why>"}`. The `note` is written to the audit trail, so a
+decision can be explained later; without it the decision is a status
+with no reason attached. A second decision on an approval that was
+already decided is refused with **409** — the first decision is the one
+that counts, and it is not overwritten.
+
+```bash
+curl -X POST http://127.0.0.1:8099/approvals/<id> \
+  -H "X-WiseQ-Token: $WISEQ_API_TOKEN" -H 'Content-Type: application/json' \
+  -d '{"decision":"approved","decided_by":"rob","note":"price checked"}'
+```
+
 ---
 
 ## Before anything goes live — read this
