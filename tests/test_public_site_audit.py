@@ -424,3 +424,46 @@ def test_bol_page_parser_reads_identity_and_metrics(audit):
     # The seller score is its own metric and must be keyed separately.
     assert got["seller_score"] == "8,5"
     assert got["reviews_last_3_months"] == 122
+
+
+# ---------------------------------------------------------------------------
+# snapshot trimming
+# ---------------------------------------------------------------------------
+
+
+def test_trimming_the_catalogue_does_not_change_the_analysis(audit, snapshot):
+    """The committed snapshot is trimmed.  The trim must be lossless.
+
+    If it is not, the audit tests would be asserting against a different
+    catalogue than the one the live audit produced.
+    """
+    raw = snapshot.get("raw_catalogue")
+    if not raw:
+        pytest.skip("snapshot has no raw catalogue")
+    trimmed = audit.trim_catalogue(raw)
+    assert audit.analyse_catalogue(raw) == audit.analyse_catalogue(trimmed)
+
+
+def test_the_trim_keeps_the_fields_the_analysis_reads(audit, snapshot):
+    raw = snapshot.get("raw_catalogue")
+    if not raw:
+        pytest.skip("snapshot has no raw catalogue")
+    trimmed = audit.trim_catalogue(raw)
+    products = trimmed["products"]
+    assert products
+    for product in products:
+        assert set(product) == {"title", "product_type", "tags", "variants"}
+        for variant in product["variants"]:
+            assert set(variant) == {"sku", "price", "compare_at_price"}
+
+
+def test_the_committed_snapshot_is_the_trimmed_one():
+    """The repo carries the trimmed snapshot, not the full Shopify payload."""
+    path = SCRIPT.parents[1] / "data" / "public" / "public-site-audit-latest.json"
+    if not path.exists():
+        pytest.skip("no snapshot present")
+    raw = json.loads(path.read_text(encoding="utf-8")).get("raw_catalogue", {})
+    products = raw.get("products", [])
+    assert products
+    for product in products:
+        assert set(product) <= {"title", "product_type", "tags", "variants"}

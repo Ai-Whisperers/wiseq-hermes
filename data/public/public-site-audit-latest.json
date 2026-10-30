@@ -1,0 +1,4489 @@
+{
+ "observed": "2026-10-30",
+ "store": "https://www.wiseq.nl",
+ "catalogue": {
+  "products": 230,
+  "variants": 230,
+  "with_price": 228,
+  "with_sku": 228,
+  "priced_and_skued": 227,
+  "distinct_skus": 228,
+  "zero_priced_variants": [
+   {
+    "title": "Schoolbestelling",
+    "sku": "SCHOOL-TAMARISK",
+    "price": "0.00",
+    "compare_at_price": null,
+    "kind": "no_price_set"
+   },
+   {
+    "title": "E-Book | De Lessen Die Je Op School Niet Leert",
+    "sku": "",
+    "price": "0.00",
+    "compare_at_price": "19.95",
+    "kind": "free"
+   }
+  ],
+  "business_rules": [
+   {
+    "title": "Schoolbestelling",
+    "product_type": "Schoolbestelling",
+    "sku": "SCHOOL-TAMARISK",
+    "price": "0.00",
+    "tags": [
+     "intern",
+     "schoolbestelling"
+    ]
+   },
+   {
+    "title": "Administratie- en verzendkosten",
+    "product_type": "Toeslag",
+    "sku": "",
+    "price": "3.57",
+    "tags": [
+     "b2b-toeslag",
+     "niet-los-bestelbaar"
+    ]
+   }
+  ],
+  "samples": [
+   {
+    "title": "Sample - Kids ANC Zwart - Draadloos - Active Noise Cancelling",
+    "sku": "Sample.Kids.ANC.Black",
+    "price": "20.00"
+   },
+   {
+    "title": "Sample - Unbreakable - Draadloos - 45 uur muziek - Blauw",
+    "sku": "Sample.Unbreakable.Blue",
+    "price": "10.00"
+   },
+   {
+    "title": "Sample - Hero - Draadloos - 38 uur muziek - Blauw",
+    "sku": "Sample.Hero.Blue",
+    "price": "10.00"
+   },
+   {
+    "title": "Sample - Junior - Bedraad - Hufterproof - Zwart",
+    "sku": "Sample.Junior.Black",
+    "price": "10.00"
+   },
+   {
+    "title": "Sample - One - Bedraad - Zeer Flexibel - Zwart-Blauw",
+    "sku": "sample.one.zwart.blauw",
+    "price": "10.00"
+   }
+  ],
+  "product_types": {
+   "Oplaadset": 76,
+   "Oplaadkabel": 38,
+   "Kinderkoptelefoon": 23,
+   "USB-adapter": 16,
+   "Tablethoes": 9,
+   "Draadloze lader": 9,
+   "GPS tracker": 9,
+   "Gehoorbescherming": 8,
+   "USB-hub": 7,
+   "(none)": 7,
+   "Audiokabel": 6,
+   "Kindertablet": 4,
+   "Laptopkar": 3,
+   "Smartwatch": 3,
+   "Koptelefoon opbergsysteem": 2,
+   "Koptelefoon": 2,
+   "Koptelefoonhouder": 2,
+   "Koptelefoon case": 2,
+   "Schoolbestelling": 1,
+   "Toeslag": 1,
+   "Kinderoordopjes": 1,
+   "Oordopjes": 1
+  },
+  "top_tags": {
+   "kleur-wit": 87,
+   "aansluiting-usb-c": 81,
+   "soort-set": 76,
+   "model-samsung-galaxy": 64,
+   "model-iphone-15-16-17": 59,
+   "poorten-1-poort": 56,
+   "kleur-zwart": 51,
+   "vermogen-20-25w": 44,
+   "lengte-1m": 42,
+   "multipoort": 40,
+   "lengte-2m": 39,
+   "soort-kabel": 38,
+   "aansluiting-lightning": 36,
+   "krachtig": 35,
+   "lengte-3m": 35,
+   "vermogen-33-38w": 27,
+   "poorten-2-poorten": 26,
+   "poorten-3-poorten": 19,
+   "soort-adapter": 16,
+   "kabel-usb-c-naar-usb-c": 15,
+   "aansluiting-magsafe": 9,
+   "soort-draadloos": 9,
+   "aansluiting-micro-usb": 9,
+   "vermogen-45w": 8,
+   "vermogen-60w": 6
+  },
+  "skus": [
+   "101",
+   "102",
+   "103",
+   "104",
+   "105",
+   "106",
+   "111",
+   "111+216",
+   "111+218",
+   "111+220",
+   "113",
+   "113+210",
+   "113+212",
+   "113+214",
+   "113+216",
+   "113+218",
+   "113+220",
+   "113+231",
+   "113+233",
+   "114",
+   "115",
+   "115+240",
+   "115+241",
+   "115+242",
+   "116",
+   "116+237",
+   "116+238",
+   "116+239",
+   "117",
+   "117+240",
+   "117+241",
+   "117+242",
+   "118",
+   "119",
+   "119+207",
+   "119+208",
+   "119+209",
+   "121",
+   "122",
+   "201",
+   "202",
+   "203",
+   "204",
+   "205",
+   "206",
+   "207",
+   "208",
+   "209",
+   "210",
+   "211",
+   "212",
+   "213",
+   "214",
+   "215",
+   "216",
+   "216-NIEUW",
+   "217",
+   "217-NIEUW",
+   "218",
+   "218-NIEUW",
+   "219",
+   "219-NIEUW",
+   "220",
+   "220-NIEUW",
+   "221",
+   "221-NIEUW",
+   "222",
+   "223",
+   "224",
+   "225",
+   "226",
+   "231",
+   "233",
+   "234",
+   "234+119",
+   "234+121",
+   "237",
+   "238",
+   "239",
+   "240",
+   "241",
+   "242",
+   "2x Siindoo Tag",
+   "2x Siindoo Tag 2.0 Wit",
+   "2x Siindoo Tag 2.0 Zwart",
+   "301",
+   "302",
+   "303",
+   "304",
+   "305",
+   "306",
+   "310",
+   "311",
+   "312",
+   "313",
+   "314",
+   "315",
+   "316",
+   "317",
+   "318",
+   "319",
+   "320",
+   "321",
+   "322",
+   "323",
+   "324",
+   "325",
+   "326",
+   "327",
+   "328",
+   "331",
+   "333",
+   "340",
+   "341",
+   "342",
+   "343",
+   "344",
+   "345",
+   "347",
+   "348",
+   "349",
+   "353",
+   "355",
+   "356",
+   "357",
+   "358",
+   "359",
+   "360",
+   "361",
+   "362",
+   "363",
+   "364",
+   "365",
+   "366",
+   "367",
+   "368",
+   "369",
+   "370",
+   "371",
+   "372",
+   "373",
+   "404",
+   "420",
+   "421",
+   "422",
+   "423",
+   "424",
+   "425",
+   "4x Siindoo Tag",
+   "4x Siindoo Tag 2.0 Wit",
+   "4x Siindoo Tag 2.0 Zwart",
+   "8720618849656",
+   "ANC.Sports",
+   "ANCx100",
+   "BT.Black",
+   "BT.Green",
+   "BT.Pink",
+   "BT.White",
+   "BTWireless Blue",
+   "Bouwpakket ophangboom",
+   "Btwireless.ZR",
+   "Hardcase",
+   "Hero.Black",
+   "Hero.Black&Blue",
+   "Hero.Blue",
+   "Hero.Mint",
+   "Hero.Pink",
+   "Junior.Black",
+   "Junior.Blue",
+   "Junior.Pink",
+   "Kids.ANC.Black",
+   "Kids.ANC.Blue",
+   "Kids.ANC.Pink",
+   "Kluis.M-C16S-P-1L",
+   "Latopkar.2200W",
+   "N.Case",
+   "N.Hub",
+   "One.Black&Blue",
+   "One.Blue&blue",
+   "One.Mint&Pink",
+   "Oorkap.Blauw.Vierkant",
+   "Oorkap.Geel.Vierkant",
+   "Oorkap.LegerGroen.Vierkant",
+   "Oorkap.Mint",
+   "Oorkap.MintGroen.Vierkant",
+   "Oorkap.Roze",
+   "Oorkap.Roze.Vierkant",
+   "Oorkap.Zwart",
+   "Opbergkar.Hout",
+   "Oplaad.Station.16P",
+   "Oplaadkl.32st",
+   "PowerPods",
+   "SCHOOL-TAMARISK",
+   "SW.BLACK",
+   "SW.BLUE",
+   "SW.PINK",
+   "Sample.Hero.Blue",
+   "Sample.Junior.Black",
+   "Sample.Kids.ANC.Black",
+   "Sample.Unbreakable.Blue",
+   "Siindoo Tag",
+   "Siindoo Tag 2.0 Wit",
+   "Siindoo Tag 2.0 Zwart",
+   "T16C (500W)",
+   "Tab.Blauw.160GB",
+   "Tab.Blauw.96GB",
+   "Tab.Hoes.Blauw10.2",
+   "Tab.Hoes.Blauw10.9",
+   "Tab.Hoes.Groen10.2",
+   "Tab.Hoes.Groen10.9",
+   "Tab.Hoes.Rood10.2",
+   "Tab.Hoes.Roze10.2",
+   "Tab.Hoes.Roze10.9",
+   "Tab.Hoes.Zwart10.2",
+   "Tab.Hoes.Zwart10.9",
+   "Tab.Roze.160GB",
+   "Tab.Roze.96GB",
+   "USB-HUB zilver",
+   "USB-HUB.Black",
+   "USB-HUB.Black+260",
+   "USB.HUB.16P",
+   "Unbreakable.Blue",
+   "Unbreakable.Mint",
+   "Unbreakable.Pink",
+   "Wandhanger",
+   "WireQ",
+   "sample.one.zwart.blauw",
+   "usb30s"
+  ]
+ },
+ "agents_md": {
+  "address": "Wijzend 56, 1613 KP Grootebroek, Nederland",
+  "email": "info@wiseq.nl",
+  "phone": "+31 (0)228 75 70 25",
+  "kvk": "84801964",
+  "delivery_area": "Nederland en België",
+  "free_shipping_threshold": "€15",
+  "warranty": "1",
+  "return_window": "30",
+  "credit_bonus": "10",
+  "same_day_cutoff": "15:00",
+  "payment_methods": [
+   "American Express",
+   "Apple Pay",
+   "Bancontact",
+   "Google Pay",
+   "Klarna",
+   "Mastercard",
+   "PayPal",
+   "Shop Pay",
+   "Visa",
+   "iDEAL / Wero"
+  ],
+  "sales_channels": [
+   "Amazon",
+   "bol.com"
+  ],
+  "mentions_mcp": true,
+  "mentions_no_self_checkout": true,
+  "bytes": 12899
+ },
+ "collections": {
+  "kinderkoptelefoons": {
+   "label": "Kids' headphones",
+   "products": 24
+  },
+  "kindertablets": {
+   "label": "Kids' tablets",
+   "products": 4
+  },
+  "smartwatch-voor-kinderen": {
+   "label": "Kids' smartwatches",
+   "products": 3
+  },
+  "gehoorbescherming": {
+   "label": "Hearing protection",
+   "products": 8
+  },
+  "alle-opladers-en-adapters": {
+   "label": "Chargers and adapters",
+   "products": 101
+  },
+  "alle-oplaadkabels": {
+   "label": "Charging cables",
+   "products": 38
+  },
+  "opladers-voor-iphone-17-16-en-15": {
+   "label": "Chargers for iPhone 17/16/15",
+   "products": 59
+  },
+  "opladers-voor-iphone-14-en-ouder": {
+   "label": "Chargers for iPhone 14 and older",
+   "products": 36
+  },
+  "opladers-voor-samsung-galaxy": {
+   "label": "Chargers for Samsung Galaxy",
+   "products": 64
+  },
+  "opladers-voor-ipad-en-laptop": {
+   "label": "Chargers for iPad and laptop",
+   "products": 24
+  },
+  "draadloos-en-magsafe": {
+   "label": "Wireless and MagSafe",
+   "products": 9
+  },
+  "losse-adapters-zonder-kabel": {
+   "label": "Adapters without cable",
+   "products": 16
+  },
+  "koptelefoons": {
+   "label": "Adult headphones",
+   "products": 2
+  },
+  "koptelefoon-accessoires": {
+   "label": "Headphone accessories",
+   "products": 34
+  },
+  "ipad-hoezen-1": {
+   "label": "iPad cases",
+   "products": 9
+  },
+  "gps-tags": {
+   "label": "GPS trackers",
+   "products": 9
+  },
+  "laptopkarren": {
+   "label": "Laptop carts (schools)",
+   "products": 6
+  }
+ },
+ "endpoints": {
+  "agent brief": {
+   "url": "https://www.wiseq.nl/agents.md",
+   "status": 200,
+   "bytes": 12899
+  },
+  "UCP discovery": {
+   "url": "https://www.wiseq.nl/.well-known/ucp",
+   "status": 200,
+   "bytes": 5528
+  },
+  "MCP endpoint": {
+   "url": "https://www.wiseq.nl/api/ucp/mcp",
+   "status": 404,
+   "bytes": 0
+  },
+  "sitemap": {
+   "url": "https://www.wiseq.nl/sitemap.xml",
+   "status": 200,
+   "bytes": 1038
+  },
+  "agentic sitemap": {
+   "url": "https://www.wiseq.nl/sitemap_agentic_discovery.xml",
+   "status": 200,
+   "bytes": 209
+  },
+  "full catalogue JSON": {
+   "url": "https://www.wiseq.nl/products.json?limit=250",
+   "status": 200,
+   "bytes": 1040631
+  }
+ },
+ "reputation": {
+  "scamadviser": {
+   "url": "https://www.scamadviser.com/check-website/wiseq.nl",
+   "status": 200,
+   "readable": true,
+   "headline": "Very Likely Unsafe",
+   "last_updated": "3 months ago",
+   "reported_by": "Webshopchecker",
+   "stale_warning": "This website hasn't been scanned in more than 30 days ago. Press the button to get a real time update."
+  },
+  "trustpilot": {
+   "url": "https://nl.trustpilot.com/review/wiseq.nl",
+   "status": 403,
+   "readable": false,
+   "headline": null,
+   "blocked": true
+  },
+  "webshopchecker": {
+   "url": "https://webshopchecker.nl/shops/wiseq-nl/",
+   "status": 200,
+   "readable": true,
+   "headline": null,
+   "external_reports": 1,
+   "report_source": "Scamadviser",
+   "circular_with_scamadviser": true,
+   "ai_risk_score": 0,
+   "ai_risk_max": 100,
+   "domain_age": "7 years, 9 months",
+   "community_reports": 0,
+   "keurmerk": "not found",
+   "last_checked": "29 oktober 2026"
+  },
+  "webwinkelkeur": {
+   "url": "https://www.webwinkelkeur.nl/webshop/wiseq.nl",
+   "status": 404,
+   "readable": false,
+   "headline": null,
+   "blocked": true
+  }
+ },
+ "bol_archive": {
+  "2021-11-20": {
+   "capture": "2021-11-20",
+   "source": "http://web.archive.org/web/20211120172551/https://www.bol.com/nl/nl/v/wiseq-nl/1428598/",
+   "status": "429 (snapshot)",
+   "readable": true,
+   "seller_id": "1428598",
+   "seller_name": "WISEQ NL",
+   "kvk": "71702830",
+   "btw": "NL002254113B24",
+   "correspondence_address": "Proostwetering 41, 3543AC UTRECHT",
+   "active_since": "13 februari 2019",
+   "capture_timestamp": "20211120172551",
+   "listings": 176,
+   "total_reviews": 1084,
+   "positive_reviews": 955,
+   "negative_reviews": 58,
+   "neutral_reviews": 71,
+   "positivity_pct": "90,7",
+   "seller_score": "8,6",
+   "reviews_last_3_months": 157,
+   "sub_scores": {
+    "overall": "8,6",
+    "general": "8,6",
+    "product_info": "8,3",
+    "delivery_time": "9,0",
+    "shipping": "8,2"
+   },
+   "thuiswinkel_waarborg": true,
+   "from_snapshot": true,
+   "is_wiseq_bv": false
+  },
+  "2022-05-27": {
+   "capture": "2022-05-27",
+   "source": "http://web.archive.org/web/20220527032151/https://www.bol.com/nl/nl/v/wiseq-nl/1357877/",
+   "status": "429 (snapshot)",
+   "readable": true,
+   "seller_id": "1357877",
+   "seller_name": "WISEQ NL",
+   "kvk": "84801964",
+   "btw": "NL863378201B01",
+   "correspondence_address": "Proostwetering 41, 3543AC UTRECHT",
+   "active_since": "5 juni 2018",
+   "capture_timestamp": "20220527032151",
+   "listings": 203,
+   "total_reviews": 864,
+   "positive_reviews": 776,
+   "negative_reviews": 37,
+   "neutral_reviews": 51,
+   "positivity_pct": "93,8",
+   "seller_score": "8,5",
+   "reviews_last_3_months": 122,
+   "sub_scores": {
+    "overall": "8,5",
+    "general": "8,6",
+    "product_info": "8,7",
+    "delivery_time": "8,9",
+    "shipping": "8,5"
+   },
+   "thuiswinkel_waarborg": true,
+   "from_snapshot": true,
+   "is_wiseq_bv": true
+  }
+ },
+ "raw_catalogue": {
+  "products": [
+   {
+    "title": "iPad Beschermhoes Kinderen - 10.2 inch - Groen",
+    "product_type": "Tablethoes",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Tab.Hoes.Groen10.2",
+      "price": "17.65",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Schoolbestelling",
+    "product_type": "Schoolbestelling",
+    "tags": [
+     "intern",
+     "schoolbestelling"
+    ],
+    "variants": [
+     {
+      "sku": "SCHOOL-TAMARISK",
+      "price": "0.00",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Administratie- en verzendkosten",
+    "product_type": "Toeslag",
+    "tags": [
+     "b2b-toeslag",
+     "niet-los-bestelbaar"
+    ],
+    "variants": [
+     {
+      "sku": null,
+      "price": "3.57",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "iPad Beschermhoes Kinderen - 10.9 inch - Roze",
+    "product_type": "Tablethoes",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Tab.Hoes.Roze10.2",
+      "price": "17.65",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "iPad Beschermhoes Kinderen - 10.9 inch - Zwart",
+    "product_type": "Tablethoes",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Tab.Hoes.Zwart10.2",
+      "price": "17.65",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "iPad Beschermhoes Kinderen - 10.9 inch - Blauw",
+    "product_type": "Tablethoes",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Tab.Hoes.Blauw10.2",
+      "price": "17.65",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "iPad Beschermhoes Kinderen - 10.2 inch - Rood",
+    "product_type": "Tablethoes",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Tab.Hoes.Rood10.2",
+      "price": "17.65",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "iPad Beschermhoes Kinderen - 10.2 inch - Roze",
+    "product_type": "Tablethoes",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Tab.Hoes.Roze10.9",
+      "price": "17.65",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "iPad Beschermhoes Kinderen - 10.2 inch - Blauw",
+    "product_type": "Tablethoes",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Tab.Hoes.Blauw10.9",
+      "price": "17.65",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "iPad Beschermhoes Kinderen - 10.2 inch - Zwart",
+    "product_type": "Tablethoes",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Tab.Hoes.Zwart10.9",
+      "price": "17.65",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "iPad Beschermhoes Kinderen - 10.9 inch - Groen",
+    "product_type": "Tablethoes",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Tab.Hoes.Groen10.9",
+      "price": "17.65",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "16-poorts USB-C Oplaadkoffer voor iPads en Tablets – 500W",
+    "product_type": "Laptopkar",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "T16C (500W)",
+      "price": "899.00",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Oplaadkluis 32-poorts - Tablet -/ Laptopkar",
+    "product_type": "Laptopkar",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Oplaadkl.32st",
+      "price": "1149.00",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Houten opbergkar voor koptelefoons – verrijdbaar met 40 ophangpunten",
+    "product_type": "Koptelefoon opbergsysteem",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Opbergkar.Hout",
+      "price": "399.00",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Tablet -/ Laptop Oplader Deluxe  - 16-poorts USB-C laadstation",
+    "product_type": "USB-hub",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Oplaad.Station.16P",
+      "price": "399.00",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Tablet -/ Laptop kluis - 16-poorts USB-C oplaadkast",
+    "product_type": "Laptopkar",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Kluis.M-C16S-P-1L",
+      "price": "550.00",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Sample - Kids ANC Zwart - Draadloos - Active Noise Cancelling",
+    "product_type": "",
+    "tags": [
+     "sample"
+    ],
+    "variants": [
+     {
+      "sku": "Sample.Kids.ANC.Black",
+      "price": "20.00",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Sample - Unbreakable - Draadloos - 45 uur muziek - Blauw",
+    "product_type": "",
+    "tags": [
+     "sample"
+    ],
+    "variants": [
+     {
+      "sku": "Sample.Unbreakable.Blue",
+      "price": "10.00",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Sample - Hero - Draadloos - 38 uur muziek - Blauw",
+    "product_type": "",
+    "tags": [
+     "sample"
+    ],
+    "variants": [
+     {
+      "sku": "Sample.Hero.Blue",
+      "price": "10.00",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Sample - Junior - Bedraad - Hufterproof - Zwart",
+    "product_type": "",
+    "tags": [
+     "sample"
+    ],
+    "variants": [
+     {
+      "sku": "Sample.Junior.Black",
+      "price": "10.00",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Sample - One - Bedraad - Zeer Flexibel - Zwart-Blauw",
+    "product_type": "",
+    "tags": [
+     "sample"
+    ],
+    "variants": [
+     {
+      "sku": "sample.one.zwart.blauw",
+      "price": "10.00",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "USB Hub met Voeding – 16 Poorten - 150 Watt",
+    "product_type": "USB-hub",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "USB.HUB.16P",
+      "price": "45.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "38W Snellader - 3 Poorten - Inclusief 3M USB C naar USB C Kabel - Zwart",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-zwart",
+     "krachtig",
+     "lengte-3m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "multipoort",
+     "poorten-3-poorten",
+     "soort-set",
+     "vermogen-33-38w"
+    ],
+    "variants": [
+     {
+      "sku": "373",
+      "price": "18.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "38W Snellader - 3 Poorten - Inclusief 2M USB C naar USB C Kabel - Zwart",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-zwart",
+     "krachtig",
+     "lengte-2m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "multipoort",
+     "poorten-3-poorten",
+     "soort-set",
+     "vermogen-33-38w"
+    ],
+    "variants": [
+     {
+      "sku": "372",
+      "price": "17.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "38W Snellader - 3 Poorten - Inclusief 1M USB C naar USB C Kabel - Zwart",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-zwart",
+     "krachtig",
+     "lengte-1m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "multipoort",
+     "poorten-3-poorten",
+     "soort-set",
+     "vermogen-33-38w"
+    ],
+    "variants": [
+     {
+      "sku": "371",
+      "price": "16.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "38W Adapter - 3 Poorten 2x USB C + USB A Snellader - Zwart",
+    "product_type": "USB-adapter",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-zwart",
+     "krachtig",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "multipoort",
+     "poorten-3-poorten",
+     "soort-adapter",
+     "vermogen-33-38w"
+    ],
+    "variants": [
+     {
+      "sku": "122",
+      "price": "14.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "WiseQ 25W Magnetische Draadloze MagSafe Snellader - Wit",
+    "product_type": "Draadloze lader",
+    "tags": [
+     "aansluiting-magsafe",
+     "draadloos-25w",
+     "kleur-wit",
+     "model-iphone-15-16-17",
+     "poorten-1-poort",
+     "soort-draadloos",
+     "vermogen-20-25w"
+    ],
+    "variants": [
+     {
+      "sku": "234",
+      "price": "19.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "25W Draadloze Magnetische Snellader 38W Multi-Port Adapter - Geschikt voor MagSafe - Wit",
+    "product_type": "Draadloze lader",
+    "tags": [
+     "aansluiting-magsafe",
+     "draadloos-25w",
+     "kleur-wit",
+     "krachtig",
+     "model-iphone-15-16-17",
+     "multipoort",
+     "poorten-2-poorten",
+     "soort-draadloos",
+     "vermogen-33-38w"
+    ],
+    "variants": [
+     {
+      "sku": "234+121",
+      "price": "37.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "25W Draadloze Magnetische Snellader 30W Adapter - Geschikt voor MagSafe - Wit",
+    "product_type": "Draadloze lader",
+    "tags": [
+     "aansluiting-magsafe",
+     "draadloos-25w",
+     "kleur-wit",
+     "krachtig",
+     "model-iphone-15-16-17",
+     "poorten-1-poort",
+     "soort-draadloos",
+     "vermogen-33-38w"
+    ],
+    "variants": [
+     {
+      "sku": "234+119",
+      "price": "34.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "E-Book | De Lessen Die Je Op School Niet Leert",
+    "product_type": "",
+    "tags": [],
+    "variants": [
+     {
+      "sku": null,
+      "price": "0.00",
+      "compare_at_price": "19.95"
+     }
+    ]
+   },
+   {
+    "title": "WiseTab - Kindertablet – Veilig, Snel & Compleet - 96GB - Roze",
+    "product_type": "Kindertablet",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Tab.Roze.96GB",
+      "price": "124.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "WiseTab - Kindertablet – Veilig, Snel & Compleet - 160GB - Roze",
+    "product_type": "Kindertablet",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Tab.Roze.160GB",
+      "price": "159.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "WiseTab - Kindertablet – Veilig, Snel & Compleet - 160GB - Blauw",
+    "product_type": "Kindertablet",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Tab.Blauw.160GB",
+      "price": "159.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "WiseTab - Kindertablet – Veilig, Snel & Compleet - 96GB - Blauw",
+    "product_type": "Kindertablet",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Tab.Blauw.96GB",
+      "price": "124.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "iPhone Snellader 33W - Dual Port - Inclusief USB-C naar USB-C Kabel 1 Meter - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-wit",
+     "krachtig",
+     "lengte-1m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "multipoort",
+     "poorten-2-poorten",
+     "soort-set",
+     "vermogen-33-38w"
+    ],
+    "variants": [
+     {
+      "sku": "115+240",
+      "price": "26.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "45W Oplader 3-Poorts met 100W USB-C Kabel - 1 Meter - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-wit",
+     "krachtig",
+     "lengte-1m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "multipoort",
+     "poorten-3-poorten",
+     "soort-set",
+     "vermogen-45w"
+    ],
+    "variants": [
+     {
+      "sku": "117 + 240",
+      "price": "30.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "ANC.Sports - Draadloze Noise Cancelling Koptelefoon Voor Volwassenen – 15 Uur Batterij – Zwart",
+    "product_type": "Koptelefoon",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "ANC.Sports",
+      "price": "63.00",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "ANCx100 - Draadloze Koptelefoon Voor Volwassenen - Active Noise Cancelling – Zwart",
+    "product_type": "Koptelefoon",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "ANCx100",
+      "price": "109.00",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Audiokabel USB-C naar AUX - 11 cm - Zwart",
+    "product_type": "Audiokabel",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "425",
+      "price": "7.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Audiokabel USB-C naar AUX - 11 cm - Wit",
+    "product_type": "Audiokabel",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "424",
+      "price": "7.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Laptopkar 2200W - UV Desinfectie - 30 Chromebooks - tot 14 inch",
+    "product_type": "",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Latopkar.2200W",
+      "price": "1390.00",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Bedrade Oordopjes voor Kinderen - Volume Veilig - Zwart",
+    "product_type": "Kinderoordopjes",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "WireQ",
+      "price": "9.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Koptelefoonhouder Wandhanger - Zwart",
+    "product_type": "Koptelefoonhouder",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Wandhanger",
+      "price": "14.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "USB Hub - 30 USB Poorten - 150 Watt",
+    "product_type": "USB-hub",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "usb30s",
+      "price": "79.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "USB Hub 4 poorten + Gratis USB-C Converter - USB Hub / USB Splitter",
+    "product_type": "USB-hub",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "USB-HUB.Black + 260",
+      "price": "14.99",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "USB Hub - 4 USB Poorten - 5Gbps - Zwart",
+    "product_type": "USB-hub",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "USB-HUB.Black",
+      "price": "12.99",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "USB Hub 3.0 - 4 USB Poorten - 5Gbps - Zilver",
+    "product_type": "USB-hub",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "USB-HUB zilver",
+      "price": "12.99",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Unbreakable - Draadloos - 45 uur muziek - Roze",
+    "product_type": "Kinderkoptelefoon",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Unbreakable.Pink",
+      "price": "34.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Unbreakable - Draadloos - 45 uur muziek - Unicorn-Bubblegum",
+    "product_type": "Kinderkoptelefoon",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Unbreakable.Mint",
+      "price": "34.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Unbreakable - Draadloos - 45 uur muziek - Blauw",
+    "product_type": "Kinderkoptelefoon",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Unbreakable.Blue",
+      "price": "34.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Smartwatch voor Kinderen - Roze",
+    "product_type": "Smartwatch",
+    "tags": [
+     "Smartwatch"
+    ],
+    "variants": [
+     {
+      "sku": "SW.PINK",
+      "price": "74.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Smartwatch voor Kinderen - Blauw",
+    "product_type": "Smartwatch",
+    "tags": [
+     "Smartwatch"
+    ],
+    "variants": [
+     {
+      "sku": "SW.BLUE",
+      "price": "74.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Smartwatch voor Kinderen - Zwart",
+    "product_type": "Smartwatch",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "SW.BLACK",
+      "price": "74.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "GPS Tracker - Inclusief sleutelhanger - 1 stuk - Zwart",
+    "product_type": "GPS tracker",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Siindoo Tag 2.0 Zwart",
+      "price": "17.11",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "GPS Tracker - Inclusief sleutelhanger - 1 stuk - Wit",
+    "product_type": "GPS tracker",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Siindoo Tag 2.0 Wit",
+      "price": "17.11",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "GPS Tracker - Sleutelvinder - Werkt met Find My - 1 stuk - Wit",
+    "product_type": "GPS tracker",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Siindoo Tag",
+      "price": "19.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "WiseQ PowerPods - Draadloze Oordopjes - Wit",
+    "product_type": "Oordopjes",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "PowerPods",
+      "price": "29.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Gehoorbescherming voor Kinderen - Zwart - 26 Decibel",
+    "product_type": "Gehoorbescherming",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Oorkap.Zwart",
+      "price": "21.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Gehoorbescherming Kinderen - Dempende Oorkap - Roze – 28dB",
+    "product_type": "Gehoorbescherming",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Oorkap.Roze.Vierkant",
+      "price": "21.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Gehoorbescherming voor Kinderen - Roze - 26 Decibel",
+    "product_type": "Gehoorbescherming",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Oorkap.Roze",
+      "price": "21.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Gehoorbescherming Kinderen - Dempende Oorkap - Mintgroen – 28dB",
+    "product_type": "Gehoorbescherming",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Oorkap.MintGroen.Vierkant",
+      "price": "21.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Gehoorbescherming voor Kinderen - Mintgroen - 26 Decibel",
+    "product_type": "Gehoorbescherming",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Oorkap.Mint",
+      "price": "21.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Gehoorbescherming Kinderen - Dempende Oorkap met Beschermhoes - Legergroen – 28dB",
+    "product_type": "Gehoorbescherming",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Oorkap.LegerGroen.Vierkant",
+      "price": "21.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Gehoorbescherming Kinderen - Dempende Oorkap met Beschermhoes - Geel – 28dB",
+    "product_type": "Gehoorbescherming",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Oorkap.Geel.Vierkant",
+      "price": "21.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Gehoorbescherming Kinderen - Dempende Oorkap met Beschermhoes - Blauw – 28dB",
+    "product_type": "Gehoorbescherming",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Oorkap.Blauw.Vierkant",
+      "price": "21.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "One - Bedraad - Zeer Flexibel - Unicorn-Bubblegum",
+    "product_type": "Kinderkoptelefoon",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "One.Mint&Pink",
+      "price": "19.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "One - Bedraad - Zeer Flexibel - Blauw",
+    "product_type": "Kinderkoptelefoon",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "One.Blue&blue",
+      "price": "19.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "One - Bedraad - Zeer Flexibel - Zwart-Blauw",
+    "product_type": "Kinderkoptelefoon",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "One.Black&Blue",
+      "price": "19.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "USB Hub 30 poorten – 300W",
+    "product_type": "USB-hub",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "N.Hub",
+      "price": "99.00",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Koptelefoon Case – Voor On-ear & Over-ear koptelefoons – Zwart",
+    "product_type": "Koptelefoon case",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "N.Case",
+      "price": "19.99",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "WiseQ Kids ANC - Draadloos & Noise Cancelling - Roze",
+    "product_type": "Kinderkoptelefoon",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Kids.ANC.Pink",
+      "price": "49.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "WiseQ Kids ANC - Draadloos & Noise Cancelling - Navy",
+    "product_type": "Kinderkoptelefoon",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Kids.ANC.Blue",
+      "price": "49.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "WiseQ Kids ANC - Draadloos & Noise Cancelling - Zwart",
+    "product_type": "Kinderkoptelefoon",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Kids.ANC.Black",
+      "price": "49.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Junior - Bedraad - Hufterproof - Roze",
+    "product_type": "Kinderkoptelefoon",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Junior.Pink",
+      "price": "18.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Junior - Bedraad - Hufterproof - Blauw",
+    "product_type": "Kinderkoptelefoon",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Junior.Blue",
+      "price": "18.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Junior - Bedraad - Hufterproof - Zwart",
+    "product_type": "Kinderkoptelefoon",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Junior.Black",
+      "price": "18.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Hero - Draadloos - 38 uur muziek - Roze",
+    "product_type": "Kinderkoptelefoon",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Hero.Pink",
+      "price": "27.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Hero - Draadloos - 38 uur muziek - Unicorn-Bubblegum",
+    "product_type": "Kinderkoptelefoon",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Hero.Mint",
+      "price": "27.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Hero - Draadloos - 38 uur muziek - Blauw",
+    "product_type": "Kinderkoptelefoon",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Hero.Blue",
+      "price": "27.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Hero - Draadloos - 38 uur muziek - Zwart-Blauw",
+    "product_type": "Kinderkoptelefoon",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Hero.Black&Blue",
+      "price": "27.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Hero - Draadloos - 38 uur muziek - Zwart",
+    "product_type": "Kinderkoptelefoon",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Hero.Black",
+      "price": "27.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Koptelefoon Case - Voor opvouwbare koptelefoons - Zwart",
+    "product_type": "Koptelefoon case",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Hardcase",
+      "price": "17.50",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "BTwireless - Draadloos - 8 uur muziek - Zwart-Rood",
+    "product_type": "Kinderkoptelefoon",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Btwireless.ZR",
+      "price": "19.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "BTwireless - Draadloos - 8 uur muziek - Blauw",
+    "product_type": "Kinderkoptelefoon",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "BTWireless Blue",
+      "price": "24.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "BTwireless - Draadloos - 8 uur muziek - Wit",
+    "product_type": "Kinderkoptelefoon",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "BT.White",
+      "price": "19.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "BTwireless - Draadloos - 8 uur muziek - Roze",
+    "product_type": "Kinderkoptelefoon",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "BT.Pink",
+      "price": "19.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "BTwireless - Draadloos - 8 uur muziek - Zwart-Groen",
+    "product_type": "Kinderkoptelefoon",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "BT.Green",
+      "price": "19.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "BTwireless - Draadloos - 8 uur muziek - Zwart",
+    "product_type": "Kinderkoptelefoon",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "BT.Black",
+      "price": "24.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Bouwpakket ophangboom",
+    "product_type": "Koptelefoon opbergsysteem",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "Bouwpakket ophangboom",
+      "price": "399.00",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "GPS Tracker - Inclusief sleutelhanger - 4 stuks - Zwart",
+    "product_type": "GPS tracker",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "4x Siindoo Tag 2.0 Zwart",
+      "price": "41.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "GPS Tracker - Inclusief sleutelhanger - 4 stuks - Wit",
+    "product_type": "GPS tracker",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "4x Siindoo Tag 2.0 Wit",
+      "price": "41.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "GPS Tracker - Sleutelvinder - Werkt met Find My - 4 stuks - Wit",
+    "product_type": "GPS tracker",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "4x Siindoo Tag",
+      "price": "39.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "GPS Tracker - Inclusief sleutelhanger - 2 stuks - Zwart",
+    "product_type": "GPS tracker",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "2x Siindoo Tag 2.0 Zwart",
+      "price": "26.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "GPS Tracker - Inclusief sleutelhanger - 2 stuks - Wit",
+    "product_type": "GPS tracker",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "2x Siindoo Tag 2.0 Wit",
+      "price": "26.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "GPS Tracker - Sleutelvinder - Werkt met Find My - DUO pack 2 stuks - Wit",
+    "product_type": "GPS tracker",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "2x Siindoo Tag",
+      "price": "30.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Premium USB-C Kabel - 60W - 3 Meter - Zwart",
+    "product_type": "Oplaadkabel",
+    "tags": [
+     "aansluiting-usb-c",
+     "kabel-usb-c-naar-usb-c",
+     "kleur-zwart",
+     "lengte-3m",
+     "soort-kabel",
+     "vermogen-60w"
+    ],
+    "variants": [
+     {
+      "sku": "221-NIEUW",
+      "price": "13.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Premium USB-C Kabel - 60W - 3 Meter - Wit",
+    "product_type": "Oplaadkabel",
+    "tags": [
+     "aansluiting-usb-c",
+     "kabel-usb-c-naar-usb-c",
+     "kleur-wit",
+     "lengte-3m",
+     "soort-kabel",
+     "vermogen-60w"
+    ],
+    "variants": [
+     {
+      "sku": "220-NIEUW",
+      "price": "13.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Premium USB-C Kabel - 60W - 2 Meter - Zwart",
+    "product_type": "Oplaadkabel",
+    "tags": [
+     "aansluiting-usb-c",
+     "kabel-usb-c-naar-usb-c",
+     "kleur-zwart",
+     "lengte-2m",
+     "soort-kabel",
+     "vermogen-60w"
+    ],
+    "variants": [
+     {
+      "sku": "219-NIEUW",
+      "price": "12.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Premium USB-C Kabel - 60W - 2 Meter - Wit",
+    "product_type": "Oplaadkabel",
+    "tags": [
+     "aansluiting-usb-c",
+     "kabel-usb-c-naar-usb-c",
+     "kleur-wit",
+     "lengte-2m",
+     "soort-kabel",
+     "vermogen-60w"
+    ],
+    "variants": [
+     {
+      "sku": "218-NIEUW",
+      "price": "12.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Premium USB-C Kabel - 60W - 1 Meter - Zwart",
+    "product_type": "Oplaadkabel",
+    "tags": [
+     "aansluiting-usb-c",
+     "kabel-usb-c-naar-usb-c",
+     "kleur-zwart",
+     "lengte-1m",
+     "soort-kabel",
+     "vermogen-60w"
+    ],
+    "variants": [
+     {
+      "sku": "217-NIEUW",
+      "price": "11.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Premium USB-C Kabel - 60W - 1 Meter - Wit",
+    "product_type": "Oplaadkabel",
+    "tags": [
+     "aansluiting-usb-c",
+     "kabel-usb-c-naar-usb-c",
+     "kleur-wit",
+     "lengte-1m",
+     "soort-kabel",
+     "vermogen-60w"
+    ],
+    "variants": [
+     {
+      "sku": "216-NIEUW",
+      "price": "11.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "25W iPhone Oplader met Lightning Kabel – 3 Meter - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-lightning",
+     "kleur-wit",
+     "lengte-3m",
+     "poorten-1-poort",
+     "soort-set",
+     "vermogen-20-25w"
+    ],
+    "variants": [
+     {
+      "sku": "119+209",
+      "price": "16.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "25W iPhone Oplader met Lightning Kabel – 2 Meter - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-lightning",
+     "kleur-wit",
+     "lengte-2m",
+     "poorten-1-poort",
+     "soort-set",
+     "vermogen-20-25w"
+    ],
+    "variants": [
+     {
+      "sku": "119+208",
+      "price": "15.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "25W iPhone Oplader met Lightning Kabel – 1 Meter - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-lightning",
+     "kleur-wit",
+     "lengte-1m",
+     "poorten-1-poort",
+     "soort-set",
+     "vermogen-20-25w"
+    ],
+    "variants": [
+     {
+      "sku": "119+207",
+      "price": "14.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "45W Oplader 3-Poorts met 100W USB-C Kabel - 3 Meter - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-wit",
+     "krachtig",
+     "lengte-3m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "multipoort",
+     "poorten-3-poorten",
+     "soort-set",
+     "vermogen-45w"
+    ],
+    "variants": [
+     {
+      "sku": "117 + 242",
+      "price": "31.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "45W Oplader 3-Poorts met 100W USB-C Kabel - 2 Meter - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-wit",
+     "krachtig",
+     "lengte-2m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "multipoort",
+     "poorten-3-poorten",
+     "soort-set",
+     "vermogen-45w"
+    ],
+    "variants": [
+     {
+      "sku": "117 + 241",
+      "price": "30.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "33W Ultra Snellader - Dubbele Poorten - Inclusief 3m USB-C naar Lightning Kabel - Zwart",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-lightning",
+     "kleur-zwart",
+     "krachtig",
+     "lengte-3m",
+     "multipoort",
+     "poorten-2-poorten",
+     "soort-set",
+     "vermogen-33-38w"
+    ],
+    "variants": [
+     {
+      "sku": "116 + 239",
+      "price": "19.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "33W Ultra Snellader - Dubbele Poorten - Inclusief 2M USB-C naar Lightning Kabel - Zwart",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-lightning",
+     "kleur-zwart",
+     "krachtig",
+     "lengte-2m",
+     "multipoort",
+     "poorten-2-poorten",
+     "soort-set",
+     "vermogen-33-38w"
+    ],
+    "variants": [
+     {
+      "sku": "116 + 238",
+      "price": "18.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "33W Ultra Snellader - Dubbele Poorten - Inclusief 1M USB-C naar Lightning Kabel - Zwart",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-lightning",
+     "kleur-zwart",
+     "krachtig",
+     "lengte-1m",
+     "multipoort",
+     "poorten-2-poorten",
+     "soort-set",
+     "vermogen-33-38w"
+    ],
+    "variants": [
+     {
+      "sku": "116 + 237",
+      "price": "17.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "iPhone Snellader 33W - Dual Port - Inclusief USB-C naar USB-C Kabel 3 Meter - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-wit",
+     "krachtig",
+     "lengte-3m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "multipoort",
+     "poorten-2-poorten",
+     "soort-set",
+     "vermogen-33-38w"
+    ],
+    "variants": [
+     {
+      "sku": "115 + 242",
+      "price": "26.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "iPhone Snellader 33W - Dual Port - Inclusief USB-C naar USB-C Kabel 2 Meter - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-wit",
+     "krachtig",
+     "lengte-2m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "multipoort",
+     "poorten-2-poorten",
+     "soort-set",
+     "vermogen-33-38w"
+    ],
+    "variants": [
+     {
+      "sku": "115 + 241",
+      "price": "25.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "15W MagSafe Lader Met 1.5 Meter Kabel en 25W Adapter - Draadloos opladen - Wit",
+    "product_type": "Draadloze lader",
+    "tags": [
+     "aansluiting-magsafe",
+     "draadloos-15w",
+     "kleur-wit",
+     "lengte-1-5m",
+     "model-iphone-15-16-17",
+     "poorten-1-poort",
+     "soort-draadloos",
+     "vermogen-20-25w"
+    ],
+    "variants": [
+     {
+      "sku": "113 + 233",
+      "price": "33.00",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "15W MagSafe Lader Met 1 Meter Kabel en 25W Adapter - Draadloos opladen - Wit",
+    "product_type": "Draadloze lader",
+    "tags": [
+     "aansluiting-magsafe",
+     "draadloos-15w",
+     "kleur-wit",
+     "lengte-1m",
+     "model-iphone-15-16-17",
+     "poorten-1-poort",
+     "soort-draadloos",
+     "vermogen-20-25w"
+    ],
+    "variants": [
+     {
+      "sku": "113 + 231",
+      "price": "29.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "25W Dual Charge Snellader - USB C naar USB C Kabel - 3 Meter - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-wit",
+     "lengte-3m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "multipoort",
+     "poorten-2-poorten",
+     "soort-set",
+     "vermogen-20-25w"
+    ],
+    "variants": [
+     {
+      "sku": "113 + 220",
+      "price": "21.00",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "25W Dual Charge Snellader - USB C naar USB C - 2 Meter - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-wit",
+     "lengte-2m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "multipoort",
+     "poorten-2-poorten",
+     "soort-set",
+     "vermogen-20-25w"
+    ],
+    "variants": [
+     {
+      "sku": "113 + 218",
+      "price": "18.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "25W Dual Charge Snellader - USB C naar USB C - 1 Meter - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-wit",
+     "lengte-1m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "multipoort",
+     "poorten-2-poorten",
+     "soort-set",
+     "vermogen-20-25w"
+    ],
+    "variants": [
+     {
+      "sku": "113 + 216",
+      "price": "18.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "25W Dual Charge Snellader - USB naar USB C - 3 Meter - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-wit",
+     "lengte-3m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "multipoort",
+     "poorten-2-poorten",
+     "soort-set",
+     "vermogen-20-25w"
+    ],
+    "variants": [
+     {
+      "sku": "113 + 214",
+      "price": "22.00",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "25W Dual Charge Snellader - USB naar USB C - 2 Meter - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-wit",
+     "lengte-2m",
+     "Meest gekozen",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "multipoort",
+     "poorten-2-poorten",
+     "soort-set",
+     "vermogen-20-25w"
+    ],
+    "variants": [
+     {
+      "sku": "113 + 212",
+      "price": "19.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "25W Dual Charge Snellader - USB naar USB C - 1 Meter - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-wit",
+     "lengte-1m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "multipoort",
+     "poorten-2-poorten",
+     "soort-set",
+     "vermogen-20-25w"
+    ],
+    "variants": [
+     {
+      "sku": "113 + 210",
+      "price": "16.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "iPhone Snellader 20W - Inclusief 3 Meter USB-C naar USB-C Kabel - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-wit",
+     "lengte-3m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "poorten-1-poort",
+     "soort-set",
+     "vermogen-20-25w"
+    ],
+    "variants": [
+     {
+      "sku": "111 + 220",
+      "price": "18.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "iPhone Snellader 20W - Inclusief 2 Meter USB-C naar USB-C Kabel - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-wit",
+     "lengte-2m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "poorten-1-poort",
+     "soort-set",
+     "vermogen-20-25w"
+    ],
+    "variants": [
+     {
+      "sku": "111 + 218",
+      "price": "17.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "iPhone Snellader 20W - Inclusief 1 Meter USB-C naar USB-C Kabel - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-wit",
+     "lengte-1m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "poorten-1-poort",
+     "soort-set",
+     "vermogen-20-25w"
+    ],
+    "variants": [
+     {
+      "sku": "111 + 216",
+      "price": "16.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Audiokabel USB-C naar 3,5 mm - 1 Meter - Zwart",
+    "product_type": "Audiokabel",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "423",
+      "price": "10.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Audiokabel 3.5mm - 1 Meter - Wit",
+    "product_type": "Audiokabel",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "422",
+      "price": "5.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Audiokabel 3.5mm - 1.2 Meter - Zwart",
+    "product_type": "Audiokabel",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "421",
+      "price": "6.50",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Audiokabel 3.5mm - 1 Meter - Zwart",
+    "product_type": "Audiokabel",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "420",
+      "price": "5.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Koptelefoonhouder Monitorhanger - Zwart",
+    "product_type": "Koptelefoonhouder",
+    "tags": [],
+    "variants": [
+     {
+      "sku": "404",
+      "price": "4.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "25W USB-C Snellader met USB-C naar USB-C Kabel - 3 Meter  - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-wit",
+     "lengte-3m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "poorten-1-poort",
+     "soort-set",
+     "vermogen-20-25w"
+    ],
+    "variants": [
+     {
+      "sku": "370",
+      "price": "15.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "25W USB-C Snellader met USB-C naar USB-C Kabel - 2 Meter  - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-wit",
+     "lengte-2m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "poorten-1-poort",
+     "soort-set",
+     "vermogen-20-25w"
+    ],
+    "variants": [
+     {
+      "sku": "369",
+      "price": "14.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "25W USB-C Snellader met USB-C naar USB-C Kabel - 1 Meter  - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-wit",
+     "lengte-1m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "poorten-1-poort",
+     "soort-set",
+     "vermogen-20-25w"
+    ],
+    "variants": [
+     {
+      "sku": "368",
+      "price": "13.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "20W USB-C Snellader met USB-C naar USB-C Kabel - 3 Meter  - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-wit",
+     "lengte-3m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "poorten-1-poort",
+     "soort-set",
+     "vermogen-20-25w"
+    ],
+    "variants": [
+     {
+      "sku": "367",
+      "price": "17.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "20W USB-C Snellader met USB-C naar USB-C Kabel - 2 Meter  - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-wit",
+     "lengte-2m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "poorten-1-poort",
+     "soort-set",
+     "vermogen-20-25w"
+    ],
+    "variants": [
+     {
+      "sku": "366",
+      "price": "16.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "20W USB-C Snellader met USB-C naar USB-C Kabel - 1 Meter  - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-wit",
+     "lengte-1m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "poorten-1-poort",
+     "soort-set",
+     "vermogen-20-25w"
+    ],
+    "variants": [
+     {
+      "sku": "365",
+      "price": "15.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "33W Snellader met USB C Oplaadkabel – Dual Port - 3 Meter - Zwart",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-zwart",
+     "krachtig",
+     "lengte-3m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "multipoort",
+     "poorten-2-poorten",
+     "soort-set",
+     "vermogen-33-38w"
+    ],
+    "variants": [
+     {
+      "sku": "364",
+      "price": "19.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "33W Snellader met USB C Oplaadkabel – Dual Port - 2 Meter - Zwart",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-zwart",
+     "krachtig",
+     "lengte-2m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "multipoort",
+     "poorten-2-poorten",
+     "soort-set",
+     "vermogen-33-38w"
+    ],
+    "variants": [
+     {
+      "sku": "363",
+      "price": "17.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "33W Snellader met USB C Oplaadkabel – Dual Port - 1 Meter - Zwart",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-zwart",
+     "krachtig",
+     "lengte-1m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "multipoort",
+     "poorten-2-poorten",
+     "soort-set",
+     "vermogen-33-38w"
+    ],
+    "variants": [
+     {
+      "sku": "362",
+      "price": "15.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "33W Adapter - Dual Charge met USB-C naar Lightning Kabel - 3 Meter - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-lightning",
+     "kleur-wit",
+     "krachtig",
+     "lengte-3m",
+     "multipoort",
+     "poorten-2-poorten",
+     "soort-set",
+     "vermogen-33-38w"
+    ],
+    "variants": [
+     {
+      "sku": "361",
+      "price": "25.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "33W Adapter - Dual Charge met USB-C naar Lightning Kabel - 2 Meter - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-lightning",
+     "kleur-wit",
+     "krachtig",
+     "lengte-2m",
+     "multipoort",
+     "poorten-2-poorten",
+     "soort-set",
+     "vermogen-33-38w"
+    ],
+    "variants": [
+     {
+      "sku": "360",
+      "price": "22.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "33W Adapter - Dual Charge met USB-C naar Lightning Kabel - 1 Meter - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-lightning",
+     "kleur-wit",
+     "krachtig",
+     "lengte-1m",
+     "multipoort",
+     "poorten-2-poorten",
+     "soort-set",
+     "vermogen-33-38w"
+    ],
+    "variants": [
+     {
+      "sku": "359",
+      "price": "21.00",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "25W Snellader met USB C Oplaadkabel – Dual Port - 3 Meter - Zwart",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-zwart",
+     "lengte-3m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "multipoort",
+     "poorten-2-poorten",
+     "soort-set",
+     "vermogen-20-25w"
+    ],
+    "variants": [
+     {
+      "sku": "358",
+      "price": "20.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "25W Snellader met USB C Oplaadkabel – Dual Port - 2 Meter - Zwart",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-zwart",
+     "lengte-2m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "multipoort",
+     "poorten-2-poorten",
+     "soort-set",
+     "vermogen-20-25w"
+    ],
+    "variants": [
+     {
+      "sku": "357",
+      "price": "18.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "25W Snellader met USB C Oplaadkabel – Dual Port - 1 Meter - Zwart",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-zwart",
+     "lengte-1m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "multipoort",
+     "poorten-2-poorten",
+     "soort-set",
+     "vermogen-20-25w"
+    ],
+    "variants": [
+     {
+      "sku": "356",
+      "price": "15.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Samsung 45W Snellader met USB-C Kabel - 3 Meter – 3-Poorts - Zwart",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-zwart",
+     "krachtig",
+     "lengte-3m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "multipoort",
+     "poorten-3-poorten",
+     "soort-set",
+     "vermogen-45w"
+    ],
+    "variants": [
+     {
+      "sku": "355",
+      "price": "33.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Samsung 45W Snellader met USB-C Kabel - 2 Meter – 3-Poorts Zwart",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-zwart",
+     "krachtig",
+     "lengte-2m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "multipoort",
+     "poorten-3-poorten",
+     "soort-set",
+     "vermogen-45w"
+    ],
+    "variants": [
+     {
+      "sku": "8720618849656",
+      "price": "31.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Samsung 45W Snellader met USB-C Kabel - 1 Meter – 3-Poorts Zwart",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-zwart",
+     "krachtig",
+     "lengte-1m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "multipoort",
+     "poorten-3-poorten",
+     "soort-set",
+     "vermogen-45w"
+    ],
+    "variants": [
+     {
+      "sku": "353",
+      "price": "29.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "iPhone Snellader 25W met Lightning Kabel en Dual Adapter - 3 Meter - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-lightning",
+     "kleur-wit",
+     "lengte-3m",
+     "poorten-1-poort",
+     "soort-set",
+     "vermogen-20-25w"
+    ],
+    "variants": [
+     {
+      "sku": "349",
+      "price": "19.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "iPhone Snellader 25W met Lightning Kabel en Dual Adapter - 2 Meter - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-lightning",
+     "kleur-wit",
+     "lengte-2m",
+     "poorten-1-poort",
+     "soort-set",
+     "vermogen-20-25w"
+    ],
+    "variants": [
+     {
+      "sku": "348",
+      "price": "21.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "iPhone Snellader 25W met Lightning Kabel en Dual Adapter - 1 Meter - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-lightning",
+     "kleur-wit",
+     "lengte-1m",
+     "poorten-1-poort",
+     "soort-set",
+     "vermogen-20-25w"
+    ],
+    "variants": [
+     {
+      "sku": "347",
+      "price": "17.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "38W Snellader 3-Poorts met USB C naar USB C Kabel – 3 Meter - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-wit",
+     "krachtig",
+     "lengte-3m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "multipoort",
+     "poorten-3-poorten",
+     "soort-set",
+     "vermogen-33-38w"
+    ],
+    "variants": [
+     {
+      "sku": "345",
+      "price": "17.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "38W Snellader 3-Poorts met USB C naar USB C Kabel – 2 Meter - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-wit",
+     "krachtig",
+     "lengte-2m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "multipoort",
+     "poorten-3-poorten",
+     "soort-set",
+     "vermogen-33-38w"
+    ],
+    "variants": [
+     {
+      "sku": "344",
+      "price": "16.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "38W Snellader 3-Poorts met USB C naar USB C Kabel – 1 Meter - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-wit",
+     "krachtig",
+     "lengte-1m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "multipoort",
+     "poorten-3-poorten",
+     "soort-set",
+     "vermogen-33-38w"
+    ],
+    "variants": [
+     {
+      "sku": "343",
+      "price": "15.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "38W Snellader 3-Poorts met USB-C naar Lightning Kabel – 3 Meter - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-lightning",
+     "kleur-wit",
+     "krachtig",
+     "lengte-3m",
+     "multipoort",
+     "poorten-3-poorten",
+     "soort-set",
+     "vermogen-33-38w"
+    ],
+    "variants": [
+     {
+      "sku": "342",
+      "price": "18.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "38W Snellader 3-Poorts met USB-C naar Lightning Kabel – 2 Meter - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-lightning",
+     "kleur-wit",
+     "krachtig",
+     "lengte-2m",
+     "multipoort",
+     "poorten-3-poorten",
+     "soort-set",
+     "vermogen-33-38w"
+    ],
+    "variants": [
+     {
+      "sku": "341",
+      "price": "17.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "38W Snellader 3-Poorts met USB-C naar Lightning Kabel – 1 Meter - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-lightning",
+     "kleur-wit",
+     "krachtig",
+     "lengte-1m",
+     "multipoort",
+     "poorten-3-poorten",
+     "soort-set",
+     "vermogen-33-38w"
+    ],
+    "variants": [
+     {
+      "sku": "340",
+      "price": "16.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Magsafe Oplader met 20W Snellader - 1.5 Meter - Wit",
+    "product_type": "Draadloze lader",
+    "tags": [
+     "aansluiting-magsafe",
+     "draadloos-15w",
+     "kleur-wit",
+     "lengte-1-5m",
+     "model-iphone-15-16-17",
+     "poorten-1-poort",
+     "soort-draadloos",
+     "vermogen-20-25w"
+    ],
+    "variants": [
+     {
+      "sku": "333",
+      "price": "27.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Magsafe Oplader met 20W Snellader - 1 Meter - Wit",
+    "product_type": "Draadloze lader",
+    "tags": [
+     "aansluiting-magsafe",
+     "draadloos-15w",
+     "kleur-wit",
+     "lengte-1m",
+     "model-iphone-15-16-17",
+     "poorten-1-poort",
+     "soort-draadloos",
+     "vermogen-20-25w"
+    ],
+    "variants": [
+     {
+      "sku": "331",
+      "price": "25.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "iPhone Snellader - 20W - Lightning kabel - 3 Meter - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-lightning",
+     "kleur-wit",
+     "lengte-3m",
+     "poorten-1-poort",
+     "soort-set",
+     "vermogen-20-25w"
+    ],
+    "variants": [
+     {
+      "sku": "328",
+      "price": "17.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "iPhone Snellader - 20W - Lightning kabel - 2 Meter - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-lightning",
+     "kleur-wit",
+     "lengte-2m",
+     "poorten-1-poort",
+     "soort-set",
+     "vermogen-20-25w"
+    ],
+    "variants": [
+     {
+      "sku": "327",
+      "price": "15.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "iPhone Snellader - 20W - Lightning kabel - 1 Meter - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-lightning",
+     "kleur-wit",
+     "lengte-1m",
+     "poorten-1-poort",
+     "soort-set",
+     "vermogen-20-25w"
+    ],
+    "variants": [
+     {
+      "sku": "326",
+      "price": "14.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Oplader met Micro USB kabel - 2 Meter - Zwart",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-micro-usb",
+     "kleur-zwart",
+     "lengte-2m",
+     "model-samsung-galaxy",
+     "poorten-1-poort",
+     "soort-set"
+    ],
+    "variants": [
+     {
+      "sku": "325",
+      "price": "13.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Oplader met Micro-USB Kabel - 2 Meter - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-micro-usb",
+     "kleur-wit",
+     "lengte-2m",
+     "model-samsung-galaxy",
+     "poorten-1-poort",
+     "soort-set"
+    ],
+    "variants": [
+     {
+      "sku": "324",
+      "price": "13.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Oplader met Micro-USB Oplaadkabel - 1 Meter - Zwart",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-micro-usb",
+     "kleur-zwart",
+     "lengte-1m",
+     "model-samsung-galaxy",
+     "poorten-1-poort",
+     "soort-set"
+    ],
+    "variants": [
+     {
+      "sku": "323",
+      "price": "10.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Oplader met Micro-USB Kabel - 1 Meter - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-micro-usb",
+     "kleur-wit",
+     "lengte-1m",
+     "model-samsung-galaxy",
+     "poorten-1-poort",
+     "soort-set"
+    ],
+    "variants": [
+     {
+      "sku": "322",
+      "price": "11.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "25W Snellader - USB-C naar USB-C Kabel - 3 Meter - Zwart",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-zwart",
+     "lengte-3m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "poorten-1-poort",
+     "soort-set",
+     "vermogen-20-25w"
+    ],
+    "variants": [
+     {
+      "sku": "321",
+      "price": "17.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "25W Oplader - USB C naar USB C Kabel - 3 Meter - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-wit",
+     "lengte-3m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "poorten-1-poort",
+     "soort-set",
+     "vermogen-20-25w"
+    ],
+    "variants": [
+     {
+      "sku": "320",
+      "price": "17.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "25W Snellader - USB-C naar USB-C Kabel - 2 Meter - Zwart",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-zwart",
+     "lengte-2m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "poorten-1-poort",
+     "soort-set",
+     "vermogen-20-25w"
+    ],
+    "variants": [
+     {
+      "sku": "319",
+      "price": "17.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "25W Oplader - USB C naar USB C Kabel - 2 Meter - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-wit",
+     "lengte-2m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "poorten-1-poort",
+     "soort-set",
+     "vermogen-20-25w"
+    ],
+    "variants": [
+     {
+      "sku": "318",
+      "price": "15.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "25W Snellader - USB-C naar USB-C Kabel - 1 Meter - Zwart",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-zwart",
+     "lengte-1m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "poorten-1-poort",
+     "soort-set",
+     "vermogen-20-25w"
+    ],
+    "variants": [
+     {
+      "sku": "317",
+      "price": "14.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "25W Oplader - USB C naar USB C Kabel - 1 Meter - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-wit",
+     "lengte-1m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "poorten-1-poort",
+     "soort-set",
+     "vermogen-20-25w"
+    ],
+    "variants": [
+     {
+      "sku": "316",
+      "price": "14.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Oplader - USB naar USB-C Oplaadkabel - 3 Meter - Zwart",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-zwart",
+     "lengte-3m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "poorten-1-poort",
+     "soort-set"
+    ],
+    "variants": [
+     {
+      "sku": "315",
+      "price": "12.49",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Oplader - USB naar USB-C Oplaadkabel - 3 Meter - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-wit",
+     "lengte-3m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "poorten-1-poort",
+     "soort-set"
+    ],
+    "variants": [
+     {
+      "sku": "314",
+      "price": "12.49",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Oplader  - USB naar USB-C Oplaadkabel - 2 Meter - Zwart",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-zwart",
+     "lengte-2m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "poorten-1-poort",
+     "soort-set"
+    ],
+    "variants": [
+     {
+      "sku": "313",
+      "price": "11.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Oplader - USB naar USB-C Oplaadkabel - 2 Meter - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-wit",
+     "lengte-2m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "poorten-1-poort",
+     "soort-set"
+    ],
+    "variants": [
+     {
+      "sku": "312",
+      "price": "11.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Oplader - USB-C Oplaadkabel - 1 Meter - Zwart",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-zwart",
+     "lengte-1m",
+     "model-samsung-galaxy",
+     "poorten-1-poort",
+     "soort-set"
+    ],
+    "variants": [
+     {
+      "sku": "311",
+      "price": "9.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Oplader - USB naar USB-C Oplaadkabel - 1 Meter - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-wit",
+     "lengte-1m",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "poorten-1-poort",
+     "soort-set"
+    ],
+    "variants": [
+     {
+      "sku": "310",
+      "price": "9.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "iPhone oplader met kabel - USB naar Lightning - 3 Meter - Zwart",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-lightning",
+     "kleur-zwart",
+     "lengte-3m",
+     "poorten-1-poort",
+     "soort-set"
+    ],
+    "variants": [
+     {
+      "sku": "306",
+      "price": "12.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "iPhone Oplader - USB naar Apple Lightning Kabel - 3 Meter - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-lightning",
+     "kleur-wit",
+     "lengte-3m",
+     "poorten-1-poort",
+     "soort-set"
+    ],
+    "variants": [
+     {
+      "sku": "305",
+      "price": "12.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "iPhone Oplader - USB naar Apple Lightning Kabel - 2 Meter - Zwart",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-lightning",
+     "kleur-zwart",
+     "lengte-2m",
+     "poorten-1-poort",
+     "soort-set"
+    ],
+    "variants": [
+     {
+      "sku": "304",
+      "price": "11.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "iPhone Oplader - USB naar Apple Lightning Kabel - 2 Meter - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-lightning",
+     "kleur-wit",
+     "lengte-2m",
+     "poorten-1-poort",
+     "soort-set"
+    ],
+    "variants": [
+     {
+      "sku": "303",
+      "price": "11.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "iPhone Oplader - USB naar Apple Lightning Kabel - 1 Meter - Zwart",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-lightning",
+     "kleur-zwart",
+     "lengte-1m",
+     "poorten-1-poort",
+     "soort-set"
+    ],
+    "variants": [
+     {
+      "sku": "302",
+      "price": "9.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "iPhone Oplader - USB naar Apple Lightning Kabel - 1 Meter - Wit",
+    "product_type": "Oplaadset",
+    "tags": [
+     "aansluiting-lightning",
+     "kleur-wit",
+     "lengte-1m",
+     "poorten-1-poort",
+     "soort-set"
+    ],
+    "variants": [
+     {
+      "sku": "301",
+      "price": "9.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "USB-C naar USB-C Oplaadkabel - 3 Meter - 100W kabel - Wit",
+    "product_type": "Oplaadkabel",
+    "tags": [
+     "aansluiting-usb-c",
+     "kabel-usb-c-naar-usb-c",
+     "kleur-wit",
+     "lengte-3m",
+     "soort-kabel",
+     "vermogen-100w"
+    ],
+    "variants": [
+     {
+      "sku": "242",
+      "price": "14.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "USB-C naar USB-C Oplaadkabel - 2 Meter - 100W kabel - Wit",
+    "product_type": "Oplaadkabel",
+    "tags": [
+     "aansluiting-usb-c",
+     "kabel-usb-c-naar-usb-c",
+     "kleur-wit",
+     "lengte-2m",
+     "soort-kabel",
+     "vermogen-100w"
+    ],
+    "variants": [
+     {
+      "sku": "241",
+      "price": "11.99",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "USB-C naar USB-C Oplaadkabel - 1 Meter - 100W kabel - Wit",
+    "product_type": "Oplaadkabel",
+    "tags": [
+     "aansluiting-usb-c",
+     "kabel-usb-c-naar-usb-c",
+     "kleur-wit",
+     "lengte-1m",
+     "soort-kabel",
+     "vermogen-100w"
+    ],
+    "variants": [
+     {
+      "sku": "240",
+      "price": "9.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "USB C naar Lightning oplaadkabel - 3 Meter - Zwart",
+    "product_type": "Oplaadkabel",
+    "tags": [
+     "aansluiting-lightning",
+     "kabel-usb-c-naar-lightning",
+     "kleur-zwart",
+     "lengte-3m",
+     "soort-kabel"
+    ],
+    "variants": [
+     {
+      "sku": "239",
+      "price": "10.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "USB C naar Lightning Kabel - 2 Meter - Zwart",
+    "product_type": "Oplaadkabel",
+    "tags": [
+     "aansluiting-lightning",
+     "kabel-usb-c-naar-lightning",
+     "kleur-zwart",
+     "lengte-2m",
+     "soort-kabel"
+    ],
+    "variants": [
+     {
+      "sku": "238",
+      "price": "9.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "USB C naar Lightning Kabel - 1 Meter - Zwart",
+    "product_type": "Oplaadkabel",
+    "tags": [
+     "aansluiting-lightning",
+     "kabel-usb-c-naar-lightning",
+     "kleur-zwart",
+     "lengte-1m",
+     "soort-kabel"
+    ],
+    "variants": [
+     {
+      "sku": "237",
+      "price": "7.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Draadloze Oplader - Geschikt Voor MagSafe - 1.5 Meter - Wit",
+    "product_type": "Draadloze lader",
+    "tags": [
+     "aansluiting-magsafe",
+     "draadloos-15w",
+     "kleur-wit",
+     "lengte-1-5m",
+     "model-iphone-15-16-17",
+     "poorten-1-poort",
+     "soort-draadloos"
+    ],
+    "variants": [
+     {
+      "sku": "233",
+      "price": "27.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Draadloze Oplader - Geschikt Voor MagSafe - 1 Meter - Wit",
+    "product_type": "Draadloze lader",
+    "tags": [
+     "aansluiting-magsafe",
+     "draadloos-15w",
+     "kleur-wit",
+     "lengte-1m",
+     "model-iphone-15-16-17",
+     "poorten-1-poort",
+     "soort-draadloos"
+    ],
+    "variants": [
+     {
+      "sku": "231",
+      "price": "18.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Micro USB Kabel - 2 Meter - Zwart",
+    "product_type": "Oplaadkabel",
+    "tags": [
+     "aansluiting-micro-usb",
+     "kabel-micro-usb",
+     "kleur-zwart",
+     "lengte-2m",
+     "soort-kabel"
+    ],
+    "variants": [
+     {
+      "sku": "226",
+      "price": "7.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Micro USB Kabel - 2 Meter - Wit",
+    "product_type": "Oplaadkabel",
+    "tags": [
+     "aansluiting-micro-usb",
+     "kabel-micro-usb",
+     "kleur-wit",
+     "lengte-2m",
+     "soort-kabel"
+    ],
+    "variants": [
+     {
+      "sku": "225",
+      "price": "7.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Micro USB Oplaadkabel- 1 Meter - Zwart",
+    "product_type": "Oplaadkabel",
+    "tags": [
+     "aansluiting-micro-usb",
+     "kabel-micro-usb",
+     "kleur-zwart",
+     "lengte-1m",
+     "soort-kabel"
+    ],
+    "variants": [
+     {
+      "sku": "224",
+      "price": "7.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Micro USB oplaadkabel - 1 Meter - Wit",
+    "product_type": "Oplaadkabel",
+    "tags": [
+     "aansluiting-micro-usb",
+     "kabel-micro-usb",
+     "kleur-wit",
+     "lengte-1m",
+     "soort-kabel"
+    ],
+    "variants": [
+     {
+      "sku": "223",
+      "price": "7.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Micro USB naar USB Kabel - 40 Centimeter - Zwart",
+    "product_type": "Oplaadkabel",
+    "tags": [
+     "aansluiting-micro-usb",
+     "kabel-micro-usb",
+     "kleur-zwart",
+     "lengte-kort",
+     "soort-kabel"
+    ],
+    "variants": [
+     {
+      "sku": "222",
+      "price": "7.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "USB C naar USB-C Kabel - 3 Meter - Zwart",
+    "product_type": "Oplaadkabel",
+    "tags": [
+     "aansluiting-usb-c",
+     "kabel-usb-c-naar-usb-c",
+     "kleur-zwart",
+     "lengte-3m",
+     "soort-kabel"
+    ],
+    "variants": [
+     {
+      "sku": "221",
+      "price": "10.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "USB C naar USB C Kabel - 3 Meter - Wit",
+    "product_type": "Oplaadkabel",
+    "tags": [
+     "aansluiting-usb-c",
+     "kabel-usb-c-naar-usb-c",
+     "kleur-wit",
+     "lengte-3m",
+     "soort-kabel"
+    ],
+    "variants": [
+     {
+      "sku": "220",
+      "price": "10.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "USB C naar USB C Kabel - 2 Meter - Zwart",
+    "product_type": "Oplaadkabel",
+    "tags": [
+     "aansluiting-usb-c",
+     "kabel-usb-c-naar-usb-c",
+     "kleur-zwart",
+     "lengte-2m",
+     "soort-kabel"
+    ],
+    "variants": [
+     {
+      "sku": "219",
+      "price": "9.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "USB C naar USB-C Kabel - 2 Meter - Wit",
+    "product_type": "Oplaadkabel",
+    "tags": [
+     "aansluiting-usb-c",
+     "kabel-usb-c-naar-usb-c",
+     "kleur-wit",
+     "lengte-2m",
+     "soort-kabel"
+    ],
+    "variants": [
+     {
+      "sku": "218",
+      "price": "9.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "USB C naar USB C Oplaadkabel - 1 Meter - Zwart",
+    "product_type": "Oplaadkabel",
+    "tags": [
+     "aansluiting-usb-c",
+     "kabel-usb-c-naar-usb-c",
+     "kleur-zwart",
+     "lengte-1m",
+     "soort-kabel"
+    ],
+    "variants": [
+     {
+      "sku": "217",
+      "price": "8.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "USB C naar USB C Oplaadkabel - 1 Meter - Wit",
+    "product_type": "Oplaadkabel",
+    "tags": [
+     "aansluiting-usb-c",
+     "kabel-usb-c-naar-usb-c",
+     "kleur-wit",
+     "lengte-1m",
+     "soort-kabel"
+    ],
+    "variants": [
+     {
+      "sku": "216",
+      "price": "8.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "USB-A naar USB C Oplaadkabel - 3 Meter - Zwart",
+    "product_type": "Oplaadkabel",
+    "tags": [
+     "aansluiting-usb-c",
+     "kabel-usb-a-naar-usb-c",
+     "kleur-zwart",
+     "lengte-3m",
+     "soort-kabel"
+    ],
+    "variants": [
+     {
+      "sku": "215",
+      "price": "9.99",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "USB-A naar USB C Oplaadkabel - 3 Meter - Wit",
+    "product_type": "Oplaadkabel",
+    "tags": [
+     "aansluiting-usb-c",
+     "kabel-usb-a-naar-usb-c",
+     "kleur-wit",
+     "lengte-3m",
+     "soort-kabel"
+    ],
+    "variants": [
+     {
+      "sku": "214",
+      "price": "9.99",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "USB-A naar USB-C Oplaadkabel – 2 Meter – Zwart",
+    "product_type": "Oplaadkabel",
+    "tags": [
+     "aansluiting-usb-c",
+     "kabel-usb-a-naar-usb-c",
+     "kleur-zwart",
+     "lengte-2m",
+     "soort-kabel"
+    ],
+    "variants": [
+     {
+      "sku": "213",
+      "price": "7.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "USB-A naar USB-C Oplaadkabel - 2 Meter – Wit",
+    "product_type": "Oplaadkabel",
+    "tags": [
+     "aansluiting-usb-c",
+     "kabel-usb-a-naar-usb-c",
+     "kleur-wit",
+     "lengte-2m",
+     "soort-kabel"
+    ],
+    "variants": [
+     {
+      "sku": "212",
+      "price": "7.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "USB-A naar USB C Oplaadkabel - 1 Meter – Zwart",
+    "product_type": "Oplaadkabel",
+    "tags": [
+     "aansluiting-usb-c",
+     "kabel-usb-a-naar-usb-c",
+     "kleur-zwart",
+     "lengte-1m",
+     "soort-kabel"
+    ],
+    "variants": [
+     {
+      "sku": "211",
+      "price": "6.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "USB-A naar USB-C Oplaadkabel – 1 Meter - Wit",
+    "product_type": "Oplaadkabel",
+    "tags": [
+     "aansluiting-usb-c",
+     "kabel-usb-a-naar-usb-c",
+     "kleur-wit",
+     "lengte-1m",
+     "soort-kabel"
+    ],
+    "variants": [
+     {
+      "sku": "210",
+      "price": "6.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "USB C naar Lightning kabel - 3 Meter - Wit",
+    "product_type": "Oplaadkabel",
+    "tags": [
+     "aansluiting-lightning",
+     "kabel-usb-c-naar-lightning",
+     "kleur-wit",
+     "lengte-3m",
+     "soort-kabel"
+    ],
+    "variants": [
+     {
+      "sku": "209",
+      "price": "10.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "USB C naar Lightning kabel - 2 Meter - Wit",
+    "product_type": "Oplaadkabel",
+    "tags": [
+     "aansluiting-lightning",
+     "kabel-usb-c-naar-lightning",
+     "kleur-wit",
+     "lengte-2m",
+     "soort-kabel"
+    ],
+    "variants": [
+     {
+      "sku": "208",
+      "price": "9.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "USB C naar Lightning Oplaadkabel - 1 Meter - Wit",
+    "product_type": "Oplaadkabel",
+    "tags": [
+     "aansluiting-lightning",
+     "kabel-usb-c-naar-lightning",
+     "kleur-wit",
+     "lengte-1m",
+     "soort-kabel"
+    ],
+    "variants": [
+     {
+      "sku": "207",
+      "price": "8.50",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "USB naar Lightning oplaadkabel - 3 Meter - Zwart",
+    "product_type": "Oplaadkabel",
+    "tags": [
+     "aansluiting-lightning",
+     "kabel-usb-a-naar-lightning",
+     "kleur-zwart",
+     "lengte-3m",
+     "soort-kabel"
+    ],
+    "variants": [
+     {
+      "sku": "206",
+      "price": "10.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "USB naar Lightning Oplaadkabel - 3 Meter - Wit",
+    "product_type": "Oplaadkabel",
+    "tags": [
+     "aansluiting-lightning",
+     "kabel-usb-a-naar-lightning",
+     "kleur-wit",
+     "lengte-3m",
+     "soort-kabel"
+    ],
+    "variants": [
+     {
+      "sku": "205",
+      "price": "10.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "USB naar Lightning oplaadkabel - 2 Meter - Zwart",
+    "product_type": "Oplaadkabel",
+    "tags": [
+     "aansluiting-lightning",
+     "kabel-usb-a-naar-lightning",
+     "kleur-zwart",
+     "lengte-2m",
+     "soort-kabel"
+    ],
+    "variants": [
+     {
+      "sku": "204",
+      "price": "8.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "USB naar Lightning Oplaadkabel - 2 Meter - Wit",
+    "product_type": "Oplaadkabel",
+    "tags": [
+     "aansluiting-lightning",
+     "kabel-usb-a-naar-lightning",
+     "kleur-wit",
+     "lengte-2m",
+     "soort-kabel"
+    ],
+    "variants": [
+     {
+      "sku": "203",
+      "price": "8.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "USB naar Lightning Kabel - 1 Meter - Zwart",
+    "product_type": "Oplaadkabel",
+    "tags": [
+     "aansluiting-lightning",
+     "kabel-usb-a-naar-lightning",
+     "kleur-zwart",
+     "lengte-1m",
+     "soort-kabel"
+    ],
+    "variants": [
+     {
+      "sku": "202",
+      "price": "7.50",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "USB naar Lightning Oplaadkabel - Wit - 1 Meter",
+    "product_type": "Oplaadkabel",
+    "tags": [
+     "aansluiting-lightning",
+     "kabel-usb-a-naar-lightning",
+     "kleur-wit",
+     "lengte-1m",
+     "soort-kabel"
+    ],
+    "variants": [
+     {
+      "sku": "201",
+      "price": "7.50",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "USB- en USB C Adapter - 38W Snellader - 3 Poorten - Universeel - Wit",
+    "product_type": "USB-adapter",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-wit",
+     "krachtig",
+     "model-samsung-galaxy",
+     "multipoort",
+     "poorten-3-poorten",
+     "soort-adapter",
+     "vermogen-33-38w"
+    ],
+    "variants": [
+     {
+      "sku": "121",
+      "price": "14.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "USB-C Adapter - Snellader - 25W - Universeel - Wit",
+    "product_type": "USB-adapter",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-wit",
+     "model-samsung-galaxy",
+     "poorten-1-poort",
+     "soort-adapter",
+     "vermogen-20-25w"
+    ],
+    "variants": [
+     {
+      "sku": "119",
+      "price": "12.50",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "USB- en USB C Adapter – 45W Snellader - GaN - Universeel - Zwart",
+    "product_type": "USB-adapter",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-zwart",
+     "krachtig",
+     "model-samsung-galaxy",
+     "poorten-3-poorten",
+     "soort-adapter",
+     "vermogen-45w"
+    ],
+    "variants": [
+     {
+      "sku": "118",
+      "price": "21.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "USB- en USB C Adapter – 45W Snellader - GaN - Universeel - Wit",
+    "product_type": "USB-adapter",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-wit",
+     "krachtig",
+     "model-samsung-galaxy",
+     "poorten-3-poorten",
+     "soort-adapter",
+     "vermogen-45w"
+    ],
+    "variants": [
+     {
+      "sku": "117",
+      "price": "21.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "USB- en USB C Adapter - 33W Snellader - Universeel - Zwart",
+    "product_type": "USB-adapter",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-zwart",
+     "krachtig",
+     "model-samsung-galaxy",
+     "poorten-2-poorten",
+     "soort-adapter",
+     "vermogen-33-38w"
+    ],
+    "variants": [
+     {
+      "sku": "116",
+      "price": "11.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "USB- en USB C Adapter - 33W Snellader - Universeel - GaN - Wit",
+    "product_type": "USB-adapter",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-wit",
+     "krachtig",
+     "model-samsung-galaxy",
+     "poorten-2-poorten",
+     "soort-adapter",
+     "vermogen-33-38w"
+    ],
+    "variants": [
+     {
+      "sku": "115",
+      "price": "14.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "USB en USB C Adapter - Snellader - 25W - Zwart",
+    "product_type": "USB-adapter",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-zwart",
+     "model-samsung-galaxy",
+     "poorten-2-poorten",
+     "soort-adapter",
+     "vermogen-20-25w"
+    ],
+    "variants": [
+     {
+      "sku": "114",
+      "price": "11.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "25W Dual Charge Snellader - Adapter - Wit",
+    "product_type": "USB-adapter",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-wit",
+     "model-samsung-galaxy",
+     "multipoort",
+     "poorten-2-poorten",
+     "soort-adapter",
+     "vermogen-20-25w"
+    ],
+    "variants": [
+     {
+      "sku": "113",
+      "price": "14.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "USB C Adapter Snellader - Voor Apple iPhone - 20W - Wit",
+    "product_type": "USB-adapter",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-wit",
+     "model-samsung-galaxy",
+     "poorten-1-poort",
+     "soort-adapter",
+     "vermogen-20-25w"
+    ],
+    "variants": [
+     {
+      "sku": "111",
+      "price": "11.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "25W snellader met USB C aansluiting - Universeel - Zwart",
+    "product_type": "USB-adapter",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-zwart",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "poorten-1-poort",
+     "soort-adapter",
+     "vermogen-20-25w"
+    ],
+    "variants": [
+     {
+      "sku": "106",
+      "price": "11.50",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "25W snellader met USB C aansluiting - Universeel - Wit",
+    "product_type": "USB-adapter",
+    "tags": [
+     "aansluiting-usb-c",
+     "kleur-wit",
+     "model-iphone-15-16-17",
+     "model-samsung-galaxy",
+     "poorten-1-poort",
+     "soort-adapter",
+     "vermogen-20-25w"
+    ],
+    "variants": [
+     {
+      "sku": "105",
+      "price": "11.50",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "USB Oplader voor Samsung - Smart Fast Charger - 18W Oplader - Zwart",
+    "product_type": "USB-adapter",
+    "tags": [
+     "kleur-zwart",
+     "poorten-1-poort",
+     "soort-adapter",
+     "vermogen-5-18w"
+    ],
+    "variants": [
+     {
+      "sku": "104",
+      "price": "7.50",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "USB Oplader voor Samsung - Smart Fast Charger - 18W Oplader - Wit",
+    "product_type": "USB-adapter",
+    "tags": [
+     "kleur-wit",
+     "poorten-1-poort",
+     "soort-adapter",
+     "vermogen-5-18w"
+    ],
+    "variants": [
+     {
+      "sku": "103",
+      "price": "7.50",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "USB Adapter - Universele Oplader - Zwart - 5W",
+    "product_type": "USB-adapter",
+    "tags": [
+     "kleur-zwart",
+     "poorten-1-poort",
+     "soort-adapter",
+     "vermogen-5-18w"
+    ],
+    "variants": [
+     {
+      "sku": "102",
+      "price": "7.95",
+      "compare_at_price": null
+     }
+    ]
+   },
+   {
+    "title": "Losse Oplader - Universele USB Adapter - 5W",
+    "product_type": "USB-adapter",
+    "tags": [
+     "poorten-1-poort",
+     "soort-adapter",
+     "vermogen-5-18w"
+    ],
+    "variants": [
+     {
+      "sku": "101",
+      "price": "7.95",
+      "compare_at_price": null
+     }
+    ]
+   }
+  ]
+ }
+}

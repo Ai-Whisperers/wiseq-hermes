@@ -105,6 +105,26 @@ def fetch_json(url: str) -> dict:
         return {}
 
 
+# The snapshot's raw_catalogue is the full Shopify payload: ~1 MB, almost all
+# of it fields nothing reads (images, descriptions, SEO blocks, option
+# names).  Only these are consulted by analyse_catalogue().
+PRODUCT_FIELDS = ("title", "product_type", "tags")
+VARIANT_FIELDS = ("sku", "price", "compare_at_price")
+
+
+def trim_catalogue(payload: dict) -> dict:
+    """Reduce a Shopify payload to the fields the analysis actually reads."""
+    products = []
+    for product in payload.get("products", []) or []:
+        trimmed = {k: product.get(k) for k in PRODUCT_FIELDS}
+        trimmed["variants"] = [
+            {k: variant.get(k) for k in VARIANT_FIELDS}
+            for variant in (product.get("variants") or [])
+        ]
+        products.append(trimmed)
+    return {"products": products}
+
+
 def analyse_catalogue(payload: dict) -> dict:
     products = payload.get("products", []) or []
     with_price = 0
@@ -831,8 +851,13 @@ def main() -> int:
     # the dated filename.
     (out_dir / "public-site-audit-latest.md").write_text(
         render_report(result), encoding="utf-8")
+    # The 'latest' JSON keeps only the fields the analysis reads.  The full
+    # Shopify payload is ~1 MB of images, descriptions and SEO blocks that
+    # nothing consumes, and it would bloat the repository for no gain.  The
+    # dated file above keeps the complete payload for anyone who needs it.
+    trimmed = {**result, "raw_catalogue": trim_catalogue(result["raw_catalogue"])}
     (out_dir / "public-site-audit-latest.json").write_text(
-        json.dumps(result, indent=1, ensure_ascii=False), encoding="utf-8")
+        json.dumps(trimmed, indent=1, ensure_ascii=False), encoding="utf-8")
 
     catalogue = result["catalogue"]
     print(f"observed            : {stamp}")
