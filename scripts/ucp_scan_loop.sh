@@ -42,7 +42,20 @@ PY
     set -- $summary
     resolved="${1:-0}"; not_found="${2:-0}"; failed="${3:-0}"
 
-    echo "resolved=$resolved not_found=$not_found failed=$failed status=$status" >> "$LOG"
+    # How long the storefront asked us to wait.  The report is the last
+    # JSON block the scan wrote, so read the back-off from it rather than
+    # guessing a sleep interval: guessing short means every attempt is
+    # throttled again, which resets the window and makes the scan never
+    # finish.
+    wait_for=$("$ROOT/.venv/bin/python" - "$LOG" <<'PYWAIT' 2>/dev/null || true
+import re, sys
+text = open(sys.argv[1], encoding="utf-8", errors="replace").read()
+hits = re.findall(r'"retry_after_seconds":\s*(\d+)', text)
+print(int(hits[-1]) if hits else 0)
+PYWAIT
+    )
+
+    echo "resolved=$resolved not_found=$not_found failed=$failed status=$status wait=${wait_for}s" >> "$LOG"
 
     # Done when nothing is left to ask about.
     if [ "$resolved" -gt 0 ] && [ "$(( resolved + not_found ))" -ge 139 ]; then
@@ -50,8 +63,14 @@ PY
         exit 0
     fi
 
-    # Back off a little between attempts so a live rate limit can expire.
-    sleep 120
+    # Wait out the window the storefront named, plus a margin.  A short
+    # sleep only guarantees another throttle.
+    sleep_for=$(( wait_for + 60 ))
+    if [ "$sleep_for" -lt 60 ]; then
+        sleep_for=60
+    fi
+    echo "sleeping ${sleep_for}s" >> "$LOG"
+    sleep "$sleep_for"
 done
 
 echo "TIMEOUT after $MAX_MINUTES minutes; progress is saved in $PROGRESS" >> "$LOG"
