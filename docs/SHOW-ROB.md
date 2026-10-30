@@ -25,6 +25,8 @@ Runs in ~3 seconds and prints the whole story. It is also verification step
 | 5 | **And then we asked a human** | the safety model, in plain words | offer `draft`, `requires_human_send: True`, 4 pending approvals, nothing sent |
 | 6 | **Review requests** | Dutch copy, human-sent, test mailbox only | "Beste De Zon, Bedankt voor uw vertrouwen in WiseQ…" → `weissvanderpol@gmail.com` |
 | 7 | **Purchase intelligence** | restock suggestions, not auto-orders | 6-month rolling average over 183 days |
+| 8+ | **Class sets, warranty, strike watch, low-stock guard, integration backlog** | the operating rules, live | WiseQ's own published sizing table; 1 vs 2 year warranty contradiction; 93% on-time norm; 46 low-stock articles |
+| last | **What WiseQ still has to decide** | the honest close: every open decision, named, with what we do meanwhile | 8 open decisions, each with its source and its fallback |
 
 The last line printed is the one to leave on screen:
 
@@ -37,6 +39,15 @@ The school-discount line is flagged in the output as a PLACEHOLDER, and it
 reads **0%** — WiseQ publishes *staffelprijzen* (volume tiers), not a flat
 discount, and no percentage appears in the operating manual or the
 2026-10-28 transcript.
+
+The demo also ends with a section that lists **every decision still open**
+— the staffel ladder, the EAN export, the warranty, the five shipping
+categories, the 88 products outside the master model, the five samples,
+the EUR 2.95 fee and the stock price raise. For each one it says what we
+did in the meantime (held at zero, flagged, asked a human) and where the
+answer has to come from. That section exists so Rob is never left
+assuming the system is finished: it is finished on the rules WiseQ has
+published, and waiting on the rules only Rob can publish.
 
 If Rob asks "so where are my school prices?", the honest answer is: *"your
 staffel tiers live inside your own Shopify app — the SamitaWS registration
@@ -87,7 +98,7 @@ curl http://localhost:8000/prices/gaps      # what's still unpriced
 And the acceptance suite proves the whole thing end to end:
 
 ```bash
-./scripts/verify_all.sh      # 9 steps, all green
+./scripts/verify_all.sh      # all steps green
 ```
 
 ---

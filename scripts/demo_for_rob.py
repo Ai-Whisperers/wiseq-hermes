@@ -446,6 +446,147 @@ def show_strike_and_stock_guard(orch) -> None:
     print("  within 3 days as urgent.")
 
 
+def show_what_is_missing(orch, settings) -> None:
+    """Say plainly what WiseQ must still decide, and why we did not guess.
+
+    A demo that only shows what works invites the assumption that the
+    system is finished.  Rob has to know exactly which numbers are ours
+    and which are his -- and he is the one who can close each gap.  This
+    section lists every open decision in plain Dutch-facing English,
+    names where each answer has to come from, and states what the system
+    does in the meantime.
+    """
+    print()
+    print(LINE)
+    print("WHAT WISEQ STILL HAS TO DECIDE (AND WHAT WE DO UNTIL THEN)")
+    print(LINE)
+    print()
+    print("  Nothing below was guessed. Where a rule was missing we left the")
+    print("  number at zero and flagged it, rather than invent a rule that")
+    print("  would reach a school as a wrong price. Here is the full list.")
+    print()
+
+    gaps: list[tuple[str, str, str]] = []
+
+    if settings.school_discount_is_placeholder:
+        gaps.append((
+            "Staffelprijzen (volume tier prices)",
+            "WiseQ publishes *staffelprijzen* on the B2B page, driven by the "
+            "'Sami B2B Wholesale Pricing' Shopify app. Those tier prices are "
+            "not in the public catalogue, not in the master files and not in "
+            "the UCP feed.",
+            _staffel_action(),
+        ))
+
+    gaps.append((
+        "EAN barcodes",
+        "The storefront exposes product ids and business SKUs, but no EAN. "
+        "The master INDEX lists 21 sheets of which only 5 are exported.",
+        "Export the remaining 16 sheets from FiveX/Mastersheet.xlsx, including "
+        "the EAN column.",
+    ))
+
+    gaps.append((
+        "Guarantee: 1 year or 2?",
+        "The general terms, the FAQ and the agent brief all say 1 year. "
+        "Nine school-facing and collection pages say 2 years. Your own "
+        "site currently contradicts itself.",
+        "Decide which is true, then align the terms, the school pages and "
+        "the channel listings in one pass. The warranty engine already "
+        "reads the rule from your manual and refuses to guess.",
+    ))
+
+    gaps.append((
+        "Five shipping categories",
+        "2x Adapter ?, Koptelefooncase, USB HUBS, Smartwatch and Tag have "
+        "no confirmed carrier or rate.",
+        "Confirm each one. Until then they are priced NEEDS_CONFIRMATION "
+        "and a human is asked -- they are never guessed.",
+    ))
+
+    gaps.append((
+        "88 products outside the master model",
+        "The live storefront sells 230 records; 139 map to the modelled "
+        "catalogue. The other 88 sell but have no master row.",
+        "Classify them. The classification agent already sorts them into "
+        "'new product', 'sample -- blocked' and 'needs a human', and files "
+        "an approval for anything that changes what can be sold.",
+    ))
+
+    gaps.append((
+        "5 sample products (EUR 10-20)",
+        "Five products priced EUR 10-20 look like samples rather than "
+        "stock.",
+        "Confirm they are samples. They are blocked from every offer until "
+        "you say otherwise -- a school must never be quoted for a demo unit.",
+    ))
+
+    gaps.append((
+        "EUR 2.95 order fee",
+        "The storefront encodes the B2B order fee as an ordinary product "
+        "with a price, and the explanation for the threshold differs "
+        "between pages.",
+        "Confirm the amount and the threshold. It is held as an order-level "
+        "rule, never as a product.",
+    ))
+
+    gaps.append((
+        "Stock price raise: 10%?",
+        "The manual says 'ik geloof' -- 'I believe' -- which is not a "
+        "confirmed rule, so it ships as a labelled placeholder.",
+        "Confirm the percentage and the threshold. The guard recommends; a "
+        "human approves; no live price is touched.",
+    ))
+
+    for index, (title, detail, action) in enumerate(gaps, 1):
+        print(f"  {index}. {title}")
+        for line in _wrap(detail, 66):
+            print(f"       {line}")
+        action_lines = _wrap(action, 62)
+        print(f"       -> {action_lines[0]}")
+        for line in action_lines[1:]:
+            print(f"          {line}")
+        print()
+
+    print("  Everything else -- the catalogue, the order parsing, the")
+    print("  tariffs, the class-set sizing, the strike rules, the stock")
+    print("  guard -- runs on WiseQ's own data and is live in this demo.")
+    print()
+
+
+def _staffel_action() -> str:
+    """Say what to do about the staffel ladder -- honestly.
+
+    The importer and the format it accepts only exist once they are
+    shipped, so the demo says what is true rather than what is planned:
+    it points at the document when the document is there, and asks for the
+    export either way.
+    """
+    doc = Path(__file__).resolve().parents[1] / "docs" / "STAFFEL-AND-CLASSIFICATION.md"
+    if doc.exists():
+        return (
+            "Export the ladder from Sami B2B. The importer is built and "
+            "idempotent, and docs/STAFFEL-AND-CLASSIFICATION.md describes "
+            "the exact file it expects -- the tiers become active the "
+            "moment that file arrives."
+        )
+    return (
+        "Export the ladder from Sami B2B. The tier prices are the one "
+        "piece of business logic that cannot be derived from anything "
+        "public, so the system stays at no discount until they arrive."
+    )
+
+
+def _wrap(text: str, width: int) -> list[str]:
+    """Wrap text to a width, keeping paragraph structure."""
+    import textwrap
+
+    out: list[str] = []
+    for paragraph in text.split("\n\n"):
+        out.extend(textwrap.wrap(paragraph, width=width) or [""])
+    return out
+
+
 def main() -> int:
     settings = get_settings()
     repo = settings.repo_dir or (Path(__file__).resolve().parents[1] / "data" / "wiseq-repo")
@@ -486,6 +627,7 @@ def main() -> int:
     show_scheduler(orch)
     show_integration_backlog(orch)
     show_strike_and_stock_guard(orch)
+    show_what_is_missing(orch, settings)
 
     print()
     print(LINE)
