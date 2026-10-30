@@ -32,6 +32,7 @@ data/public/public-site-audit-2026-*.json
 data/public/public-site-audit-latest.json.orig
 data/public/public-site-audit-*.md
 data/public/public-page-audit-*.json
+!data/public/public-page-audit-snapshot.json
 data/public/public-page-audit-*.md
 data/public/mcp-review-*.json
 data/public/mcp-review-*.md

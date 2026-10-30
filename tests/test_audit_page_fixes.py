@@ -119,10 +119,15 @@ class TestHandoverFiguresMatchTheAudit:
     def _audit_pages(self):
         import json
 
-        path = ROOT / "data" / "public" / "public-page-audit-latest.json"
-        if not path.exists():
-            pytest.skip("no page audit output present")
-        return json.loads(path.read_text(encoding="utf-8"))["pages"]
+        # The committed snapshot is preferred, because it is present on a
+        # fresh clone.  The generated file is the fallback for a working
+        # copy that has just re-run the audit.
+        for name in ("public-page-audit-snapshot.json",
+                     "public-page-audit-latest.json"):
+            path = ROOT / "data" / "public" / name
+            if path.exists():
+                return json.loads(path.read_text(encoding="utf-8"))["pages"]
+        pytest.skip("no page audit output present")
 
     def test_the_quoted_page_count_matches_the_audit(self):
         pages = self._audit_pages()
