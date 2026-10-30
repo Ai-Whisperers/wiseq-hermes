@@ -54,6 +54,18 @@ anything being sent, Dutch review drafts, and 6-month purchase intelligence.
 
 The same script runs as verification step 4b, so it can never silently rot.
 
+### On a Windows PC
+
+There are two launchers for Windows, and both are one double-click:
+
+| Launcher | What it does |
+| :--- | :--- |
+| `scripts\demo_windows.bat` | installs, runs the tests, then runs the demo above. |
+| `scripts\start_api_windows.bat` | starts the live API on the Tailscale address so the interactive docs at `/docs` can be clicked through. |
+
+`docs/WINDOWS-RUN.md` is the short operator guide: where the token lives,
+how to stop and start the background service, and which ports are used.
+
 ---
 
 ## Quick start — three ways
