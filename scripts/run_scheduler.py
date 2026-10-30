@@ -35,6 +35,7 @@ from wiseq.config import get_settings            # noqa: E402
 from wiseq.db.db import Database                 # noqa: E402
 from wiseq.ingest.loaders import load_all        # noqa: E402
 from wiseq.orchestrator import WiseQOrchestrator  # noqa: E402
+from wiseq.scheduler import SchedulerGiveUp       # noqa: E402
 
 
 def build_orchestrator() -> WiseQOrchestrator:
@@ -56,13 +57,23 @@ def main() -> int:
     ap.add_argument("--job", help="run only this job (with 'once')")
     ap.add_argument("--poll", type=int, default=30,
                     help="seconds between polls in 'serve' mode")
+    ap.add_argument("--max-failures", type=int, default=5,
+                    help="stop the worker after this many CONSECUTIVE "
+                         "failures of one job")
     args = ap.parse_args()
 
     orch = build_orchestrator()
     sched = orch.scheduler()
 
     if args.mode == "status":
-        print(json.dumps(sched.status(), indent=2))
+        # The status a human actually needs: is the worker alive, are the
+        # jobs healthy, and what is still broken.
+        print(json.dumps({
+            "liveness": sched.liveness(),
+            "stale_jobs": sched.stale_jobs(),
+            "job_state": sched.job_state(),
+            "jobs": sched.status()["jobs"],
+        }, indent=2, default=str))
         return 0
 
     if args.mode == "once":
@@ -71,7 +82,14 @@ def main() -> int:
         failures = [r for r in results if r.get("status") == "failed"]
         return 1 if failures else 0
 
-    sched.serve_forever(poll_seconds=args.poll)
+    try:
+        sched.serve_forever(poll_seconds=args.poll,
+                            max_consecutive_failures=args.max_failures)
+    except SchedulerGiveUp as exc:
+        # A non-zero exit is the signal to the container runtime that the
+        # worker gave up on a broken job rather than exiting cleanly.
+        print(f"scheduler gave up: {exc}", file=sys.stderr)
+        return 2
     return 0
 
 

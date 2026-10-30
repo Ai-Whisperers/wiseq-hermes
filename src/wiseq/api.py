@@ -521,11 +521,22 @@ def integration_decision():
 
 @app.get("/scheduler")
 def scheduler_status():
-    """The recurring jobs and how their last runs went."""
+    """The recurring jobs and how their last runs went.
+
+    The liveness block is the important part: it says whether the worker
+    process is actually running, and whether any job has gone stale.
+    A scheduler that is up but whose jobs have stopped is worse than one
+    that is visibly down, so both are reported.
+    """
     orch = get_orchestrator()
     sched = orch.scheduler()
-    return {"jobs": sched.status()["jobs"],
-            "recent_runs": sched.recent_runs(10)}
+    return {
+        "jobs": sched.status()["jobs"],
+        "recent_runs": sched.recent_runs(10),
+        "liveness": sched.liveness(),
+        "stale_jobs": sched.stale_jobs(),
+        "job_state": sched.job_state(),
+    }
 
 
 @app.post("/scheduler/run")
