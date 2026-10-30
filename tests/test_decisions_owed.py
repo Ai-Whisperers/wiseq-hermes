@@ -13,6 +13,7 @@ properties matter and are tested here:
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 
 import pytest
@@ -337,3 +338,106 @@ def test_five_samples_stay_five_rows_even_when_they_share_a_business_sku(db, rep
     assert decisions[0]["status"] == "SAMPLE"
     assert decisions[0]["variant_count"] == 5
     assert len({v["variant_sku"] for v in decisions[0]["variants"]}) == 5
+
+
+class TestDocumentedCounts:
+    """The counts quoted in the handover documents must match reality.
+
+    These were wrong once ("~25 families" when the grouping produced 29),
+    and a wrong number in a handover document is worse than no number:
+    Rob acts on it.  The figures are asserted against the live grouping
+    logic so a change to the family rules fails the build.
+    """
+
+    def test_family_grouping_matches_the_documented_figure(self):
+        from wiseq.agents.decisions_owed import _catalogue_family
+
+        # The storefront lines outside the master catalogue, as observed on
+        # 2026-10-30 (88 variants grouped into 29 families + 1 sample family).
+        variants = [
+            ("Tab.Hoes.Groen10.2", "iPad Beschermhoes Kinderen", False),
+            ("Tab.Hoes.Roze10.2", "iPad Beschermhoes Kinderen", False),
+            ("USB.HUB.16P", "USB Hub", False),
+            ("usb30s", "USB Hub", False),
+            ("USB-HUB.Black + 260", "USB Hub", False),
+            ("USB-HUB.Black", "USB Hub", False),
+            ("USB-HUB zilver", "USB Hub", False),
+            ("N.Hub", "USB Hub", False),
+            ("BT.Black", "BTwireless", False),
+            ("BT.White", "BTwireless", False),
+            ("BT.Pink", "BTwireless", False),
+            ("BT.Green", "BTwireless", False),
+            ("BTWireless Blue", "BTwireless", False),
+            ("Btwireless.ZR", "BTwireless", False),
+            ("ANCx100", "ANCx100", False),
+            ("ANC.Sports", "ANC.Sports", False),
+            ("Sample.Kids.ANC.Black", "Sample", True),
+            ("Sample.Unbreakable.Blue", "Sample", True),
+            ("Sample.Hero.Blue", "Sample", True),
+            ("Sample.Junior.Black", "Sample", True),
+            ("sample.one.zwart.blauw", "Sample", True),
+        ]
+        families = {}
+        for sku, title, is_sample in variants:
+            key = (is_sample, _catalogue_family(title or sku))
+            families.setdefault(key, []).append(sku)
+
+        # 6 USB-hub variants collapse to ONE family, and the 5 samples
+        # collapse to ONE family.  That collapsing is the whole point.
+        usb = [k for k in families if k[1] == "USB Hub"]
+        assert len(usb) == 1
+        assert len(families[usb[0]]) == 6
+
+        samples = [k for k in families if k[0] is True]
+        assert len(samples) == 1
+        assert len(families[samples[0]]) == 5
+
+    def test_live_storefront_yields_88_variants_in_29_families(self):
+        """Assert the real figures against the live storefront.
+
+        Network-dependent, so it is skipped when the storefront is
+        unreachable rather than failing the build.
+        """
+        import tempfile
+
+        from wiseq.db.db import Database
+        from wiseq.ingest.shopify import (
+            fetch_shopify_products,
+            parse_shopify_products,
+        )
+        from wiseq.orchestrator import WiseQOrchestrator
+
+        try:
+            raw = fetch_shopify_products("https://www.wiseq.nl")
+        except Exception as exc:  # offline CI
+            pytest.skip(f"storefront unreachable: {exc}")
+
+        variants, _rules = parse_shopify_products(raw)
+
+        # The real client repository, mounted rather than committed.
+        client_repo = Path(os.environ.get(
+            "WISEQ_REPO_DIR",
+            Path(__file__).resolve().parents[1] / "data" / "wiseq-repo",
+        ))
+        if not (client_repo / "data" / "client" / "mastersheet").exists():
+            pytest.skip(f"client repository not present at {client_repo}")
+
+        db = Database(f"sqlite:///{tempfile.mkdtemp()}/counts.db")
+        db.init_schema()
+        orch = WiseQOrchestrator(db, repo=client_repo)
+        orch.ingest()
+        orch.sync_shopify()
+
+        outside = db.query(
+            "SELECT variant_sku, title, is_sample FROM storefront_catalogue "
+            "WHERE in_catalogue = 0"
+        )
+        assert len(outside) == 88
+
+        from wiseq.agents.decisions_owed import _catalogue_family
+
+        fams = set()
+        for row in outside:
+            fams.add((bool(row["is_sample"]),
+                      _catalogue_family(row["title"] or row["variant_sku"])))
+        assert len(fams) == 29

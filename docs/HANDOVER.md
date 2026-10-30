@@ -638,7 +638,7 @@ is the single list. As of 2026-10-30, against the live storefront:
 | Kind | Count | What it blocks |
 |---|---|---|
 | shipping rules | 5 | framing any order in that category |
-| catalogue lines | ~25 lines / 88 variants | an offer including that line |
+| catalogue lines | 29 lines / 88 variants | an offer including that line |
 | policy contradictions | 1 | any customer-facing warranty statement |
 | master sheets not exported | 16 | capabilities that depend on them |
 
