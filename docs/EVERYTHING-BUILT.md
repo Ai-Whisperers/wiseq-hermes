@@ -1,7 +1,7 @@
 # WiseQ × Hermes — everything built so far
 
 **Repository:** `https://github.com/Ai-Whisperers/wiseq-hermes` (public, MIT)
-**Final SHA:** `81c5f45` — clean tree, local and remote identical, CI + Gitleaks green
+**Final SHA:** `7eeae4e` — clean tree, local and remote identical, CI + Gitleaks green
 **Verified:** 2026-10-30
 **Prepared for:** Iván — to show Rob Nyari
 
@@ -292,13 +292,13 @@ healthy stale status. 23 dedicated tests.
 
 | Environment | Result |
 | :--- | :--- |
-| Linux + PostgreSQL 18.6 | **582 passed, 0 skipped** |
-| Linux + SQLite only | 578 passed, 4 skipped (PostgreSQL-only tests) |
-| **Windows 11 (ivan-desktop)** | **577 passed, 5 skipped, 0 failed** |
+| Linux + PostgreSQL 18.6 | **586 passed, 0 skipped** |
+| Linux + SQLite only | 582 passed, 4 skipped (PostgreSQL-only tests) |
+| **Windows 11 (ivan-desktop)** | **581 passed, 5 skipped, 0 failed** |
 | `scripts/verify_all.sh` | **all 14 steps green** |
-| Clean-room install from the archive | 582 passed, 0 skipped |
-| CI (pinned SHAs) | green on `81c5f45` |
-| Gitleaks (full history) | green on `81c5f45` |
+| Clean-room install from the archive | 586 passed, 0 skipped |
+| CI (pinned SHAs) | green on `7eeae4e` |
+| Gitleaks (full history) | green on `7eeae4e` |
 
 Two portability bugs were found by actually running on Windows rather than
 by inspection:
@@ -323,7 +323,7 @@ fail with 401. Fixed, and pinned by `tests/test_suite_hermeticity.py`.
 
 | What | Where |
 | :--- | :--- |
-| Repositories | `C:\hermes\work\wiseq-hermes` (at `81c5f45`) |
+| Repositories | `C:\hermes\work\wiseq-hermes` (at `7eeae4e`) |
 | Client master data | `C:\hermes\work\wiseq-hermes\data\wiseq-repo` |
 | Virtualenv | `C:\hermes\work\wiseq-hermes\.venv` |
 | **Live API** | `http://100.105.54.119:8010/docs` — running as the scheduled task `WiseQHermesAPI` |
@@ -399,7 +399,7 @@ src/wiseq/
   scheduler.py     durable jobs, heartbeats, stale detection
   orchestrator.py  wiring + recurring jobs
 scripts/           setup, verification (14 steps), Rob demo, audits, parity
-tests/             582 tests
+tests/             586 tests
 docs/              HANDOVER, DATABASE, MCP-CONNECTORS, PUBLIC-DATA-FINDINGS,
                    MARKET-AND-PROCUREMENT-FINDINGS, SHOW-ROB, STATUS, WINDOWS-RUN
 data/wiseq-repo/   MOUNTED, NEVER COMMITTED — WiseQ's own master data
